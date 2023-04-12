@@ -6,7 +6,7 @@ public abstract class Artigo {
     protected int correcaoPreco;
     protected boolean usado;
 
-    // TO DO: donos && premium
+    // TO DO: users && premium
 
     public Artigo(String descricao, String marca, String codigo, double precoBase, int correcaoPreco, boolean usado) {
         this.descricao = descricao;
