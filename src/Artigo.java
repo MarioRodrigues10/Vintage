@@ -1,19 +1,25 @@
+import java.math.BigDecimal;
+
 public abstract class Artigo {
-    protected String descricao;
-    protected String marca;
-    protected String codigo;
-    protected double precoBase;
-    protected int correcaoPreco;
-    protected boolean usado;
+    protected String description;
+    protected String brand;
+    protected String id;
+    protected int evaluation;
+    protected BigDecimal price;
+    protected int correction;
+    protected boolean used;
 
-    // TO DO: users && premium
+    protected int owners;
 
-    public Artigo(String descricao, String marca, String codigo, double precoBase, int correcaoPreco, boolean usado) {
-        this.descricao = descricao;
-        this.marca = marca;
-        this.codigo = codigo;
-        this.precoBase = precoBase;
-        this.correcaoPreco = correcaoPreco;
-        this.usado = usado;
+    // TODO: Owners && Premium && Carrier
+
+    public Artigo(String description, String brand, String id, BigDecimal price, int correction, int owners, boolean used) {
+        this.description= description;
+        this.brand = brand;
+        this.id = id;
+        this.price = price;
+        this.correction = correction;
+        this.owners = owners;
+        this.used = used;
     }
 }
