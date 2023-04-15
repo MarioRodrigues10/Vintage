@@ -6,6 +6,8 @@ import java.util.ArrayList;
  */
 public class Order {
 
+
+
     /*
      * Enumerates the sizes of an Order
      */
@@ -20,10 +22,21 @@ public class Order {
         PENDING, FINISHED, SENT, DELIVERED
     }
 
-    protected ArrayList <Item> items; /* ! Items of an Order */
-    protected Size size; /* ! Size of an Order */
-    protected State state; /* ! State of an Order */
-    protected BigDecimal price; /* ! Price of an Order */
+    private ArrayList <Item> items; /* ! Items of an Order */
+    private Size size; /* ! Size of an Order */
+    private State state; /* ! State of an Order */
+    private BigDecimal price; /* ! Price of an Order */
+
+
+    /**
+     * Creates a new Order object with default properties.
+     */
+    public Order() {
+        this.items = new ArrayList<>();
+        this.size = Size.MEDIUM;
+        this.state = State.PENDING;
+        this.price = BigDecimal.valueOf(0);
+    }
 
     /**
      * Creates a new Order object with the specified properties.
@@ -104,20 +117,12 @@ public class Order {
     }
 
     /**
-     * Adds an item to an Order
+     * Adds an Item to an Order
      * @param item
      */
-    public void addItem(Item item) {
+    public Order addItem(Item item) {
         items.add(item);
-    }
-
-
-    /**
-     * Removes an item from an Order
-     * @param item
-     */
-    public void removeItem(Item item) {
-        items.remove(item);
+        return new Order(items, size, state, price);
     }
 
     /**
@@ -128,8 +133,33 @@ public class Order {
     public BigDecimal calculatePrice() {
         BigDecimal price = new BigDecimal(0);
         for (Item item : items) {
-            price = price.add(item.getPrice());
+            if(item.isUsed()) {
+                price = price.add(item.getPrice()).add(BigDecimal.valueOf(0.25));
+            }
+            else {
+                price = price.add(item.getPrice()).add(BigDecimal.valueOf(0.5));
+            }
         }
         return price;
+    }
+
+    /**
+     * Creates a new Order object with the specified properties.
+     *
+     * @return Order
+     */
+    public Order createOrder() {
+        return new Order(items, size, state, price);
+    }
+
+
+    /**
+     * Removes an Item from an Order
+     *
+     * @return Order
+     */
+    public Order removeItemFromOrder(Item item) {
+        items.remove(item);
+        return new Order(items, size, state, price);
     }
 }

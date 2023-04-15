@@ -19,8 +19,8 @@ public class TShirt extends Item{
        SOLID, STRIPPED, PALM
     }
 
-    protected Size size; /* ! Size of a TShirt */
-    protected Pattern pattern; /* ! Pattern of a TShirt */
+    private Size size; /* ! Size of a TShirt */
+    private Pattern pattern; /* ! Pattern of a TShirt */
 
     /**
      * Creates a new TShirt object with the specified properties.
@@ -82,7 +82,7 @@ public class TShirt extends Item{
      * @return a String representation of the TShirt object
      */
     public String toString() {
-        return "TShirt [description=" + description + ", brand=" + brand + ", id=" + id + ", price=" + price + ", correction=" + correction + ", used=" + used + ", owners=" + owners + ", size=" + size + ", pattern=" + pattern + "]";
+        return "TShirt [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", price=" + getPrice() + ", correction=" + getCorrection() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", pattern=" + pattern + "]";
     }
 
     /**
@@ -91,7 +91,7 @@ public class TShirt extends Item{
      * @return a BigDecimal object containing the price of the TShirt
      */
     public BigDecimal calculatePrice() {
-        BigDecimal price = this.price;
+        BigDecimal price = getPrice();
         if (this.pattern == Pattern.PALM) {
             price =  price.multiply(new BigDecimal(0.5));
         }

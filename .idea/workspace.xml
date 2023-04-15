@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72ee11b2-3ec4-4ddc-904f-af4069556981" name="Changes" comment="Base Structure">
-      <change afterPath="$PROJECT_DIR$/src/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +62,8 @@
       <workItem from="1681081547425" duration="948000" />
       <workItem from="1681306081940" duration="1919000" />
       <workItem from="1681308048796" duration="856000" />
-      <workItem from="1681482552127" duration="1085000" />
+      <workItem from="1681482552127" duration="1246000" />
+      <workItem from="1681565763820" duration="5107000" />
     </task>
     <task id="LOCAL-00001" summary="Base Structure">
       <created>1680711196446</created>

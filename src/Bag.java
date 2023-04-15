@@ -5,9 +5,9 @@ import java.time.Year;
  * Defines a Bag
  */
 public class Bag extends Item{
-    protected int size; /* ! Size of a Bag */
-    protected String material; /* ! Material of a Bag */
-    protected int release; /* ! Release Year of a Bag */
+    private int size; /* ! Size of a Bag */
+    private String material; /* ! Material of a Bag */
+    private int release; /* ! Release Year of a Bag */
 
     /**
      * Creates a new Bag object with the specified properties.
@@ -89,7 +89,7 @@ public class Bag extends Item{
      * @return a String containing a brief description of the Bag
      */
     public String toString() {
-        return "Bag [description=" + description + ", brand=" + brand + ", id=" + id + ", price=" + price + ", correction=" + correction + ", used=" + used + ", owners=" + owners + ", size=" + size + ", material=" + material + ", release=" + release + "]";
+        return "Bag [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", price=" + getPrice() + ", correction=" + getCorrection() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", material=" + getMaterial() + ", release=" + getRelease() + "]";
     }
 
     /**
@@ -123,9 +123,9 @@ public class Bag extends Item{
      * @return the price of the Item
      */
     public BigDecimal calculatePrice() {
-        BigDecimal price = this.price;
-        if (this.used || this.size > 45 || this.release > Year.now().getValue()) {
-            price =  PricingCalculator.calculatePrice(this.price, this.owners, this.evaluation);
+        BigDecimal price = getPrice();
+        if (isUsed() || getSize() > 45 || getRelease() > Year.now().getValue()) {
+            price =  PricingCalculator.calculatePrice(getPrice(), getOwners(), getEvaluation());
         }
         return price;
     }
