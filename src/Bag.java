@@ -14,7 +14,6 @@ public class Bag extends Item{
      *
      * @param description a String containing a brief description of the item
      * @param brand a String containing the brand or manufacturer of the item
-     * @param id a String containing a unique identifier for the item
      * @param price a BigDecimal object containing the price of the item
      * @param correction an integer value representing the discount for an item
      * @param owners an integer value representing the number of previous owners of the item
@@ -22,11 +21,17 @@ public class Bag extends Item{
      * @param material a String containing the material of the bag
      * @param release an integer value representing the release year of the bag
      */
-    public Bag(String description, String brand, String id, BigDecimal price, int correction, boolean used , int owners, int size, String material, int release) {
-        super(description, brand, id, price, correction, owners, used);
+    public Bag(String description, String brand, BigDecimal price, int correction, boolean used , int owners, int size, String material, int release) {
+        super(description, brand, price, correction, owners, used);
         this.size = size;
         this.material = material;
         this.release = release;
+    }
+    public Bag(Bag bag) {
+        super(bag.getDescription(), bag.getBrand(), bag.getPrice(), bag.getCorrection(), bag.getOwners(), bag.isUsed());
+        this.size = bag.getSize();
+        this.material = bag.getMaterial();
+        this.release = bag.getRelease();
     }
 
     /**
@@ -128,5 +133,14 @@ public class Bag extends Item{
             price =  PricingCalculator.calculatePrice(getPrice(), getOwners(), getEvaluation());
         }
         return price;
+    }
+
+    /**
+     * Returns a deep clone of the Bag.
+     *
+     * @return a clone of the Bag
+     */
+    public Bag clone() {
+        return new Bag(this);
     }
 }

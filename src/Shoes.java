@@ -15,7 +15,6 @@ public class Shoes extends Item {
      *
      * @param description a String containing a brief description of the item
      * @param brand a String containing the brand or manufacturer of the item
-     * @param id a String containing a unique identifier for the item
      * @param price a BigDecimal object containing the price of the item
      * @param correction an integer value representing the discount for an item
      * @param owners an integer value representing the number of previous owners of the item
@@ -24,12 +23,19 @@ public class Shoes extends Item {
      * @param color a String containing the color of the shoes
      * @param release an integer value representing the release year of the shoes
      */
-    public Shoes(String description, String brand, String id, BigDecimal price, int correction, boolean used, int owners, double size, boolean laces, String color, int release) {
-        super(description, brand, id, price, correction, owners, used);
+    public Shoes(String description, String brand, BigDecimal price, int correction, boolean used, int owners, double size, boolean laces, String color, int release) {
+        super(description, brand, price, correction, owners, used);
         this.size = size;
         this.laces = laces;
         this.color = color;
         this.release = release;
+    }
+    public Shoes(Shoes shoes) {
+        super(shoes.getDescription(), shoes.getBrand(), shoes.getPrice(), shoes.getCorrection(), shoes.getOwners(), shoes.isUsed());
+        this.size = shoes.getSize();
+        this.laces = shoes.isLaces();
+        this.color = shoes.getColor();
+        this.release = shoes.getRelease();
     }
 
     /**
@@ -150,4 +156,14 @@ public class Shoes extends Item {
         }
         return price;
     }
+
+
+    /**
+     * Returns a deep clone of the Shoes.
+     *
+     * @return a clone of the Shoes
+     */
+     public Shoes clone() {
+         return new Shoes(this);
+     }
 }
