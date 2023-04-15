@@ -5,10 +5,10 @@ import java.time.Year;
  * Defines a Shoes
  */
 public class Shoes extends Item {
-    protected double size; /* ! Size of a Shoes */
-    protected boolean laces; /* ! Laces of a Shoes */
-    protected String color; /* ! Color of a Shoes */
-    protected int release; /* ! Release Year of a Shoes */
+    private double size; /* ! Size of a Shoes */
+    private boolean laces; /* ! Laces of a Shoes */
+    private String color; /* ! Color of a Shoes */
+    private int release; /* ! Release Year of a Shoes */
 
     /**
      * Creates a new Shoes object with the specified properties.
@@ -110,7 +110,7 @@ public class Shoes extends Item {
      * @return a String containing a brief description of the item
      */
     public String toString() {
-        return "Shoes [description=" + description + ", brand=" + brand + ", id=" + id + ", price=" + price + ", correction=" + correction + ", used=" + used + ", owners=" + owners + ", size=" + size + ", laces=" + laces + ", color=" + color + ", release=" + release + "]";
+        return "Shoes [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", price=" + getPrice() + ", correction=" + getCorrection() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", laces=" + laces + ", color=" + color + ", release=" + release + "]";
     }
 
     /**
@@ -144,9 +144,9 @@ public class Shoes extends Item {
      * @return the price of the Item
      */
     public BigDecimal calculatePrice() {
-        BigDecimal price = this.price;
-        if (this.used || this.size > 45 || this.release > Year.now().getValue()) {
-            price =  PricingCalculator.calculatePrice(this.price, this.owners, this.evaluation);
+        BigDecimal price = getPrice();
+        if (isUsed() || getSize() > 45 || getRelease() > Year.now().getValue()) {
+            price =  PricingCalculator.calculatePrice(getPrice(), getOwners(), getEvaluation());
         }
         return price;
     }

@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72ee11b2-3ec4-4ddc-904f-af4069556981" name="Changes" comment="Base Structure">
-      <change afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Artigo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shoes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TShirt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TShirt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +27,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2O0xADIKSIiVTn8PmEGaFRW1wUR" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -64,6 +62,8 @@
       <workItem from="1681081547425" duration="948000" />
       <workItem from="1681306081940" duration="1919000" />
       <workItem from="1681308048796" duration="856000" />
+      <workItem from="1681482552127" duration="1246000" />
+      <workItem from="1681565763820" duration="5107000" />
     </task>
     <task id="LOCAL-00001" summary="Base Structure">
       <created>1680711196446</created>

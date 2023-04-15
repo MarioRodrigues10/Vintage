@@ -5,15 +5,15 @@ import java.math.BigDecimal;
  * Defines a Item
  */
 public abstract class Item {
-    protected String description; /* ! Description of an Item */
-    protected String brand; /* ! Brand of an Item */
-    protected String id; /* ! ID of an Item */
-    protected int evaluation; /*! Defines the evaluation of an Item, in a scale from 1 to 10 */
-    protected BigDecimal price; /* ! Price of an Item */
-    protected int correction; /* ! Discount of an Item */
-    protected boolean used; /* ! Defines if an Item is used or not */
+    private String description; /* ! Description of an Item */
+    private String brand; /* ! Brand of an Item */
+    private String id; /* ! ID of an Item */
+    private int evaluation; /*! Defines the evaluation of an Item, in a scale from 1 to 10 */
+    private BigDecimal price; /* ! Price of an Item */
+    private int correction; /* ! Discount of an Item */
+    private boolean used; /* ! Defines if an Item is used or not */
 
-    protected int owners; /* ! Number of previous owners of an Item */
+    private int owners; /* ! Number of previous owners of an Item */
 
     // TODO: Owners && Premium && Carrier
 
