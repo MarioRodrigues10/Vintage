@@ -127,4 +127,15 @@ public class User {
     public void setTaxNumber(String taxNumber) {
         this.taxNumber = taxNumber;
     }
+
+    /**
+     * Returns a boolean indicating whether the user is equal to another user.
+     * To check if a user is equal to another user, it is only necessary to check if the email is equal.
+     *
+     * @param user
+     * @return boolean
+     */
+    public boolean equals(User user) {
+        return this.email.equals(user.getEmail());
+    }
 }
