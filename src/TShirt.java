@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.util.UUID;
 
 /**
  * Defines a TShirt
@@ -27,17 +28,26 @@ public class TShirt extends Item{
      *
      * @param description a String containing a brief description of the item
      * @param brand a String containing the brand or manufacturer of the item
-     * @param id a String containing a unique identifier for the item
      * @param price a BigDecimal object containing the price of the item
      * @param correction an integer value representing the discount for an item
      * @param owners an integer value representing the number of previous owners of the item
      * @param size an integer value representing the size of the TShirt
      * @param pattern a String containing the pattern of the TShirt
      */
-    public TShirt(String description, String brand, String id, BigDecimal price, int correction, boolean used , int owners, Size size, Pattern pattern) {
-        super(description, brand, id, price, correction, owners, used);
+    public TShirt(String description, String brand, BigDecimal price, int correction, boolean used , int owners, Size size, Pattern pattern) {
+        super(description, brand, price, correction, owners, used);
         this.size = size;
         this.pattern = pattern;
+    }
+    /**
+     * Creates a new TShirt object based on another TShirt object.
+     *
+     * @param tshirt a TShirt object
+     */
+    public TShirt(TShirt tshirt) {
+        super(tshirt.getDescription(), tshirt.getBrand(), tshirt.getPrice(), tshirt.getCorrection(), tshirt.getOwners(), tshirt.isUsed());
+        this.size = tshirt.getSize();
+        this.pattern = tshirt.getPattern();
     }
 
     /**
@@ -86,6 +96,27 @@ public class TShirt extends Item{
     }
 
     /**
+     * Returns a boolean value indicating whether the TShirt object is equal to another object.
+     *
+     * @param obj an object
+     * @return a boolean value indicating whether the TShirt object is equal to another object
+     */
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            System.out.println("Same instance");
+            return true;
+        }
+        if (!(obj instanceof TShirt)) {
+            return false;
+        }
+        TShirt tshirt = (TShirt) obj;
+        return tshirt.getDescription().equals(this.getDescription()) && tshirt.getBrand().equals(this.getBrand()) && tshirt.getPrice().equals(this.getPrice()) && tshirt.getCorrection() == this.getCorrection() && tshirt.isUsed() == this.isUsed() && tshirt.getOwners() == this.getOwners() && tshirt.getSize() == this.getSize() && tshirt.getPattern() == this.getPattern();
+    }
+
+    /**
      * Returns a BigDecimal object containing the price of the TShirt.
      *
      * @return a BigDecimal object containing the price of the TShirt
@@ -96,5 +127,14 @@ public class TShirt extends Item{
             price =  price.multiply(new BigDecimal(0.5));
         }
         return price;
+    }
+
+    /**
+     * Returns a TShirt object that is a deep clone of the current TShirt object.
+     *
+     * @return a TShirt object that is a deep clone of the current TShirt object
+     */
+    public TShirt clone() {
+        return new TShirt(this);
     }
 }
