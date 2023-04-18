@@ -24,13 +24,13 @@ public class Bag extends Item {
      * @param release an integer value representing the release year of the bag
      */
     public Bag(String description, String brand, BigDecimal price, int correction, boolean used , int owners, int size, String material, int release) {
-        super(description, brand, price, correction, owners, used);
+        super(description, brand, price, owners, used);
         this.size = size;
         this.material = material;
         this.release = release;
     }
     public Bag(Bag bag) {
-        super(bag.getDescription(), bag.getBrand(), bag.getPrice(), bag.getCorrection(), bag.getOwners(), bag.isUsed());
+        super(bag.getDescription(), bag.getBrand(), bag.getPrice(), bag.getOwners(), bag.isUsed());
         this.size = bag.getSize();
         this.material = bag.getMaterial();
         this.release = bag.getRelease();
@@ -96,7 +96,7 @@ public class Bag extends Item {
      * @return a String containing a brief description of the Bag
      */
     public String toString() {
-        return "Bag [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", price=" + getPrice() + ", correction=" + getCorrection() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", material=" + getMaterial() + ", release=" + getRelease() + "]";
+        return "Bag [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", base price=" + getPrice() + ", price=" + calculatePrice() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", material=" + getMaterial() + ", release=" + getRelease() + "]";
     }
 
     /**

@@ -36,7 +36,7 @@ public class TShirt extends Item {
      * @param pattern a String containing the pattern of the TShirt
      */
     public TShirt(String description, String brand, BigDecimal price, int correction, boolean used , int owners, Size size, Pattern pattern) {
-        super(description, brand, price, correction, owners, used);
+        super(description, brand, price, owners, used);
         this.size = size;
         this.pattern = pattern;
     }
@@ -46,7 +46,7 @@ public class TShirt extends Item {
      * @param tshirt a TShirt object
      */
     public TShirt(TShirt tshirt) {
-        super(tshirt.getDescription(), tshirt.getBrand(), tshirt.getPrice(), tshirt.getCorrection(), tshirt.getOwners(), tshirt.isUsed());
+        super(tshirt.getDescription(), tshirt.getBrand(), tshirt.getPrice(),  tshirt.getOwners(), tshirt.isUsed());
         this.size = tshirt.getSize();
         this.pattern = tshirt.getPattern();
     }
@@ -93,7 +93,7 @@ public class TShirt extends Item {
      * @return a String representation of the TShirt object
      */
     public String toString() {
-        return "TShirt [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", price=" + getPrice() + ", correction=" + getCorrection() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", pattern=" + pattern + "]";
+        return "TShirt [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", base price=" + getPrice() + ", price=" + calculatePrice() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", pattern=" + pattern + "]";
     }
 
     /**
@@ -114,7 +114,7 @@ public class TShirt extends Item {
             return false;
         }
         TShirt tshirt = (TShirt) obj;
-        return tshirt.getDescription().equals(this.getDescription()) && tshirt.getBrand().equals(this.getBrand()) && tshirt.getPrice().equals(this.getPrice()) && tshirt.getCorrection() == this.getCorrection() && tshirt.isUsed() == this.isUsed() && tshirt.getOwners() == this.getOwners() && tshirt.getSize() == this.getSize() && tshirt.getPattern() == this.getPattern();
+        return tshirt.getDescription().equals(this.getDescription()) && tshirt.getBrand().equals(this.getBrand()) && tshirt.getPrice().equals(this.getPrice()) && tshirt.calculatePrice() == this.calculatePrice() && tshirt.isUsed() == this.isUsed() && tshirt.getOwners() == this.getOwners() && tshirt.getSize() == this.getSize() && tshirt.getPattern() == this.getPattern();
     }
 
     /**
