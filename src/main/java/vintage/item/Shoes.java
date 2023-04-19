@@ -31,12 +31,29 @@ public class Shoes extends Item {
         this.color = color;
         this.release = release;
     }
+
+    /**
+     * Creates a new Shoes object based on specified Shoes object.
+     *
+     * @param shoes a shoes object
+     */
     public Shoes(Shoes shoes) {
         super(shoes.getDescription(), shoes.getBrand(), shoes.getPrice(), shoes.getOwners(), shoes.isUsed());
         this.size = shoes.getSize();
         this.laces = shoes.isLaces();
         this.color = shoes.getColor();
         this.release = shoes.getRelease();
+    }
+
+    /**
+     * Creates a new Shoes object with default values.
+     */
+    public Shoes() {
+        super();
+        this.size = 0;
+        this.laces = false;
+        this.color = "";
+        this.release = Year.now().getValue();
     }
 
     /**

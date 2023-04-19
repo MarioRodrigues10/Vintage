@@ -45,6 +45,18 @@ public abstract class Item {
     }
 
     /**
+     * Creates a new Item object with default values.
+     */
+    public Item() {
+        this.id = UUID.randomUUID();
+        this.description = "";
+        this.brand = "";
+        this.price = new BigDecimal(0);
+        this.owners = 0;
+        this.used = false;
+    }
+
+    /**
      * Returns a String containing a brief description of the item.
      *
      * @return a String containing a brief description of the item
