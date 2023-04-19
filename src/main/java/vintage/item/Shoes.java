@@ -18,22 +18,21 @@ public class Shoes extends Item {
      * @param description a String containing a brief description of the item
      * @param brand a String containing the brand or manufacturer of the item
      * @param price a BigDecimal object containing the price of the item
-     * @param correction an integer value representing the discount for an item
      * @param owners an integer value representing the number of previous owners of the item
      * @param size an integer value representing the size of the shoes
      * @param laces a boolean value representing the laces of the shoes
      * @param color a String containing the color of the shoes
      * @param release an integer value representing the release year of the shoes
      */
-    public Shoes(String description, String brand, BigDecimal price, int correction, boolean used, int owners, double size, boolean laces, String color, int release) {
-        super(description, brand, price, correction, owners, used);
+    public Shoes(String description, String brand, BigDecimal price, boolean used, int owners, double size, boolean laces, String color, int release) {
+        super(description, brand, price, owners, used);
         this.size = size;
         this.laces = laces;
         this.color = color;
         this.release = release;
     }
     public Shoes(Shoes shoes) {
-        super(shoes.getDescription(), shoes.getBrand(), shoes.getPrice(), shoes.getCorrection(), shoes.getOwners(), shoes.isUsed());
+        super(shoes.getDescription(), shoes.getBrand(), shoes.getPrice(), shoes.getOwners(), shoes.isUsed());
         this.size = shoes.getSize();
         this.laces = shoes.isLaces();
         this.color = shoes.getColor();
@@ -118,7 +117,7 @@ public class Shoes extends Item {
      * @return a String containing a brief description of the item
      */
     public String toString() {
-        return "Shoes [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", price=" + getPrice() + ", correction=" + getCorrection() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", laces=" + laces + ", color=" + color + ", release=" + release + "]";
+        return "Shoes [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", Base price=" + getPrice() + ", Price=" + calculatePrice() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", laces=" + laces + ", color=" + color + ", release=" + release + "]";
     }
 
     /**
@@ -158,7 +157,6 @@ public class Shoes extends Item {
         }
         return price;
     }
-
 
     /**
      * Returns a deep clone of the Shoes.
