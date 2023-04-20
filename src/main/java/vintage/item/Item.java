@@ -116,7 +116,7 @@ public abstract class Item {
      * @return a boolean value representing if the item is used or not
      */
     public boolean isUsed() {
-        return used;
+        return ( owners > 0 );
     }
 
     /**
