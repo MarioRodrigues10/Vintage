@@ -40,6 +40,16 @@ public class TShirt extends Item {
         this.size = size;
         this.pattern = pattern;
     }
+
+    /**
+     * Creates a new TShirt object with default values.
+     */
+    public TShirt() {
+        super();
+        this.size = Size.S;
+        this.pattern = Pattern.SOLID;
+    }
+
     /**
      * Creates a new TShirt object based on another TShirt object.
      *

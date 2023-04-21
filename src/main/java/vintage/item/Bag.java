@@ -37,6 +37,16 @@ public class Bag extends Item {
     }
 
     /**
+     * Creates a new Bag object with default values.
+     */
+    public Bag() {
+        super();
+        this.size = 0;
+        this.material = "";
+        this.release = Year.now().getValue();
+    }
+
+    /**
      * Returns an integer value representing the size of the bag.
      *
      * @return an integer value representing the size of the bag
