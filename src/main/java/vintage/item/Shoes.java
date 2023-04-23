@@ -23,16 +23,17 @@ public class Shoes extends Item {
      * @param laces a boolean value representing the laces of the shoes
      * @param color a String containing the color of the shoes
      * @param release an integer value representing the release year of the shoes
+     * @param carrier a Carrier object containing the carrier of the item
      */
-    public Shoes(String description, String brand, BigDecimal price, boolean used, int owners, double size, boolean laces, String color, int release) {
-        super(description, brand, price, owners, used);
+    public Shoes(String description, String brand, BigDecimal price, boolean used, int owners, double size, boolean laces, String color, int release, Carrier carrier) {
+        super(description, brand, price, owners, used, carrier);
         this.size = size;
         this.laces = laces;
         this.color = color;
         this.release = release;
     }
     public Shoes(Shoes shoes) {
-        super(shoes.getDescription(), shoes.getBrand(), shoes.getPrice(), shoes.getOwners(), shoes.isUsed());
+        super(shoes.getDescription(), shoes.getBrand(), shoes.getPrice(), shoes.getOwners(), shoes.isUsed(), shoes.getCarrier());
         this.size = shoes.getSize();
         this.laces = shoes.isLaces();
         this.color = shoes.getColor();
@@ -116,8 +117,20 @@ public class Shoes extends Item {
      *
      * @return a String containing a brief description of the item
      */
+    @Override
     public String toString() {
-        return "Shoes [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", Base price=" + getPrice() + ", Price=" + calculatePrice() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", laces=" + laces + ", color=" + color + ", release=" + release + "]";
+        return "Shoes{" +
+                "size=" + size +
+                ", laces=" + laces +
+                ", color='" + color + '\'' +
+                ", release=" + release +
+                ", description='" + getDescription() + '\'' +
+                ", brand='" + getBrand() + '\'' +
+                ", price=" + getPrice() +
+                ", owners=" + getOwners() +
+                ", used=" + isUsed() +
+                ", carrier=" + getCarrier() +
+                '}';
     }
 
     /**

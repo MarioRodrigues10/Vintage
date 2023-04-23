@@ -17,20 +17,20 @@ public class Bag extends Item {
      * @param description a String containing a brief description of the item
      * @param brand a String containing the brand or manufacturer of the item
      * @param price a BigDecimal object containing the price of the item
-     * @param correction an integer value representing the discount for an item
      * @param owners an integer value representing the number of previous owners of the item
      * @param size an integer value representing the size of the bag
      * @param material a String containing the material of the bag
      * @param release an integer value representing the release year of the bag
+     * @param carrier a Carrier object containing the carrier of the item
      */
-    public Bag(String description, String brand, BigDecimal price, int correction, boolean used , int owners, int size, String material, int release) {
-        super(description, brand, price, owners, used);
+    public Bag(String description, String brand, BigDecimal price, boolean used , int owners, int size, String material, int release, Carrier carrier) {
+        super(description, brand, price, owners, used, carrier);
         this.size = size;
         this.material = material;
         this.release = release;
     }
     public Bag(Bag bag) {
-        super(bag.getDescription(), bag.getBrand(), bag.getPrice(), bag.getOwners(), bag.isUsed());
+        super(bag.getDescription(), bag.getBrand(), bag.getPrice(), bag.getOwners(), bag.isUsed(), bag.getCarrier());
         this.size = bag.getSize();
         this.material = bag.getMaterial();
         this.release = bag.getRelease();
@@ -95,8 +95,19 @@ public class Bag extends Item {
      *
      * @return a String containing a brief description of the Bag
      */
+    @Override
     public String toString() {
-        return "Bag [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", base price=" + getPrice() + ", price=" + calculatePrice() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", material=" + getMaterial() + ", release=" + getRelease() + "]";
+        return "Bag{" +
+                "size=" + size +
+                ", material='" + material + '\'' +
+                ", release=" + release +
+                ", description='" + getDescription() + '\'' +
+                ", brand='" + getBrand() + '\'' +
+                ", price=" + getPrice() +
+                ", used=" + isUsed() +
+                ", owners=" + getOwners() +
+                ", carrier=" + getCarrier() +
+                '}';
     }
 
     /**

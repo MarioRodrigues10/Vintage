@@ -15,6 +15,7 @@ public abstract class Item {
     private BigDecimal price; /* ! Price of an Item */
     private boolean used; /* ! Defines if an Item is used or not */
     private int owners; /* ! Number of previous owners of an Item */
+    private Carrier carrier;
 
     // TODO: Owners && Premium && Carrier
 
@@ -25,16 +26,24 @@ public abstract class Item {
      * @param brand a String containing the brand or manufacturer of the item
      * @param price a BigDecimal object containing the price of the item
      * @param owners an integer value representing the number of previous owners of the item
+     * @param used a boolean value representing if the item is used or not
+     * @param carrier a Carrier object containing the carrier of the item
      */
-    public Item(String description, String brand, BigDecimal price, int owners, boolean used) {
+    public Item(String description, String brand, BigDecimal price, int owners, boolean used, Carrier carrier) {
         this.id = UUID.randomUUID();
         this.description= description;
         this.brand = brand;
         this.price = price;
         this.owners = owners;
         this.used = used;
+        this.carrier = carrier;
     }
 
+    /**
+     * Creates a new Item object based on another Item object.
+     *
+     * @param item an Item object
+     */
     public Item(Item item) {
         this.id = item.getId();
         this.description = item.getDescription();
@@ -42,6 +51,7 @@ public abstract class Item {
         this.price = item.getPrice();
         this.owners = item.getOwners();
         this.used = item.isUsed();
+        this.carrier = item.getCarrier();
     }
 
     /**
@@ -108,6 +118,15 @@ public abstract class Item {
     }
 
     /**
+     * Returns a Carrier object containing the carrier of the item.
+     *
+     * @return a Carrier object containing the carrier of the item
+     */
+    public Carrier getCarrier() {
+        return carrier;
+    }
+
+    /**
      * Sets the used value of the item.
      *
      * @param used a boolean value representing if the item is used or not
@@ -162,12 +181,31 @@ public abstract class Item {
     }
 
     /**
+     * Sets the carrier of the item.
+     *
+     * @param carrier a Carrier object containing the carrier of the item
+     */
+    public void setCarrier(Carrier carrier) {
+        this.carrier = carrier;
+    }
+
+    /**
      * Returns a String containing a brief description of the item.
      *
      * @return a String containing a brief description of the item
      */
+    @Override
     public String toString() {
-        return "Item: " + description + " | Brand: " + brand + " | ID: " + id + " | Base price: " + price + " | Price: " + calculatePrice() + " | Used: " + used + " | N˚ Owners: " + owners;
+        return "Item{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", brand='" + brand + '\'' +
+                ", evaluation=" + evaluation +
+                ", price=" + price +
+                ", used=" + used +
+                ", owners=" + owners +
+                ", carrier=" + carrier +
+                '}';
     }
 
     /**
