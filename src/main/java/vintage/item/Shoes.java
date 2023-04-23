@@ -19,6 +19,7 @@ public class Shoes extends Item {
      * @param description a String containing a brief description of the item
      * @param brand a String containing the brand or manufacturer of the item
      * @param price a BigDecimal object containing the price of the item
+     * @param evaluation an integer value representing the evaluation of the item
      * @param owners an integer value representing the number of previous owners of the item
      * @param size an integer value representing the size of the shoes
      * @param laces a boolean value representing the laces of the shoes
