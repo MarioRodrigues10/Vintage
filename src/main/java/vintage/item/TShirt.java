@@ -29,14 +29,15 @@ public class TShirt extends Item {
      *
      * @param description a String containing a brief description of the item
      * @param brand a String containing the brand or manufacturer of the item
+     * @param evaluation an integer value representing the evaluation of the item
      * @param price a BigDecimal object containing the price of the item
-     * @param correction an integer value representing the discount for an item
      * @param owners an integer value representing the number of previous owners of the item
      * @param size an integer value representing the size of the TShirt
      * @param pattern a String containing the pattern of the TShirt
+     * @param carrier a Carrier object containing the carrier of the item
      */
-    public TShirt(String description, String brand, BigDecimal price, int correction, boolean used , int owners, Size size, Pattern pattern) {
-        super(description, brand, price, owners, used);
+    public TShirt(String description, String brand, int evaluation, BigDecimal price, int owners, Size size, Pattern pattern, Carrier carrier) {
+        super(description, brand, evaluation, price, owners, carrier);
         this.size = size;
         this.pattern = pattern;
     }
@@ -56,7 +57,7 @@ public class TShirt extends Item {
      * @param tshirt a TShirt object
      */
     public TShirt(TShirt tshirt) {
-        super(tshirt.getDescription(), tshirt.getBrand(), tshirt.getPrice(),  tshirt.getOwners(), tshirt.isUsed());
+        super(tshirt.getDescription(), tshirt.getBrand(), tshirt.getEvaluation(), tshirt.getPrice(),  tshirt.getOwners(), tshirt.getCarrier());
         this.size = tshirt.getSize();
         this.pattern = tshirt.getPattern();
     }
@@ -102,8 +103,19 @@ public class TShirt extends Item {
      *
      * @return a String representation of the TShirt object
      */
+    @Override
     public String toString() {
-        return "TShirt [description=" + getDescription() + ", brand=" + getBrand() + ", id=" + getId() + ", base price=" + getPrice() + ", price=" + calculatePrice() + ", used=" + isUsed() + ", owners=" + getOwners() + ", size=" + getSize() + ", pattern=" + pattern + "]";
+        return "TShirt{" +
+                "size=" + size +
+                ", pattern=" + pattern +
+                ", description='" + getDescription() + '\'' +
+                ", brand='" + getBrand() + '\'' +
+                ", evaluation=" + getEvaluation() +
+                ", price=" + getPrice() +
+                ", used=" + isUsed() +
+                ", owners=" + getOwners() +
+                ", carrier=" + getCarrier() +
+                '}';
     }
 
     /**

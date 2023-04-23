@@ -13,8 +13,8 @@ public abstract class Item {
     private String brand; /* ! Brand of an Item */
     private int evaluation; /*! Defines the evaluation of an Item, in a scale from 1 to 10 */
     private BigDecimal price; /* ! Price of an Item */
-    private boolean used; /* ! Defines if an Item is used or not */
     private int owners; /* ! Number of previous owners of an Item */
+    private Carrier carrier;
 
     // TODO: Owners && Premium && Carrier
 
@@ -23,25 +23,33 @@ public abstract class Item {
      *
      * @param description a String containing a brief description of the item
      * @param brand a String containing the brand or manufacturer of the item
+     * @param evaluation an integer value representing the degree of correction needed for the item
      * @param price a BigDecimal object containing the price of the item
      * @param owners an integer value representing the number of previous owners of the item
+     * @param carrier a Carrier object containing the carrier of the item
      */
-    public Item(String description, String brand, BigDecimal price, int owners, boolean used) {
+    public Item(String description, String brand, int evaluation, BigDecimal price, int owners, Carrier carrier) {
         this.id = UUID.randomUUID();
         this.description= description;
         this.brand = brand;
+        this.evaluation = evaluation;
         this.price = price;
         this.owners = owners;
-        this.used = used;
+        this.carrier = carrier;
     }
 
+    /**
+     * Creates a new Item object based on another Item object.
+     *
+     * @param item an Item object
+     */
     public Item(Item item) {
         this.id = item.getId();
         this.description = item.getDescription();
         this.brand = item.getBrand();
         this.price = item.getPrice();
         this.owners = item.getOwners();
-        this.used = item.isUsed();
+        this.carrier = item.getCarrier();
     }
 
     /**
@@ -53,7 +61,6 @@ public abstract class Item {
         this.brand = "";
         this.price = new BigDecimal(0);
         this.owners = 0;
-        this.used = false;
     }
 
     /**
@@ -120,12 +127,12 @@ public abstract class Item {
     }
 
     /**
-     * Sets the used value of the item.
+     * Returns a Carrier object containing the carrier of the item.
      *
-     * @param used a boolean value representing if the item is used or not
+     * @return a Carrier object containing the carrier of the item
      */
-    public void setUsed(boolean used) {
-        this.used = used;
+    public Carrier getCarrier() {
+        return carrier;
     }
 
     /**
@@ -174,12 +181,30 @@ public abstract class Item {
     }
 
     /**
+     * Sets the carrier of the item.
+     *
+     * @param carrier a Carrier object containing the carrier of the item
+     */
+    public void setCarrier(Carrier carrier) {
+        this.carrier = carrier;
+    }
+
+    /**
      * Returns a String containing a brief description of the item.
      *
      * @return a String containing a brief description of the item
      */
+    @Override
     public String toString() {
-        return "Item: " + description + " | Brand: " + brand + " | ID: " + id + " | Base price: " + price + " | Price: " + calculatePrice() + " | Used: " + used + " | N˚ Owners: " + owners;
+        return "Item{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", brand='" + brand + '\'' +
+                ", evaluation=" + evaluation +
+                ", price=" + price +
+                ", owners=" + owners +
+                ", carrier=" + carrier +
+                '}';
     }
 
     /**
