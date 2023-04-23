@@ -16,7 +16,6 @@ public abstract class Item {
     private int owners; /* ! Number of previous owners of an Item */
     private Carrier carrier;
 
-    // TODO: Owners && Premium && Carrier
 
     /**
      * Creates a new Item object with the specified properties.
