@@ -4,14 +4,13 @@ import vintage.item.Item;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
  * Defines an Order
  */
 public class Order {
-
-
     /*
      * Enumerates the sizes of an Order
      */
@@ -27,11 +26,25 @@ public class Order {
     }
 
     private final UUID id; /* ! ID of an Order */
-    private ArrayList <Item> items; /* ! Items of an Order */
+    private List<Item> items; /* ! Items of an Order */
     private Size size; /* ! Size of an Order */
     private State state; /* ! State of an Order */
     private BigDecimal price; /* ! Price of an Order */
 
+    /**
+     * Creates a new Order object with the specified properties.
+     * @param items
+     * @param size
+     * @param state
+     * @param price
+     */
+    public Order(List<Item> items, Size size, State state, BigDecimal price) {
+        this.id = UUID.randomUUID();
+        this.items = items;
+        this.size = size;
+        this.state = state;
+        this.price = price;
+    }
 
     /**
      * Creates a new Order object with default properties.
@@ -44,42 +57,35 @@ public class Order {
         this.price = BigDecimal.valueOf(0);
     }
 
-    /**
-     * Creates a new Order object with the specified properties.
-     * @param items
-     * @param size
-     * @param state
-     * @param price
-     */
-    public Order(ArrayList<Item> items, Size size, State state, BigDecimal price) {
-        this.id = UUID.randomUUID();
-        this.items = items;
-        this.size = size;
-        this.state = state;
-        this.price = price;
+    public Order(Order order) {
+        this.id = order.getId();
+        this.items = order.getItems();
+        this.size = order.getSize();
+        this.state = order.getState();
+        this.price = order.getPrice();
     }
-
-    /**
-     * Returns an ArrayList of Items.
-     * @return items
-     */
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
 
     /**
      * Returns the ID of the order.
      * @return id
      */
     public UUID getId() {
-        return id;
+        return this.id;
     }
+
+    /**
+     * Returns an ArrayList of Items.
+     * @return items
+     */
+    public List<Item> getItems() {
+        return List.copyOf(items);
+    }
+
     /**
      * Sets the items of the order.
      * @param items
      */
-    public void setItems(ArrayList<Item> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 
@@ -88,7 +94,7 @@ public class Order {
      * @return size
      */
     public Size getSize() {
-        return size;
+        return this.size;
     }
 
     /**
@@ -104,7 +110,7 @@ public class Order {
      * @return state
      */
     public State getState() {
-        return state;
+        return this.state;
     }
 
     /**
@@ -157,16 +163,6 @@ public class Order {
         }
         return price;
     }
-
-    /**
-     * Creates a new Order object with the specified properties.
-     *
-     * @return Order
-     */
-    public Order createOrder() {
-        return new Order(items, size, state, price);
-    }
-
 
     /**
      * Removes an Item from an Order
