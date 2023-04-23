@@ -171,4 +171,23 @@ public class Carrier {
 
         return basePrice.multiply(profit).multiply(tax.add(BigDecimal.valueOf(1.0))).multiply(BigDecimal.valueOf(0.9));
     }
+
+    /**
+     * Calculates the shipping cost of an order premium.
+     *
+     * @param size an int containing the size of the order
+     * @return a BigDecimal object containing the shipping cost of the order
+     */
+    public BigDecimal calculateShippingCostPremium(int size) {
+        BigDecimal basePrice = new BigDecimal("0.0");
+        if (size == 1) {
+            basePrice = SMALL;
+        } else if (size <= 5) {
+            basePrice = MEDIUM;
+        } else {
+            basePrice = LARGE;
+        }
+
+        return basePrice.multiply(profit).multiply(tax.add(BigDecimal.valueOf(1.0)));
+    }
 }
