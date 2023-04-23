@@ -1,6 +1,7 @@
 package vintage.item;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Year;
 
 /**
@@ -32,12 +33,29 @@ public class Shoes extends Item {
         this.color = color;
         this.release = release;
     }
+
+    /**
+     * Creates a new Shoes object based on specified Shoes object.
+     *
+     * @param shoes a shoes object
+     */
     public Shoes(Shoes shoes) {
         super(shoes.getDescription(), shoes.getBrand(), shoes.getPrice(), shoes.getOwners(), shoes.isUsed(), shoes.getCarrier());
         this.size = shoes.getSize();
         this.laces = shoes.isLaces();
         this.color = shoes.getColor();
         this.release = shoes.getRelease();
+    }
+
+    /**
+     * Creates a new Shoes object with default values.
+     */
+    public Shoes() {
+        super();
+        this.size = 0;
+        this.laces = false;
+        this.color = "";
+        this.release = Year.now().getValue();
     }
 
     /**
@@ -145,14 +163,15 @@ public class Shoes extends Item {
          *
          * @param basePrice a BigDecimal object containing the base price of the SHOES
          * @param numberOfOwners an integer value representing the number of previous owners of the SHOES
-         * @param utilizationState an integer value representing the utilization state of the SHOES
+         * @param evaluation an integer value representing the utilization state of the SHOES
          * @return the price of the SHOES
          */
-        public static BigDecimal calculatePrice(BigDecimal basePrice, int numberOfOwners, int utilizationState) {
+        public static BigDecimal calculatePrice(BigDecimal basePrice, int numberOfOwners, int evaluation) {
             BigDecimal owners = new BigDecimal(numberOfOwners);
-            BigDecimal divisor = owners.multiply(new BigDecimal(utilizationState));
-            BigDecimal factor = basePrice.divide(divisor, 2, BigDecimal.ROUND_HALF_UP);
+            BigDecimal divisor = owners.multiply(new BigDecimal(evaluation));
+            BigDecimal factor = basePrice.divide(divisor, 2, RoundingMode.HALF_UP);
             BigDecimal price = basePrice.subtract(factor);
+
             return price;
         }
     }
@@ -166,7 +185,7 @@ public class Shoes extends Item {
     public BigDecimal calculatePrice() {
         BigDecimal price = getPrice();
         if (isUsed() || getSize() > 45 || getRelease() > Year.now().getValue()) {
-            price =  PricingCalculator.calculatePrice(getPrice(), getOwners(), getEvaluation());
+            price =  PricingCalculator.calculatePrice(price, getOwners(), getEvaluation());
         }
         return price;
     }
