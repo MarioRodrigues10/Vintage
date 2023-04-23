@@ -4,12 +4,12 @@ import vintage.item.Item;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Defines an Order
  */
 public class Order {
-
 
 
     /*
@@ -26,6 +26,7 @@ public class Order {
         PENDING, FINISHED, SENT, DELIVERED
     }
 
+    private final UUID id; /* ! ID of an Order */
     private ArrayList <Item> items; /* ! Items of an Order */
     private Size size; /* ! Size of an Order */
     private State state; /* ! State of an Order */
@@ -36,6 +37,7 @@ public class Order {
      * Creates a new Order object with default properties.
      */
     public Order() {
+        this.id = UUID.randomUUID();
         this.items = new ArrayList<>();
         this.size = Size.MEDIUM;
         this.state = State.PENDING;
@@ -50,6 +52,7 @@ public class Order {
      * @param price
      */
     public Order(ArrayList<Item> items, Size size, State state, BigDecimal price) {
+        this.id = UUID.randomUUID();
         this.items = items;
         this.size = size;
         this.state = state;
@@ -64,6 +67,14 @@ public class Order {
         return items;
     }
 
+
+    /**
+     * Returns the ID of the order.
+     * @return id
+     */
+    public UUID getId() {
+        return id;
+    }
     /**
      * Sets the items of the order.
      * @param items
