@@ -41,6 +41,13 @@ public class Order {
     public Order(List<Item> items, Size size, State state, BigDecimal price) {
         this.id = UUID.randomUUID();
         this.items = items;
+        if (this.items.size() == 1) {
+            this.size = Size.SMALL;
+        } else if (this.items.size() <= 5) {
+            this.size = Size.MEDIUM;
+        } else {
+            this.size = Size.LARGE;
+        }
         this.size = size;
         this.state = state;
         this.price = price;
@@ -98,14 +105,6 @@ public class Order {
     }
 
     /**
-     * Sets the size of the order.
-     * @param size
-     */
-    public void setSize(Size size) {
-        this.size = size;
-    }
-
-    /**
      * Returns the state of the order.
      * @return state
      */
@@ -126,7 +125,7 @@ public class Order {
      * @return price
      */
     public BigDecimal getPrice() {
-        return price;
+        return this.price;
     }
 
     /**
@@ -143,7 +142,14 @@ public class Order {
      */
     public Order addItem(Item item) {
         items.add(item);
-        return new Order(items, size, state, price);
+        if (items.size() == 1) {
+            size = Size.SMALL;
+        } else if (items.size() <= 5) {
+            size = Size.MEDIUM;
+        } else {
+            size = Size.LARGE;
+        }
+        return this.clone();
     }
 
     /**
@@ -151,6 +157,7 @@ public class Order {
      *
      * @return price
      */
+    // TODO: calculate total price of an order (base price + carrier)
     public BigDecimal calculatePrice() {
         BigDecimal price = new BigDecimal(0);
         for (Item item : items) {
@@ -171,6 +178,10 @@ public class Order {
      */
     public Order removeItemFromOrder(Item item) {
         items.remove(item);
-        return new Order(items, size, state, price);
+        return this.clone();
+    }
+
+    public Order clone() {
+        return new Order(this);
     }
 }
