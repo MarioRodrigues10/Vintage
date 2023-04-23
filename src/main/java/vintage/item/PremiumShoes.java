@@ -9,16 +9,17 @@ public class PremiumShoes extends Shoes {
      *
      * @param description
      * @param brand
+     * @param evaluation
      * @param price
-     * @param used
      * @param owners
      * @param size
      * @param laces
      * @param color
      * @param release
      */
-    public PremiumShoes(String description, String brand, BigDecimal price, boolean used, int owners, double size, boolean laces, String color, int release) {
-        super(description, brand, price, used, owners, size, laces, color, release);
+    public PremiumShoes(String description, String brand, int evaluation, BigDecimal price, int owners,
+                        double size, boolean laces, String color, int release, Carrier carrier) {
+        super(description, brand, evaluation, price, owners, size, laces, color, release, carrier);
     }
 
     public PremiumShoes() {

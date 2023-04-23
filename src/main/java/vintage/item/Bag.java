@@ -16,6 +16,7 @@ public class Bag extends Item {
      *
      * @param description a String containing a brief description of the item
      * @param brand a String containing the brand or manufacturer of the item
+     * @param evaluation an integer value representing the evaluation of the item
      * @param price a BigDecimal object containing the price of the item
      * @param owners an integer value representing the number of previous owners of the item
      * @param size an integer value representing the size of the bag
@@ -23,14 +24,14 @@ public class Bag extends Item {
      * @param release an integer value representing the release year of the bag
      * @param carrier a Carrier object containing the carrier of the item
      */
-    public Bag(String description, String brand, BigDecimal price, boolean used , int owners, int size, String material, int release, Carrier carrier) {
-        super(description, brand, price, owners, used, carrier);
+    public Bag(String description, String brand, int evaluation, BigDecimal price, int owners, int size, String material, int release, Carrier carrier) {
+        super(description, brand, evaluation, price, owners, carrier);
         this.size = size;
         this.material = material;
         this.release = release;
     }
     public Bag(Bag bag) {
-        super(bag.getDescription(), bag.getBrand(), bag.getPrice(), bag.getOwners(), bag.isUsed(), bag.getCarrier());
+        super(bag.getDescription(), bag.getBrand(), bag.getEvaluation(), bag.getPrice(), bag.getOwners(), bag.getCarrier());
         this.size = bag.getSize();
         this.material = bag.getMaterial();
         this.release = bag.getRelease();
@@ -113,6 +114,7 @@ public class Bag extends Item {
                 ", release=" + release +
                 ", description='" + getDescription() + '\'' +
                 ", brand='" + getBrand() + '\'' +
+                ", evaluation=" + getEvaluation() +
                 ", price=" + getPrice() +
                 ", used=" + isUsed() +
                 ", owners=" + getOwners() +

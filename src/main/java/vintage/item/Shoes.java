@@ -26,8 +26,8 @@ public class Shoes extends Item {
      * @param release an integer value representing the release year of the shoes
      * @param carrier a Carrier object containing the carrier of the item
      */
-    public Shoes(String description, String brand, BigDecimal price, boolean used, int owners, double size, boolean laces, String color, int release, Carrier carrier) {
-        super(description, brand, price, owners, used, carrier);
+    public Shoes(String description, String brand, int evaluation, BigDecimal price, int owners, double size, boolean laces, String color, int release, Carrier carrier) {
+        super(description, brand, evaluation, price, owners, carrier);
         this.size = size;
         this.laces = laces;
         this.color = color;
@@ -40,7 +40,7 @@ public class Shoes extends Item {
      * @param shoes a shoes object
      */
     public Shoes(Shoes shoes) {
-        super(shoes.getDescription(), shoes.getBrand(), shoes.getPrice(), shoes.getOwners(), shoes.isUsed(), shoes.getCarrier());
+        super(shoes.getDescription(), shoes.getBrand(), shoes.getEvaluation(), shoes.getPrice(), shoes.getOwners(), shoes.getCarrier());
         this.size = shoes.getSize();
         this.laces = shoes.isLaces();
         this.color = shoes.getColor();
@@ -144,6 +144,7 @@ public class Shoes extends Item {
                 ", release=" + release +
                 ", description='" + getDescription() + '\'' +
                 ", brand='" + getBrand() + '\'' +
+                ", evaluation=" + getEvaluation() +
                 ", price=" + getPrice() +
                 ", owners=" + getOwners() +
                 ", used=" + isUsed() +
