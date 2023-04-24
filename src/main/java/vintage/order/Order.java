@@ -1,7 +1,7 @@
 package vintage.order;
 
 import vintage.item.Item;
-
+import vintage.user.Address;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,7 @@ public class Order {
     private Size size; /* ! Size of an Order */
     private State state; /* ! State of an Order */
     private BigDecimal price; /* ! Price of an Order */
+    private Address address; /* ! Address of an Order */
 
     /**
      * Creates a new Order object with the specified properties.
@@ -38,7 +39,7 @@ public class Order {
      * @param state
      * @param price
      */
-    public Order(List<Item> items, Size size, State state, BigDecimal price) {
+    public Order(List<Item> items, Size size, State state, BigDecimal price, Address address) {
         this.id = UUID.randomUUID();
         this.items = items;
         if (this.items.size() == 1) {
@@ -51,6 +52,7 @@ public class Order {
         this.size = size;
         this.state = state;
         this.price = price;
+        this.address = address;
     }
 
     /**
@@ -62,6 +64,7 @@ public class Order {
         this.size = Size.MEDIUM;
         this.state = State.PENDING;
         this.price = BigDecimal.valueOf(0);
+        this.address = new Address();
     }
 
     public Order(Order order) {
@@ -70,6 +73,16 @@ public class Order {
         this.size = order.getSize();
         this.state = order.getState();
         this.price = order.getPrice();
+        this.address = order.getAddress();
+    }
+
+
+    /**
+     * Returns the address of the order.
+     * @return address
+     */
+    public Address getAddress() {
+        return this.address;
     }
 
     /**
@@ -118,6 +131,14 @@ public class Order {
      */
     public void setState(State state) {
         this.state = state;
+    }
+
+    /**
+     * Sets the address of the order.
+     * @param address
+     */
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     /**

@@ -5,6 +5,7 @@ import vintage.item.Bag;
 import vintage.item.Carrier;
 import vintage.item.Item;
 import vintage.item.Shoes;
+import vintage.user.Address;
 
 import java.math.BigDecimal;
 
@@ -18,6 +19,7 @@ public class OrderTest {
         Item item2 = new Bag("Nike", "Air Max", 10, BigDecimal.valueOf(100), 0, 9, "", 2000, carrier);
 
         Order order = new Order();
+        order.setAddress(new Address("123 Main St", "New York", "NY", "10001"));
         order.setPrice(BigDecimal.valueOf(100));
         order.setState(Order.State.PENDING);
 
@@ -28,5 +30,6 @@ public class OrderTest {
 
         assertEquals(BigDecimal.valueOf(100), order.getPrice());
         assertEquals(Order.State.PENDING, order.getState());
+        assertEquals((new Address("123 Main St", "New York", "NY", "10001")), order.getAddress());
     }
 }
