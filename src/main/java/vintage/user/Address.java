@@ -1,19 +1,19 @@
 package vintage.user;
 
-public class Residence {
+public class Address {
     private String country;
     private String city;
     private String street;
     private String postalCode;
 
-    public Residence(String country, String city, String street, String postalCode) {
+    public Address(String country, String city, String street, String postalCode) {
         this.country = country;
         this.city = city;
         this.street = street;
         this.postalCode = postalCode;
     }
 
-    public Residence() {
+    public Address() {
         this.country = "";
         this.city = "";
         this.street = "";
@@ -66,7 +66,7 @@ public class Residence {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Residence residence = (Residence) o;
+        Address residence = (Address) o;
         return getCountry().equals(residence.getCountry()) && getCity().equals(residence.getCity()) && getStreet().equals(residence.getStreet()) && getPostalCode().equals(residence.getPostalCode());
     }
 }

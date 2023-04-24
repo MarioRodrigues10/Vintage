@@ -6,7 +6,7 @@ public class User {
     private final UUID id; /* ! ID of a User */
     private String name; /* ! Name of a User */
     private String email; /* ! Email of a User */
-    private Residence residence; /* ! Residence of a User */
+    private Address residence; /* ! Residence of a User */
     private String taxNumber; /* ! Tax number of a User */
 
     /**
@@ -17,7 +17,7 @@ public class User {
      * @param residence a Residence object containing the residence of the user
      * @param taxNumber a String containing the tax number of the user
      */
-    public User(String name, String email, Residence residence, String taxNumber) {
+    public User(String name, String email, Address residence, String taxNumber) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
@@ -32,7 +32,7 @@ public class User {
         this.id = UUID.randomUUID();
         this.name = "";
         this.email = "";
-        this.residence = new Residence();
+        this.residence = new Address();
         this.taxNumber = "";
     }
 
@@ -99,7 +99,7 @@ public class User {
      *
      * @return the residence of a User
      */
-    public Residence getResidence() {
+    public Address getResidence() {
         return residence;
     }
 
@@ -108,7 +108,7 @@ public class User {
      *
      * @param residence a Residence object containing the residence of the user
      */
-    public void setResidence(Residence residence) {
+    public void setResidence(Address residence) {
         this.residence = residence;
     }
 
