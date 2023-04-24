@@ -7,10 +7,10 @@ public class Carrier {
     public static BigDecimal MEDIUM = new BigDecimal("10.0"); // !< Medium orders price
     public static BigDecimal LARGE = new BigDecimal("15.0"); // !< Large orders price
     public static BigDecimal tax = new BigDecimal("0.1"); // !< Tax rate
-
-    private String name;
-    private BigDecimal profit;
-    private boolean premium;
+    private String name; // !< Name of the carrier
+    private BigDecimal profit; // !< Profit of the carrier
+    private int deliveryTime; // !< Delivery time of the carrier
+    private boolean premium; // !< Premium status of the carrier
 
     /**
      * Creates a new Carrier object with the specified properties.
@@ -19,9 +19,10 @@ public class Carrier {
      * @param profit a BigDecimal object containing the profit of the carrier
      * @param premium a boolean value representing the premium status of the carrier
      */
-    public Carrier(String name, BigDecimal profit, boolean premium) {
+    public Carrier(String name, BigDecimal profit, boolean premium, int deliveryTime) {
         this.name = name;
         this.profit = profit;
+        this.deliveryTime = deliveryTime;
         this.premium = premium;
     }
 
@@ -33,6 +34,7 @@ public class Carrier {
     public Carrier(Carrier carrier) {
         this.name = carrier.getName();
         this.profit = carrier.getProfit();
+        this.deliveryTime = carrier.getDeliveryTime();
         this.premium = carrier.isPremium();
     }
 
@@ -42,6 +44,7 @@ public class Carrier {
     public Carrier() {
         this.name = "";
         this.profit = new BigDecimal("0.0");
+        this.deliveryTime = 3;
         this.premium = false;
     }
 
@@ -100,12 +103,21 @@ public class Carrier {
     }
 
     /**
+     * Returns an integer value representing the delivery time of the carrier.
+     *
+     * @return an integer value representing the delivery time of the carrier
+     */
+    public int getDeliveryTime() {
+        return this.deliveryTime;
+    }
+
+    /**
      * Returns a boolean value representing the premium status of the carrier.
      *
      * @return a boolean value representing the premium status of the carrier
      */
     public boolean isPremium() {
-        return premium;
+        return this.premium;
     }
 
     /**

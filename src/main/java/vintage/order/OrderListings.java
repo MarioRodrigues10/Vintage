@@ -3,18 +3,19 @@ package vintage.order;
 import vintage.order.Order;
 import vintage.user.User;
 
+import java.time.LocalDate;
 import java.util.UUID;
 import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class Listings {
+public class OrderListings {
     private final Map<UUID, List<Order>> orders; /* ! Map of orders, where the key is the user ID */
 
     /**
      * Creates a new empty Listings object with the specified properties.
      */
-    public Listings() {
+    public OrderListings() {
         this.orders = new HashMap<>();
     }
 
@@ -23,7 +24,7 @@ public class Listings {
      *
      * @param orders a Map of orders, where the key is the user ID
      */
-    public Listings(Map<UUID, List<Order>> orders) {
+    public OrderListings(Map<UUID, List<Order>> orders) {
         this.orders = orders;
     }
 
@@ -75,4 +76,17 @@ public class Listings {
         return this.orders.values().stream().flatMap(List::stream).collect(Collectors.toList());
     }
 
+    /**
+     * Updates the state of all orders in the program.
+     * @param currentDate
+     */
+    public void updateOrdersState(LocalDate currentDate) {
+        for (List<Order> userOrders : this.orders.values()) {
+            for (Order order : userOrders) {
+                if (order.getState() == Order.State.PENDING) {
+                    order.updateDeliveryState(currentDate);
+                }
+            }
+        }
+    }
 }

@@ -21,7 +21,6 @@ public class OrderTest {
         Order order = new Order();
         order.setAddress(new Address("123 Main St", "New York", "NY", "10001"));
         order.setPrice(BigDecimal.valueOf(100));
-        order.setState(Order.State.PENDING);
 
         order.addItem(item1);
         assertEquals(Order.Size.SMALL, order.getSize());
