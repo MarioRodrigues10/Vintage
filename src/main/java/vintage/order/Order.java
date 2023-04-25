@@ -3,9 +3,8 @@ package vintage.order;
 import vintage.item.Item;
 import vintage.user.Address;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.time.LocalDate;
+import java.util.*;
 
 /**
  * Defines an Order
@@ -22,15 +21,16 @@ public class Order {
      * Enumerates the states of an Order
      */
     public enum State {
-        PENDING, FINISHED, SENT, DELIVERED
+        PENDING, FINISHED, DELIVERED
     }
 
     private final UUID id; /* ! ID of an Order */
-    private List<Item> items; /* ! Items of an Order */
+    private Map<Item, State> items; /* ! Items of an Order */
     private Size size; /* ! Size of an Order */
     private State state; /* ! State of an Order */
     private BigDecimal price; /* ! Price of an Order */
     private Address address; /* ! Address of an Order */
+    private LocalDate expeditionDate; /* ! Expedition date of an Order */
 
     /**
      * Creates a new Order object with the specified properties.
@@ -39,7 +39,7 @@ public class Order {
      * @param state
      * @param price
      */
-    public Order(List<Item> items, Size size, State state, BigDecimal price, Address address) {
+    public Order(Map<Item, State> items, Size size, State state, BigDecimal price, Address address) {
         this.id = UUID.randomUUID();
         this.items = items;
         if (this.items.size() == 1) {
@@ -60,13 +60,17 @@ public class Order {
      */
     public Order() {
         this.id = UUID.randomUUID();
-        this.items = new ArrayList<>();
+        this.items = new HashMap<Item, State>();
         this.size = Size.MEDIUM;
         this.state = State.PENDING;
         this.price = BigDecimal.valueOf(0);
         this.address = new Address();
     }
 
+    /**
+     * Creates a new Order object based on another Order object.
+     * @param order
+     */
     public Order(Order order) {
         this.id = order.getId();
         this.items = order.getItems();
@@ -97,15 +101,15 @@ public class Order {
      * Returns an ArrayList of Items.
      * @return items
      */
-    public List<Item> getItems() {
-        return List.copyOf(items);
+    public Map<Item, State> getItems() {
+        return Map.copyOf(this.items);
     }
 
     /**
      * Sets the items of the order.
      * @param items
      */
-    public void setItems(List<Item> items) {
+    public void setItems(Map<Item, State> items) {
         this.items = items;
     }
 
@@ -115,6 +119,14 @@ public class Order {
      */
     public Size getSize() {
         return this.size;
+    }
+
+    /**
+     * Returns the number of items in the order.
+     * @return numItems
+     */
+    public int getNumItems() {
+        return this.items.size();
     }
 
     /**
@@ -129,7 +141,7 @@ public class Order {
      * Sets the state of the order.
      * @param state
      */
-    public void setState(State state) {
+    private void setState(State state) {
         this.state = state;
     }
 
@@ -162,7 +174,7 @@ public class Order {
      * @param item
      */
     public Order addItem(Item item) {
-        items.add(item);
+        this.items.put(item, State.PENDING);
         if (items.size() == 1) {
             size = Size.SMALL;
         } else if (items.size() <= 5) {
@@ -181,7 +193,7 @@ public class Order {
     // TODO: calculate total price of an order (base price + carrier)
     public BigDecimal calculatePrice() {
         BigDecimal price = new BigDecimal(0);
-        for (Item item : items) {
+        for (Item item : items.keySet()) {
             if(item.isUsed()) {
                 price = price.add(item.getPrice()).add(BigDecimal.valueOf(0.25));
             }
@@ -204,5 +216,31 @@ public class Order {
 
     public Order clone() {
         return new Order(this);
+    }
+
+    /**
+     * Updates the state of an Order
+     * If all items are delivered, the order is delivered
+     * @param currentDate current date of the program
+     */
+    public void updateDeliveryState(LocalDate currentDate) {
+        int updatedItems = 0;
+        for (Map.Entry<Item, State> entry : items.entrySet()) {
+            if (entry.getValue() == State.PENDING) {
+                Item item = entry.getKey();
+                int deliveryTime = item.getCarrier().getDeliveryTime();
+                LocalDate deliveryDate = this.expeditionDate.plusDays(deliveryTime);
+
+                if (currentDate.isAfter(deliveryDate)) {
+                    entry.setValue(State.DELIVERED);
+                }
+
+                updatedItems++;
+            }
+        }
+
+        if (updatedItems == this.getNumItems()) {
+            this.setState(State.DELIVERED);
+        }
     }
 }
