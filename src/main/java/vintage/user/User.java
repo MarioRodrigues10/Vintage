@@ -1,5 +1,8 @@
 package vintage.user;
 
+import vintage.receipt.Receipt;
+
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class User {
@@ -8,6 +11,7 @@ public class User {
     private String email; /* ! Email of a User */
     private Address residence; /* ! Residence of a User */
     private String taxNumber; /* ! Tax number of a User */
+    private ArrayList<Receipt> receipts = new ArrayList<Receipt>();
 
     /**
      * Creates a new User object with the specified properties.
@@ -17,12 +21,13 @@ public class User {
      * @param residence a Residence object containing the residence of the user
      * @param taxNumber a String containing the tax number of the user
      */
-    public User(String name, String email, Address residence, String taxNumber) {
+    public User(String name, String email, Address residence, String taxNumber, ArrayList<Receipt> receipts) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
         this.residence = residence;
         this.taxNumber = taxNumber;
+        this.receipts = receipts;
     }
 
     /**
@@ -34,6 +39,7 @@ public class User {
         this.email = "";
         this.residence = new Address();
         this.taxNumber = "";
+        this.receipts = new ArrayList<Receipt>();
     }
 
     /**
@@ -47,6 +53,7 @@ public class User {
         this.email = user.getEmail();
         this.residence = user.getResidence();
         this.taxNumber = user.getTaxNumber();
+        this.receipts = user.getReceipts();
     }
 
     /**
@@ -128,6 +135,34 @@ public class User {
      */
     public void setTaxNumber(String taxNumber) {
         this.taxNumber = taxNumber;
+    }
+
+    /**
+     * Sets bills of a User.
+     *
+     * @return the User's Bill's list.
+     */
+    public ArrayList<Receipt> getReceipts() { return receipts; }
+
+    /**
+     * Sets the receipts of a User.
+     *
+     * @param receipts a Bill's ArrayList containing the receipts of the user
+     */
+    public void setReceipts(ArrayList<Receipt> receipts) { this.receipts = receipts; }
+
+    /**
+     * Adds a Receipt to a Receipt List
+     * @param receipt
+     */
+    public void addReceipt(Receipt receipt) { this.receipts.add(receipt); }
+
+    /**
+     * Removes a Receipt to a Receipt List
+     * @param receipt
+     */
+    public void removeReceipt(Receipt receipt) {
+        receipts.remove(receipt);
     }
 
     /**
