@@ -3,12 +3,15 @@ package vintage.item;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import vintage.user.User;
+
 
 /**
  * Defines a Item
  */
 public abstract class Item {
     private final UUID id; /* ! ID of an Item */
+    private User owner; /* ! Owner of the item */
     private String description; /* ! Description of an Item */
     private String brand; /* ! Brand of an Item */
     private int evaluation; /*! Defines the evaluation of an Item, in a scale from 1 to 10 */
@@ -117,6 +120,13 @@ public abstract class Item {
     }
 
     /**
+     * Returns a User object representing item's owner.
+     *
+     * @return User
+     */
+    public User getUser() { return owner; }
+
+    /**
      * Returns a boolean value representing if the item is used or not.
      *
      * @return a boolean value representing if the item is used or not
@@ -151,6 +161,13 @@ public abstract class Item {
     public void setOwners(int owners) {
         this.owners = owners;
     }
+
+    /**
+     * Sets the owner of the item.
+     *
+     * @param owner a User representing the item's owner
+     */
+    public void setOwner(User owner) { this.owner = owner; };
 
     /**
      * Sets the evaluation of the item.

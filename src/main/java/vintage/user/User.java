@@ -11,7 +11,7 @@ public class User {
     private String email; /* ! Email of a User */
     private Address residence; /* ! Residence of a User */
     private String taxNumber; /* ! Tax number of a User */
-    private ArrayList<Receipt> receipts = new ArrayList<Receipt>();
+    private ArrayList<Receipt> receipts = new ArrayList<Receipt>(); 
 
     /**
      * Creates a new User object with the specified properties.
