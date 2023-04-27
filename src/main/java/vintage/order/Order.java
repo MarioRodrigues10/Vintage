@@ -2,6 +2,7 @@ package vintage.order;
 
 import vintage.item.Item;
 import vintage.user.Address;
+import vintage.user.User;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
@@ -25,6 +26,7 @@ public class Order {
     }
 
     private final UUID id; /* ! ID of an Order */
+    private User buyer; /* ! Buyer of the Order */
     private Map<Item, State> items; /* ! Items of an Order */
     private Size size; /* ! Size of an Order */
     private State state; /* ! State of an Order */
@@ -34,13 +36,15 @@ public class Order {
 
     /**
      * Creates a new Order object with the specified properties.
+     * @param buyer
      * @param items
      * @param size
      * @param state
      * @param price
      */
-    public Order(Map<Item, State> items, Size size, State state, BigDecimal price, Address address) {
+    public Order(User buyer,Map <Item, State> items, Size size, State state, BigDecimal price, Address address) {
         this.id = UUID.randomUUID();
+        this.buyer = buyer;
         this.items = items;
         if (this.items.size() == 1) {
             this.size = Size.SMALL;
@@ -60,6 +64,7 @@ public class Order {
      */
     public Order() {
         this.id = UUID.randomUUID();
+        this.buyer = null;
         this.items = new HashMap<Item, State>();
         this.size = Size.MEDIUM;
         this.state = State.PENDING;
@@ -73,6 +78,7 @@ public class Order {
      */
     public Order(Order order) {
         this.id = order.getId();
+        this.buyer = order.getBuyer();
         this.items = order.getItems();
         this.size = order.getSize();
         this.state = order.getState();
@@ -80,6 +86,30 @@ public class Order {
         this.address = order.getAddress();
     }
 
+
+    /**
+     * Sets the buyer of the order.
+     * @param buyer
+     */
+    public void setBuyer(User buyer) { this.buyer = buyer; }
+
+    /**
+     * Sets the size of the order.
+     * @param size
+     */
+    public void setSize(Size size) { this.size = size; }
+
+    /**
+     * Returns the expeditionDate of the order.
+     * @return LocalDate
+     */
+    public LocalDate getExpeditionDate() { return expeditionDate; }
+
+    /**
+     * Sets the expeditionDate of the order.
+     * @param expeditionDate
+     */
+    public void setExpeditionDate(LocalDate expeditionDate) { this.expeditionDate = expeditionDate; }
 
     /**
      * Returns the address of the order.
@@ -95,6 +125,14 @@ public class Order {
      */
     public UUID getId() {
         return this.id;
+    }
+
+    /**
+     * Returns a User representing the buyer of the order.
+     * @return User
+     */
+    public User getBuyer() {
+        return this.buyer;
     }
 
     /**
