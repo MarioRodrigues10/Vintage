@@ -206,6 +206,15 @@ public abstract class Item {
     }
 
     /**
+     * Returns a User object representing item's owner.
+     *
+     * @return User
+     */
+    public User getOwner() {
+        return owner;
+    }
+
+    /**
      * Returns a String containing a brief description of the item.
      *
      * @return a String containing a brief description of the item
