@@ -2,12 +2,15 @@ package vintage.others;
 
 import vintage.item.*;
 import vintage.item.carrier.Carrier;
+import vintage.receipt.Receipt;
 import vintage.user.User;
 import vintage.order.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+
 public class Statistics {
 
     /**
@@ -15,25 +18,8 @@ public class Statistics {
      * @param user
      * @return ArrayList<Order>
      */
-    public static ArrayList<Order> getSellerOrders(User user) {
-        OrderListings orderListings = new OrderListings();
-        ItemListings listings = new ItemListings();
-        ArrayList<Item> items = new ArrayList<Item>();
-        for (Item item : listings.getAllItems()) {
-            if (item.getOwner().equals(user)) {
-                items.add(item);
-            }
-        }
-
-        ArrayList<Order> orders = new ArrayList<Order>();
-        for (Order order : orderListings.getAllOrders()) {
-            for (Item item : items) {
-                if(order.getItems().containsKey(item)) {
-                    orders.add(order);
-                }
-            }
-        }
-        return orders;
+    public static List<Receipt> getSellerOrders(User user) {
+        return user.getSaleReceipts();
     }
 
     /**
@@ -50,7 +36,6 @@ public class Statistics {
      * @return ArrayList<User>
      */
     public static ArrayList<User> biggestSellersByProducts(){
-          OrderListings orderListings = new OrderListings();
             ItemListings listings = new ItemListings();
             ArrayList<User> users = new ArrayList<User>(); /* List of users who have sold items */
             for (Item item : listings.getAllItems()) {
@@ -63,11 +48,8 @@ public class Statistics {
             int max = 0;
             for (User user : users) {
                 int count = 0;
-                for (Order order : orderListings.getAllOrders()) {
-                    if (order.getBuyer().equals(user)) {
-                        count++;
-                    }
-                }
+                for(Receipt receipt: user.getSaleReceipts())
+                    count += receipt.getItems().size();
                 if (count > max) {
                     max = count;
                     biggestSellers.clear();
@@ -92,15 +74,13 @@ public class Statistics {
             }
         }
 
-        ArrayList<User> biggestBuyers = new ArrayList<User>(); /* List of users who have bought the most items */
+        ArrayList<User> biggestBuyers = new ArrayList<>(); /* List of users who have bought the most items */
         int max = 0;
         for (User user : users) {
             int count = 0;
-            for (Order order : orderListings.getAllOrders()) {
-                if (order.getBuyer().equals(user)) {
-                    count++;
-                }
-            }
+            for(Receipt receipt: user.getPurchaseReceipts())
+                count += receipt.getItems().size();
+
             if (count > max) {
                 max = count;
                 biggestBuyers.clear();
@@ -116,8 +96,7 @@ public class Statistics {
      * Returns the biggest seller by money earned.
      * @return User
      */
-    public static User biggestSellerByMoney(){
-        OrderListings orderListings = new OrderListings();
+    public static ArrayList<User> biggestSellerByMoney(){
         ItemListings listings = new ItemListings();
         ArrayList<User> users = new ArrayList<User>(); /* List of users who have sold items */
         for (Item item : listings.getAllItems()) {
@@ -130,11 +109,9 @@ public class Statistics {
         BigDecimal max = BigDecimal.valueOf(0);
         for (User user : users) {
             BigDecimal count = BigDecimal.valueOf(0);
-            for (Item item : listings.getAllItems()) {
-                if(item.getOwner().equals(user)) {
-                    count = count.add(item.getPrice());
-                }
-            }
+            for(Receipt receipt: user.getSaleReceipts())
+                count = count.add(receipt.getTotalPrice());
+
             if (count.compareTo(max) > 0) {
                 max = count;
                 biggestSellers.clear();
@@ -143,44 +120,6 @@ public class Statistics {
                 biggestSellers.add(user);
             }
         }
-        return biggestSellers.get(0);
-    }
-
-
-    /**
-     * Returns the biggest carrier by number of products.
-     * @return Carrier
-     */
-    public static Carrier biggestCarrier(){
-        OrderListings orderListings = new OrderListings();
-        ArrayList<Carrier> carriers = new ArrayList<Carrier>(); /* List of carriers who have delivered items TIVE QUE IR BUSCAR ISTO AO CU DO JUDAS */
-        for (Order order : orderListings.getAllOrders()) {
-            for(Item item : order.getItems().keySet()) {
-                if (!carriers.contains(item.getCarrier())) {
-                    carriers.add(item.getCarrier());
-                }
-            }
-        }
-
-        ArrayList<Carrier> biggestCarriers = new ArrayList<Carrier>(); /* List of carriers who have delivered the most items */
-        int max = 0;
-        for (Carrier carrier : carriers) {
-            int count = 0;
-            for (Order order : orderListings.getAllOrders()) {
-                for(Item item : order.getItems().keySet()) {
-                    if (item.getCarrier().equals(carrier)) {
-                        count++;
-                    }
-                }
-            }
-            if (count > max) {
-                max = count;
-                biggestCarriers.clear();
-                biggestCarriers.add(carrier);
-            } else if (count == max) {
-                biggestCarriers.add(carrier);
-            }
-        }
-        return biggestCarriers.get(0);
+        return biggestSellers;
     }
 }
