@@ -3,6 +3,7 @@ package vintage.item;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import vintage.item.carrier.Carrier;
 import vintage.user.User;
 
 

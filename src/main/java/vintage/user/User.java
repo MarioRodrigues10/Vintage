@@ -3,6 +3,7 @@ package vintage.user;
 import vintage.receipt.Receipt;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class User {
@@ -11,7 +12,7 @@ public class User {
     private String email; /* ! Email of a User */
     private Address residence; /* ! Residence of a User */
     private String taxNumber; /* ! Tax number of a User */
-    private ArrayList<Receipt> receipts = new ArrayList<Receipt>(); 
+    private List<Receipt> receipts = new ArrayList<Receipt>();
 
     /**
      * Creates a new User object with the specified properties.
@@ -62,7 +63,7 @@ public class User {
      * @return the ID of a User
      */
     public UUID getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -71,7 +72,7 @@ public class User {
      * @return the name of a User
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -89,7 +90,7 @@ public class User {
      * @return the email of a User
      */
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     /**
@@ -107,7 +108,7 @@ public class User {
      * @return the residence of a User
      */
     public Address getResidence() {
-        return residence;
+        return this.residence;
     }
 
     /**
@@ -125,7 +126,7 @@ public class User {
      * @return the tax number of a User
      */
     public String getTaxNumber() {
-        return taxNumber;
+        return this.taxNumber;
     }
 
     /**
@@ -142,7 +143,38 @@ public class User {
      *
      * @return the User's Bill's list.
      */
-    public ArrayList<Receipt> getReceipts() { return receipts; }
+    public List<Receipt> getReceipts() { return List.copyOf(receipts); }
+
+    /**
+     * Returns the sale receipts of a User.
+     *
+     * @return the sale receipts of a User
+     */
+    public List<Receipt> getSaleReceipts() {
+        List<Receipt> sellReceipts = new ArrayList<Receipt>();
+        for (Receipt receipt : receipts) {
+            if (receipt.getType().equals(Receipt.Type.SALE)) {
+                sellReceipts.add(receipt.clone());
+            }
+        }
+        return sellReceipts;
+    }
+
+    /**
+     * Returns the purchase receipts of a User.
+     *
+     * @return the User's purchase receipts.
+     */
+    public List<Receipt> getPurchaseReceipts() {
+        List<Receipt> purchaseReceipts = new ArrayList<Receipt>();
+        for (Receipt receipt : receipts) {
+            if (receipt.getType().equals(Receipt.Type.PURCHASE)) {
+                purchaseReceipts.add(receipt.clone());
+            }
+        }
+        return purchaseReceipts;
+    }
+
 
     /**
      * Sets the receipts of a User.
