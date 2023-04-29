@@ -39,6 +39,38 @@ public class OrderListings {
     }
 
     /**
+     * Returns the pending order of a user.
+     *
+     * @param user a User object containing the user
+     * @return the pending order of a user
+     */
+    public Order getUserPendindOrder(User user) {
+        List<Order> userOrders = this.orders.get(user.getId());
+        if (userOrders == null) {
+            return null;
+        }
+        for (Order order : userOrders) {
+            if (order.getState() == Order.State.PENDING) {
+                return order;
+            }
+        }
+        return null;
+    }
+
+    public Order getUserFinishedOrder(User user) {
+        List<Order> userOrders = this.orders.get(user.getId());
+        if (userOrders == null) {
+            return null;
+        }
+        for (Order order : userOrders) {
+            if (order.getState() == Order.State.FINISHED) {
+                return order;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Returns a List of orders of a specific user.
      *
      * @param userId a UUID object containing the user ID

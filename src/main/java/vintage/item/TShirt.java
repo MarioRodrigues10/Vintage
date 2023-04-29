@@ -1,6 +1,7 @@
 package vintage.item;
 
 import vintage.item.carrier.Carrier;
+import vintage.user.User;
 
 import java.math.BigDecimal;
 
@@ -30,6 +31,7 @@ public class TShirt extends Item {
      * Creates a new TShirt object with the specified properties.
      *
      * @param description a String containing a brief description of the item
+     * @param owner a User object containing the owner of the item
      * @param brand a String containing the brand or manufacturer of the item
      * @param evaluation an integer value representing the evaluation of the item
      * @param price a BigDecimal object containing the price of the item
@@ -38,8 +40,8 @@ public class TShirt extends Item {
      * @param pattern a String containing the pattern of the TShirt
      * @param carrier a Carrier object containing the carrier of the item
      */
-    public TShirt(String description, String brand, int evaluation, BigDecimal price, int owners, Size size, Pattern pattern, Carrier carrier) {
-        super(description, brand, evaluation, price, owners, carrier);
+    public TShirt(String description, User owner, String brand, int evaluation, BigDecimal price, int owners, Size size, Pattern pattern, Carrier carrier) {
+        super(description, owner, brand, evaluation, price, owners, carrier);
         this.size = size;
         this.pattern = pattern;
     }
@@ -59,7 +61,7 @@ public class TShirt extends Item {
      * @param tshirt a TShirt object
      */
     public TShirt(TShirt tshirt) {
-        super(tshirt.getDescription(), tshirt.getBrand(), tshirt.getEvaluation(), tshirt.getPrice(),  tshirt.getOwners(), tshirt.getCarrier());
+        super(tshirt.getDescription(), tshirt.getOwner(), tshirt.getBrand(), tshirt.getEvaluation(), tshirt.getPrice(),  tshirt.getOwners(), tshirt.getCarrier());
         this.size = tshirt.getSize();
         this.pattern = tshirt.getPattern();
     }

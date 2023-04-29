@@ -1,6 +1,7 @@
 package vintage.order;
 
 import vintage.item.Item;
+import vintage.receipt.Receipt;
 import vintage.user.Address;
 import vintage.user.User;
 import java.math.BigDecimal;
@@ -62,11 +63,11 @@ public class Order {
     /**
      * Creates a new Order object with default properties.
      */
-    public Order() {
+    public Order(User user) {
         this.id = UUID.randomUUID();
-        this.buyer = null;
+        this.buyer = user;
         this.items = new HashMap<Item, State>();
-        this.size = Size.MEDIUM;
+        this.size = Size.SMALL;
         this.state = State.PENDING;
         this.price = BigDecimal.valueOf(0);
         this.address = new Address();
@@ -212,7 +213,6 @@ public class Order {
      * @param item
      */
     public Order addItem(Item item) {
-        this.items.put(item, State.PENDING);
         if (items.size() == 1) {
             size = Size.SMALL;
         } else if (items.size() <= 5) {
@@ -220,6 +220,9 @@ public class Order {
         } else {
             size = Size.LARGE;
         }
+
+        this.price = this.price.add(item.getPrice());
+
         return this.clone();
     }
 
@@ -279,6 +282,30 @@ public class Order {
 
         if (updatedItems == this.getNumItems()) {
             this.setState(State.DELIVERED);
+        }
+    }
+
+    /**
+     * Sets the state of an order to finished
+     */
+    public void finishOrder() {
+        this.setState(State.FINISHED);
+
+        Receipt buyerReceipt = new Receipt(this);
+        this.buyer.addReceipt(buyerReceipt);
+
+        // send receipts to all the sellers
+        for (Map.Entry<Item, State> entry : items.entrySet()) {
+            Item item = entry.getKey();
+            User seller = item.getOwner();
+            // get receipt from seller
+            Receipt sellerReceipt = seller.getOrderIdReceipt(this.id);
+            if (sellerReceipt == null) {
+                ArrayList<Item> items = new ArrayList<Item>();
+                sellerReceipt = new Receipt(Receipt.Type.SALE, this.buyer, BigDecimal.valueOf(0.0), items,
+                        this.expeditionDate, this);
+            }
+            sellerReceipt.addItem(item);
         }
     }
 }

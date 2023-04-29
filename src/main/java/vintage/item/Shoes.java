@@ -1,6 +1,7 @@
 package vintage.item;
 
 import vintage.item.carrier.Carrier;
+import vintage.user.User;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,6 +20,7 @@ public class Shoes extends Item {
      * Creates a new Shoes object with the specified properties.
      *
      * @param description a String containing a brief description of the item
+     * @param owner is User object containing the owner of the item
      * @param brand a String containing the brand or manufacturer of the item
      * @param price a BigDecimal object containing the price of the item
      * @param evaluation an integer value representing the evaluation of the item
@@ -29,8 +31,8 @@ public class Shoes extends Item {
      * @param release an integer value representing the release year of the shoes
      * @param carrier a Carrier object containing the carrier of the item
      */
-    public Shoes(String description, String brand, int evaluation, BigDecimal price, int owners, double size, boolean laces, String color, int release, Carrier carrier) {
-        super(description, brand, evaluation, price, owners, carrier);
+    public Shoes(String description, User owner, String brand, int evaluation, BigDecimal price, int owners, double size, boolean laces, String color, int release, Carrier carrier) {
+        super(description, owner, brand, evaluation, price, owners, carrier);
         this.size = size;
         this.laces = laces;
         this.color = color;
@@ -43,7 +45,7 @@ public class Shoes extends Item {
      * @param shoes a shoes object
      */
     public Shoes(Shoes shoes) {
-        super(shoes.getDescription(), shoes.getBrand(), shoes.getEvaluation(), shoes.getPrice(), shoes.getOwners(), shoes.getCarrier());
+        super(shoes.getDescription(), shoes.getOwner(), shoes.getBrand(), shoes.getEvaluation(), shoes.getPrice(), shoes.getOwners(), shoes.getCarrier());
         this.size = shoes.getSize();
         this.laces = shoes.isLaces();
         this.color = shoes.getColor();

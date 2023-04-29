@@ -171,6 +171,7 @@ public class Carrier {
      * @param size an int containing the size of the order
      * @return a BigDecimal object containing the shipping cost of the order
      */
+    // TODO: fix the shipping cost calculation
     public BigDecimal calculateShippingCost(int size) {
         BigDecimal basePrice = new BigDecimal("0.0");
         if (size == 1) {
