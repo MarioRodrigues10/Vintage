@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 
 public class OrderListings {
-    private final Map<UUID, List<Order>> orders; /* ! Map of orders, where the key is the user ID */
+    private final Map<UUID, List<Order>> orders; /* ! Map of orders, where the key is the buyer user ID */
 
     /**
      * Creates a new empty Listings object with the specified properties.

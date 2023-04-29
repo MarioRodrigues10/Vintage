@@ -1,5 +1,7 @@
 package vintage.item;
 
+import vintage.item.carrier.Carrier;
+
 import java.math.BigDecimal;
 
 /**
