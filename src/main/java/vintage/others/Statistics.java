@@ -1,6 +1,7 @@
 package vintage.others;
 
 import vintage.item.*;
+import vintage.item.carrier.Carrier;
 import vintage.user.User;
 import vintage.order.*;
 
@@ -16,7 +17,7 @@ public class Statistics {
      */
     public static ArrayList<Order> getSellerOrders(User user) {
         OrderListings orderListings = new OrderListings();
-        Listings listings = new Listings();
+        ItemListings listings = new ItemListings();
         ArrayList<Item> items = new ArrayList<Item>();
         for (Item item : listings.getAllItems()) {
             if (item.getOwner().equals(user)) {
@@ -50,7 +51,7 @@ public class Statistics {
      */
     public static ArrayList<User> biggestSellersByProducts(){
           OrderListings orderListings = new OrderListings();
-            Listings listings = new Listings();
+            ItemListings listings = new ItemListings();
             ArrayList<User> users = new ArrayList<User>(); /* List of users who have sold items */
             for (Item item : listings.getAllItems()) {
                 if (!users.contains(item.getOwner())) {
@@ -117,7 +118,7 @@ public class Statistics {
      */
     public static User biggestSellerByMoney(){
         OrderListings orderListings = new OrderListings();
-        Listings listings = new Listings();
+        ItemListings listings = new ItemListings();
         ArrayList<User> users = new ArrayList<User>(); /* List of users who have sold items */
         for (Item item : listings.getAllItems()) {
             if (!users.contains(item.getOwner())) {
