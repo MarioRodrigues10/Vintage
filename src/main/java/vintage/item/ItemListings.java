@@ -1,18 +1,17 @@
 package vintage.item;
 
-import vintage.item.Item;
 import vintage.user.User;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Listings {
+public class ItemListings {
     private final Map<UUID, List<Item>> items; /* ! Map of items, where the key is the user ID */
 
     /**
      * Creates a new empty Listings object with the specified properties.
      */
-    public Listings() {
+    public ItemListings() {
         this.items = new HashMap<>();
     }
 
@@ -21,7 +20,7 @@ public class Listings {
      *
      * @param items a Map of items, where the key is the user ID
      */
-    public Listings(Map<UUID, List<Item>> items) {
+    public ItemListings(Map<UUID, List<Item>> items) {
         this.items = items;
     }
 

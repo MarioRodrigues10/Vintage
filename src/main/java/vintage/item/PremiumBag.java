@@ -1,4 +1,6 @@
 package vintage.item;
+import vintage.item.carrier.Carrier;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

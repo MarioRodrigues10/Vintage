@@ -6,6 +6,7 @@ import vintage.order.Order;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.time.LocalDate;
 
@@ -15,16 +16,15 @@ import java.time.LocalDate;
 public class Receipt {
 
     public enum Type {
-        Purchase,
-        Sale
+        PURCHASE,
+        SALE
     }
     private UUID id; /* ! ID of a Receipt */
     private Type type; /* ! Type of Receipt */
     private User buyer; /* ! Buyer of a Receipt's Order */
     private BigDecimal totalPrice; /* ! Total price of a Receipt */
-    private ArrayList<Item> items; /* ! Items in a Receipt's Order */
+    private List<Item> items; /* ! Items in a Receipt's Order */
     private LocalDate emissionDate; /* ! Date of emission of a Receipt */
-
 
     /**
      * Creates a new Receipt object with the default properties.
@@ -46,13 +46,13 @@ public class Receipt {
      * @param totalPrice
      * @param items
      */
-    public Receipt(Type type, User buyer, BigDecimal totalPrice, ArrayList<Item> items) {
+    public Receipt(Type type, User buyer, BigDecimal totalPrice, List<Item> items, LocalDate emissionDate) {
         this.id = UUID.randomUUID();
         this.type = type;
         this.buyer = buyer;
         this.totalPrice = totalPrice;
         this.items = items;
-        this.emissionDate = LocalDate.now();
+        this.emissionDate = emissionDate;
     }
 
     /**
@@ -62,11 +62,11 @@ public class Receipt {
      */
     public Receipt(Order order) {
         this.id = UUID.randomUUID();
-        this.type = Type.Purchase;
+        this.type = Type.PURCHASE;
         this.buyer = order.getBuyer();
         this.totalPrice = order.getPrice();
         this.items = new ArrayList<Item>(order.getItems().keySet());
-        this.emissionDate = LocalDate.now();
+        this.emissionDate = order.getExpeditionDate();
     }
     /**
      * Creates a new Receipt out of an Order and a seller
@@ -86,11 +86,11 @@ public class Receipt {
             }
 
         this.id = UUID.randomUUID();
-        this.type = Type.Sale;
+        this.type = Type.SALE;
         this.buyer = order.getBuyer();
         this.totalPrice = price;
         this.items = sellerItems;
-        this.emissionDate = LocalDate.now();
+        this.emissionDate = order.getExpeditionDate();
 
     }
 
@@ -144,13 +144,13 @@ public class Receipt {
      * Returns the List of Items of the Receipt.
      * @return ArrayList<Item>
      */
-    public ArrayList<Item> getItems() { return items; }
+    public List<Item> getItems() { return this.items; }
 
     /**
      * Sets the Items List of a Receipt
      * @param items Items of a Receipt
      */
-    public void setItems(ArrayList<Item> items) { this.items = items; }
+    public void setItems(List<Item> items) { this.items = items; }
 
     /**
      * Returns the Type of the Receipt.
@@ -188,5 +188,11 @@ public class Receipt {
                 "\nVintage" +
                 '}';
     }
-}
 
+    /**
+     * Clone method
+     */
+    public Receipt clone() {
+        return new Receipt(this);
+    }
+}

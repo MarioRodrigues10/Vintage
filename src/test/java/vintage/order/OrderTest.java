@@ -2,7 +2,7 @@ package vintage.order;
 
 import org.junit.Test;
 import vintage.item.Bag;
-import vintage.item.Carrier;
+import vintage.item.carrier.Carrier;
 import vintage.item.Item;
 import vintage.item.Shoes;
 import vintage.user.Address;

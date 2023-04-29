@@ -1,4 +1,4 @@
-package vintage.item;
+package vintage.item.carrier;
 
 import java.math.BigDecimal;
 
@@ -8,7 +8,7 @@ public class Carrier {
     public static BigDecimal LARGE = new BigDecimal("15.0"); // !< Large orders price
     public static BigDecimal tax = new BigDecimal("0.1"); // !< Tax rate
     private String name; // !< Name of the carrier
-    private BigDecimal profit; // !< Profit of the carrier
+    private BigDecimal profit; // !< Profit of the carrier in percentage of the shipping base price
     private int deliveryTime; // !< Delivery time of the carrier
     private boolean premium; // !< Premium status of the carrier
 
