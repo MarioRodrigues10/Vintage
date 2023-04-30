@@ -95,6 +95,7 @@ public class StatisticsTest {
         order2.setPrice(BigDecimal.valueOf(100));
         order2.setBuyer(user1);
         order2.addItem(item2);
+        order2.addItem(item3);
 
         Order order3 = new Order();
         order3.setAddress(new Address("123 Main St", "New York", "NY", "10001"));
@@ -109,9 +110,9 @@ public class StatisticsTest {
         receipt2.getItems().add(item2);
         receipt2.getItems().add(item3);
 
-        user1.getReceipts().add(receipt1);
-        user3.getReceipts().add(receipt2);
-        
+        user1.getPurchaseReceipts().add(receipt2);
+        user3.getPurchaseReceipts().add(receipt1);
+
         // test biggestBuyersByProducts method
         ArrayList<User> result = biggestBuyersByProducts();
         assertEquals(2, result.size());
