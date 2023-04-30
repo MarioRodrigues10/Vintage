@@ -226,6 +226,18 @@ public class User {
     }
 
     /**
+     * Creates a new order for a user if it doesn't exist a pending one already.
+     * @param orderListings
+     */
+    public void createOrder(OrderListings orderListings) {
+        Order currentOrder = orderListings.getUserPendindOrder(this);
+        if (currentOrder == null) {
+            currentOrder = new Order(this);
+            orderListings.addOrder(this.id, currentOrder);
+        }
+    }
+
+    /**
      * Adds an item to the order of a user.
      *
      * @param orderListings
@@ -240,14 +252,11 @@ public class User {
         return currentOrder;
     }
 
-    public void createOrder(OrderListings orderListings) {
-        Order currentOrder = orderListings.getUserPendindOrder(this);
-        if (currentOrder == null) {
-            currentOrder = new Order(this);
-            orderListings.addOrder(this.id, currentOrder);
-        }
-    }
-
+    /**
+     * Finishes the pending order of a user.
+     * @param orderListings
+     * @return
+     */
     public Order finishPendingOrder(OrderListings orderListings) {
         Order currentOrder = orderListings.getUserPendindOrder(this);
         if (currentOrder != null) {

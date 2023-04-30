@@ -213,6 +213,8 @@ public class Order {
      * @param item
      */
     public Order addItem(Item item) {
+        this.items.put(item, State.PENDING);
+
         if (items.size() == 1) {
             size = Size.SMALL;
         } else if (items.size() <= 5) {
