@@ -6,23 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ItemListings {
-    private final Map<UUID, List<Item>> items; /* ! Map of items, where the key is the user ID */
-
-    /**
-     * Creates a new empty Listings object with the specified properties.
-     */
-    public ItemListings() {
-        this.items = new HashMap<>();
-    }
-
-    /**
-     * Creates a new Listings object with the specified properties.
-     *
-     * @param items a Map of items, where the key is the user ID
-     */
-    public ItemListings(Map<UUID, List<Item>> items) {
-        this.items = items;
-    }
+    private final Map<UUID, List<Item>> items = new HashMap<UUID, List<Item>>(); /* ! Map of items, where the key is the user ID */
 
     /**
      * Returns a List of items of a specific user.
