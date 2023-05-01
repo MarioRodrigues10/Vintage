@@ -114,7 +114,7 @@ public class StatisticsTest {
         user3.getPurchaseReceipts().add(receipt1);
 
         // test biggestBuyersByProducts method
-        ArrayList<User> result = biggestBuyersByProducts();
+        List<User> result = biggestBuyersByProducts();
         assertEquals(2, result.size());
         assertEquals(user1, result.get(0));
     }
