@@ -10,23 +10,7 @@ import java.util.stream.Collectors;
 
 
 public class OrderListings {
-    private final Map<UUID, List<Order>> orders; /* ! Map of orders, where the key is the buyer user ID */
-
-    /**
-     * Creates a new empty Listings object with the specified properties.
-     */
-    public OrderListings() {
-        this.orders = new HashMap<>();
-    }
-
-    /**
-     * Creates a new Listings object with the specified properties.
-     *
-     * @param orders a Map of orders, where the key is the user ID
-     */
-    public OrderListings(Map<UUID, List<Order>> orders) {
-        this.orders = orders;
-    }
+    private final Map<UUID, List<Order>> orders = new HashMap<UUID, List<Order>>(); /* ! Map of orders, where the key is the buyer user ID */
 
     /**
      * Returns a List of orders of a specific user.

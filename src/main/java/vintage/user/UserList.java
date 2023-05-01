@@ -10,6 +10,8 @@ public class UserList {
 
     private final Map<String, User> users = new HashMap<String, User>(); /* ! Map of Users by Email*/
 
+    public Map<String, User> getUsers() { return this.users; }
+
     /**
      * Adds a User to users
      *
