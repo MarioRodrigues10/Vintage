@@ -57,17 +57,44 @@ public class OrderListings {
         return null;
     }
 
-    public Order getUserFinishedOrder(User user) {
+    /**
+     * Returns the finished order of a user with given ID.
+     *
+     * @param user a User object containing the user
+     * @param orderId a UUID object containing the order ID
+     * @return the finished order of a user
+     */
+    public Order getUserFinishedOrder(User user, UUID orderId) {
         List<Order> userOrders = this.orders.get(user.getId());
         if (userOrders == null) {
             return null;
         }
         for (Order order : userOrders) {
-            if (order.getState() == Order.State.FINISHED) {
+            if (order.getState() == Order.State.FINISHED && order.getId() == orderId) {
                 return order;
             }
         }
         return null;
+    }
+
+    /**
+     * Returns a List of finished orders of a specific user.
+     *
+     * @param user a User object containing the user
+     * @return a List of finished orders of a specific user
+     */
+    public List<Order> getUserFinishedOrders(User user) {
+        List<Order> userOrders = this.orders.get(user.getId());
+        if (userOrders == null) {
+            return null;
+        }
+        List<Order> finishedOrders = new ArrayList<>();
+        for (Order order : userOrders) {
+            if (order.getState() == Order.State.FINISHED) {
+                finishedOrders.add(order);
+            }
+        }
+        return finishedOrders;
     }
 
     /**

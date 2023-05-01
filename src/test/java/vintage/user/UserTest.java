@@ -7,6 +7,7 @@ import vintage.order.Order;
 import vintage.order.OrderListings;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -51,8 +52,11 @@ public class UserTest {
         Item bag4 = new Bag();
         bag4.setOwner(seller);
 
-        user.createOrder(orderListings);
+        UUID orderId = user.createOrder(orderListings);
         user.addItemToOrder(orderListings, bag1);
+
+        // Check if the user tries to create another order it returns the already existing pending one
+        assertEquals(orderId, user.createOrder(orderListings));
 
         Order currentOrder = orderListings.getUserPendindOrder(user);
         assertEquals(Order.State.PENDING, currentOrder.getState());

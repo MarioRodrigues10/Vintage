@@ -228,13 +228,16 @@ public class User {
     /**
      * Creates a new order for a user if it doesn't exist a pending one already.
      * @param orderListings
+     * @return the ID of the order
      */
-    public void createOrder(OrderListings orderListings) {
+    public UUID createOrder(OrderListings orderListings) {
         Order currentOrder = orderListings.getUserPendindOrder(this);
         if (currentOrder == null) {
             currentOrder = new Order(this);
             orderListings.addOrder(this.id, currentOrder);
         }
+
+        return currentOrder.getId();
     }
 
     /**
@@ -242,6 +245,7 @@ public class User {
      *
      * @param orderListings
      * @param item
+     * @return the order with the added item
      */
     public Order addItemToOrder(OrderListings orderListings, Item item) {
         Order currentOrder = orderListings.getUserPendindOrder(this);
@@ -255,7 +259,7 @@ public class User {
     /**
      * Finishes the pending order of a user.
      * @param orderListings
-     * @return
+     * @return the finished order
      */
     public Order finishPendingOrder(OrderListings orderListings) {
         Order currentOrder = orderListings.getUserPendindOrder(this);
@@ -265,5 +269,33 @@ public class User {
         }
 
         return null;
+    }
+
+    /**
+     * Returns the pending order of a user.
+     * @param orderListings
+     * @return the pending order
+     */
+    public Order getPendingOrder(OrderListings orderListings) {
+        return orderListings.getUserPendindOrder(this);
+    }
+
+    /**
+     * Returns the finished orders of a user.
+     * @param orderListings
+     * @return a list of orders
+     */
+    public List<Order> getFinishedOrders(OrderListings orderListings) {
+        return orderListings.getUserFinishedOrders(this);
+    }
+
+    /**
+     * Returns a finished order of a user.
+     * @param orderListings
+     * @param orderId
+     * @return the order with the given id
+     */
+    public Order getFinishedOrder(OrderListings orderListings, UUID orderId) {
+        return orderListings.getUserFinishedOrder(this, orderId);
     }
 }
