@@ -1,7 +1,12 @@
 package vintage;
 
+import vintage.frontend.*;
+import vintage.user.User;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        vintage.others.ListHolder.init();
+
+        User user = Auth.authMenu();
     }
 }

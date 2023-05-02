@@ -10,19 +10,6 @@ import vintage.others.ListHolder;
 
 public class Auth {
 
-
-    /**
-     * Logs a user in
-     *
-     * @return User
-     */
-    public static User login () {
-
-        User auth = Auth.loginMenu(ListHolder.getUsers());
-
-        return auth;
-    }
-
     public static User loginMenu (UserList users){
 
         Util.println("Login");
@@ -36,14 +23,6 @@ public class Auth {
             Util.println("User does not exist, try signing up.");
             return null;
         }
-    }
-
-    public static User signUp() {
-
-        User auth = Auth.signUpMenu(ListHolder.getUsers());
-
-        return auth;
-
     }
 
     public static User inputUser () {
@@ -92,8 +71,8 @@ public class Auth {
             Util.println("\n[1] LOGIN");
             Util.println("[2] SIGNUP");
             Integer option = Util.inputOption(2);
-            if (option == 1) auth = login();
-            else auth = signUp();
+            if (option == 1) auth = Auth.loginMenu(ListHolder.getUsers());
+            else auth = Auth.signUpMenu(ListHolder.getUsers());
         } while (auth == null);
 
         return auth;
