@@ -2,7 +2,7 @@ package vintage.frontend;
 
 import java.util.ArrayList;
 import vintage.user.Address;
-import vintage.receipt.Receipt;
+import vintage.order.receipt.Receipt;
 import vintage.user.User;
 import vintage.user.UserList;
 import vintage.others.ListHolder;
