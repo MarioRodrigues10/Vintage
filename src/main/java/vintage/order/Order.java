@@ -1,7 +1,9 @@
 package vintage.order;
 
 import vintage.item.Item;
-import vintage.receipt.Receipt;
+import vintage.order.receipt.BuyerReceipt;
+import vintage.order.receipt.Receipt;
+import vintage.order.receipt.SellerReceipt;
 import vintage.user.Address;
 import vintage.user.User;
 import java.math.BigDecimal;
@@ -137,11 +139,25 @@ public class Order {
     }
 
     /**
-     * Returns an ArrayList of Items.
+     * Returns a Map of Items and their states.
      * @return items
      */
     public Map<Item, State> getItems() {
+        // turn the map into a list
         return Map.copyOf(this.items);
+
+    }
+
+    /**
+     * Returns an ArrayList of Items.
+     * @return items
+     */
+    public List<Item> getItemsList() {
+        List<Item> itemsList = new ArrayList<Item>();
+        for (Map.Entry<Item, State> entry : this.items.entrySet()) {
+            itemsList.add(entry.getKey());
+        }
+        return itemsList;
     }
 
     /**
@@ -206,6 +222,22 @@ public class Order {
      */
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    /**
+     * Gets the list of sellers of the order
+     *
+     * @return sellers list of the order
+     */
+    public List<User> getOrderSellersList() {
+        List<User> sellers = new ArrayList<User>();
+        for (Item item : this.getItemsList()) {
+            if (!sellers.contains(item.getOwner())) {
+                sellers.add(item.getOwner());
+            }
+        }
+
+        return sellers;
     }
 
     /**
@@ -293,7 +325,7 @@ public class Order {
     public void finishOrder() {
         this.setState(State.FINISHED);
 
-        Receipt buyerReceipt = new Receipt(this);
+        Receipt buyerReceipt = new BuyerReceipt(this);
         this.buyer.addReceipt(buyerReceipt);
 
         // send receipts to all the sellers
@@ -304,7 +336,7 @@ public class Order {
             Receipt sellerReceipt = seller.getOrderIdReceipt(this.id);
             if (sellerReceipt == null) {
                 ArrayList<Item> items = new ArrayList<Item>();
-                sellerReceipt = new Receipt(Receipt.Type.SALE, this.buyer, BigDecimal.valueOf(0.0), items,
+                sellerReceipt = new SellerReceipt(this.buyer, BigDecimal.valueOf(0.0), items,
                         this.expeditionDate, this);
             }
             sellerReceipt.addItem(item);

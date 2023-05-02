@@ -3,7 +3,9 @@ package vintage.user;
 import vintage.item.Item;
 import vintage.order.Order;
 import vintage.order.OrderListings;
-import vintage.receipt.Receipt;
+import vintage.order.receipt.BuyerReceipt;
+import vintage.order.receipt.Receipt;
+import vintage.order.receipt.SellerReceipt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -156,8 +158,8 @@ public class User {
     public List<Receipt> getSaleReceipts() {
         List<Receipt> sellReceipts = new ArrayList<Receipt>();
         for (Receipt receipt : receipts) {
-            if (receipt.getType().equals(Receipt.Type.SALE)) {
-                sellReceipts.add(receipt.clone());
+            if (receipt instanceof SellerReceipt) {
+                sellReceipts.add(((SellerReceipt) receipt).clone());
             }
         }
         return sellReceipts;
@@ -171,8 +173,8 @@ public class User {
     public List<Receipt> getPurchaseReceipts() {
         List<Receipt> purchaseReceipts = new ArrayList<Receipt>();
         for (Receipt receipt : receipts) {
-            if (receipt.getType().equals(Receipt.Type.PURCHASE)) {
-                purchaseReceipts.add(receipt.clone());
+            if (receipt instanceof BuyerReceipt) {
+                purchaseReceipts.add(((BuyerReceipt) receipt).clone());
             }
         }
         return purchaseReceipts;
