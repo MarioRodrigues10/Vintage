@@ -2,10 +2,12 @@ package vintage.item;
 
 import vintage.user.User;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.io.Serializable;
 
-public class ItemListings {
+public class ItemListings implements Serializable {
     private final Map<UUID, List<Item>> items = new HashMap<UUID, List<Item>>(); /* ! Map of items, where the key is the user ID */
 
     /**

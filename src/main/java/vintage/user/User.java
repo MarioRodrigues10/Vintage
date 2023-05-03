@@ -7,11 +7,13 @@ import vintage.order.receipt.BuyerReceipt;
 import vintage.order.receipt.Receipt;
 import vintage.order.receipt.SellerReceipt;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable {
     private final UUID id; /* ! ID of a User */
     private String name; /* ! Name of a User */
     private String email; /* ! Email of a User */

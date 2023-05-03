@@ -7,9 +7,9 @@ import java.time.LocalDate;
 import java.util.UUID;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.io.Serializable;
 
-
-public class OrderListings {
+public class OrderListings implements Serializable {
     private final Map<UUID, List<Order>> orders = new HashMap<UUID, List<Order>>(); /* ! Map of orders, where the key is the buyer user ID */
 
     /**

@@ -3,8 +3,9 @@ package vintage.others;
 import vintage.order.OrderListings;
 
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Time {
+public class Time implements Serializable {
     // TODO: Make this a static class
     private LocalDate currentDate; /* ! Current Date */
 
