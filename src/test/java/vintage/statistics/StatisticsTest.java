@@ -107,6 +107,9 @@ public class StatisticsTest {
 
         List<User> usersBiggestBuyers = new ArrayList<User>();
         usersBiggestBuyers.add(user1);
+        for(User user : biggestBuyersByProducts(users)) {
+            System.out.println(user.getName());
+        }
         assertEquals(usersBiggestBuyers, biggestBuyersByProducts(users));
     }
 
@@ -192,6 +195,9 @@ public class StatisticsTest {
 
         List<User> usersBiggestBuyers = new ArrayList<User>();
         usersBiggestBuyers.add(user1);
+        for(User user : biggestSellersByProducts(users)) {
+            System.out.println(user.getName());
+        }
         assertEquals(usersBiggestBuyers, biggestSellersByProducts(users));
     }
 
