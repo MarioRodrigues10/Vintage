@@ -1,10 +1,10 @@
 package vintage.item;
 
 import org.junit.Test;
+import vintage.module.item.PremiumShoes;
+import vintage.module.item.Shoes;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,9 +1,10 @@
 package vintage.item;
 
 import org.junit.Test;
+import vintage.module.item.Bag;
+import vintage.module.item.PremiumBag;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import static org.junit.Assert.assertEquals;
 public class PremiumBagTest {

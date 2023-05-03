@@ -1,7 +1,7 @@
 package vintage.item;
 
 import org.junit.Test;
-import vintage.item.Shoes;
+import vintage.module.item.Shoes;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

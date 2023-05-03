@@ -1,11 +1,12 @@
 package vintage;
 
-import vintage.frontend.*;
-import vintage.user.User;
+import vintage.view.*;
+import vintage.module.User;
+import vintage.module.user.User;
 
 public class Main {
     public static void main(String[] args) {
-        vintage.others.ListHolder.init();
+        vintage.module.others.ListHolder.init();
 
         User user = Auth.authMenu();
     }

@@ -1,6 +1,8 @@
 package vintage.item;
 
 import org.junit.Test;
+import vintage.module.item.Bag;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
