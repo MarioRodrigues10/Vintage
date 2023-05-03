@@ -4,6 +4,7 @@ import vintage.item.Item;
 import vintage.user.User;
 import vintage.order.Order;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

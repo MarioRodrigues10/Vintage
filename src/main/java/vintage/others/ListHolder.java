@@ -3,8 +3,8 @@ package vintage.others;
 import vintage.user.UserList;
 import vintage.item.ItemListings;
 import vintage.order.OrderListings;
-
-public class ListHolder {
+import java.io.Serializable;
+public class ListHolder implements Serializable {
     private static UserList users; /* ! List of Users*/
     private static ItemListings items; /* ! List of Items*/
     private static OrderListings orders; /* ! List of Orders*/

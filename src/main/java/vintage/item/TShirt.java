@@ -4,11 +4,11 @@ import vintage.item.carrier.Carrier;
 import vintage.user.User;
 
 import java.math.BigDecimal;
-
+import java.io.Serializable;
 /**
  * Defines a TShirt
  */
-public class TShirt extends Item {
+public class TShirt extends Item implements Serializable{
 
     /**
      * Enumerates the sizes of a TShirt

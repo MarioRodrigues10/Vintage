@@ -9,11 +9,12 @@ import vintage.user.User;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
+import java.io.Serializable;
 
 /**
  * Defines an Order
  */
-public class Order {
+public class Order implements Serializable {
     /*
      * Enumerates the sizes of an Order
      */
