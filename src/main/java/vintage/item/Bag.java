@@ -1,6 +1,7 @@
 package vintage.item;
 
 import vintage.item.carrier.Carrier;
+import vintage.user.User;
 
 import java.math.BigDecimal;
 import java.time.Year;
@@ -26,14 +27,14 @@ public class Bag extends Item {
      * @param release an integer value representing the release year of the bag
      * @param carrier a Carrier object containing the carrier of the item
      */
-    public Bag(String description, String brand, int evaluation, BigDecimal price, int owners, int size, String material, int release, Carrier carrier) {
-        super(description, brand, evaluation, price, owners, carrier);
+    public Bag(String description, User owner, String brand, int evaluation, BigDecimal price, int owners, int size, String material, int release, Carrier carrier) {
+        super(description, owner, brand, evaluation, price, owners, carrier);
         this.size = size;
         this.material = material;
         this.release = release;
     }
     public Bag(Bag bag) {
-        super(bag.getDescription(), bag.getBrand(), bag.getEvaluation(), bag.getPrice(), bag.getOwners(), bag.getCarrier());
+        super(bag.getDescription(), bag.getOwner(), bag.getBrand(), bag.getEvaluation(), bag.getPrice(), bag.getOwners(), bag.getCarrier());
         this.size = bag.getSize();
         this.material = bag.getMaterial();
         this.release = bag.getRelease();

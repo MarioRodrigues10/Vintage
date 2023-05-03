@@ -1,6 +1,7 @@
 package vintage.item;
 
 import vintage.item.carrier.Carrier;
+import vintage.user.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,9 +20,9 @@ public class PremiumShoes extends Shoes {
      * @param color
      * @param release
      */
-    public PremiumShoes(String description, String brand, int evaluation, BigDecimal price, int owners,
+    public PremiumShoes(String description, User owner, String brand, int evaluation, BigDecimal price, int owners,
                         double size, boolean laces, String color, int release, Carrier carrier) {
-        super(description, brand, evaluation, price, owners, size, laces, color, release, carrier);
+        super(description, owner, brand, evaluation, price, owners, size, laces, color, release, carrier);
     }
 
     public PremiumShoes() {

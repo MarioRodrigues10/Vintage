@@ -1,27 +1,19 @@
-package vintage.receipt;
+package vintage.order.receipt;
 
 import vintage.item.Item;
-import vintage.user.User;
 import vintage.order.Order;
+import vintage.user.User;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.time.LocalDate;
 
-/**
- * Defines a Receipt
- */
-public class Receipt {
-
-    public enum Type {
-        PURCHASE,
-        SALE
-    }
+public class SellerReceipt implements Receipt {
     private UUID id; /* ! ID of a Receipt */
-    private Type type; /* ! Type of Receipt */
     private User buyer; /* ! Buyer of a Receipt's Order */
+    private UUID orderID; /* ! ID of a Receipt's Order */
     private BigDecimal totalPrice; /* ! Total price of a Receipt */
     private List<Item> items; /* ! Items in a Receipt's Order */
     private LocalDate emissionDate; /* ! Date of emission of a Receipt */
@@ -29,10 +21,10 @@ public class Receipt {
     /**
      * Creates a new Receipt object with the default properties.
      */
-    public Receipt() {
+    public SellerReceipt() {
         this.id = UUID.randomUUID();
-        this.type = null;
         this.buyer = null;
+        this.orderID = null;
         this.totalPrice = BigDecimal.valueOf(0);
         this.items = new ArrayList<Item>();
         this.emissionDate = LocalDate.now();
@@ -41,15 +33,14 @@ public class Receipt {
     /**
      * Creates a new Receipt object with the specified properties.
      *
-     * @param type
      * @param buyer
      * @param totalPrice
      * @param items
      */
-    public Receipt(Type type, User buyer, BigDecimal totalPrice, List<Item> items, LocalDate emissionDate) {
+    public SellerReceipt(User buyer, BigDecimal totalPrice, List<Item> items, LocalDate emissionDate, Order order) {
         this.id = UUID.randomUUID();
-        this.type = type;
         this.buyer = buyer;
+        this.orderID = order.getId();
         this.totalPrice = totalPrice;
         this.items = items;
         this.emissionDate = emissionDate;
@@ -60,38 +51,13 @@ public class Receipt {
      *
      * @param order
      */
-    public Receipt(Order order) {
+    public SellerReceipt(Order order) {
         this.id = UUID.randomUUID();
-        this.type = Type.PURCHASE;
         this.buyer = order.getBuyer();
+        this.orderID = order.getId();
         this.totalPrice = order.getPrice();
-        this.items = new ArrayList<Item>(order.getItems().keySet());
+        this.items = order.getItemsList();
         this.emissionDate = order.getExpeditionDate();
-    }
-    /**
-     * Creates a new Receipt out of an Order and a seller
-     *
-     * @param order
-     * @param seller
-     */
-    public Receipt(Order order, User seller) {
-        ArrayList<Item> allItems = new ArrayList<Item>(order.getItems().keySet());
-        ArrayList<Item> sellerItems = new ArrayList<Item>();
-        BigDecimal price = BigDecimal.valueOf(0);
-
-        for(Item item : allItems)
-            if(item.getUser().equals(seller)) {
-                sellerItems.add(item);
-                price.add(item.getPrice());
-            }
-
-        this.id = UUID.randomUUID();
-        this.type = Type.SALE;
-        this.buyer = order.getBuyer();
-        this.totalPrice = price;
-        this.items = sellerItems;
-        this.emissionDate = order.getExpeditionDate();
-
     }
 
     /**
@@ -99,10 +65,10 @@ public class Receipt {
      *
      * @param receipt
      */
-    public Receipt(Receipt receipt) {
+    public SellerReceipt(SellerReceipt receipt) {
         this.id = receipt.getId();
-        this.type = receipt.getType();
         this.buyer = receipt.getBuyer();
+        this.orderID = receipt.orderID;
         this.totalPrice = receipt.getTotalPrice();
         this.items = receipt.getItems();
         this.emissionDate = receipt.getEmissionDate();
@@ -113,32 +79,26 @@ public class Receipt {
      * @return ID
      */
     public UUID getId() {
-        return id;
+        return this.id;
     }
 
     /**
      * Returns the buyer of the Receipt.
      * @return User
      */
-    public User getBuyer() { return buyer; }
+    public User getBuyer() { return this.buyer; }
 
     /**
-     * Sets the buyer of a Receipt
-     * @param buyer User representing the buyer of a Receipt
+     * Returns the ID of the Receipt's Order.
+     * @return ID
      */
-    public void setBuyer(User buyer) { this.buyer = buyer; }
+    public UUID getOrderID() { return this.orderID; }
 
     /**
      * Returns the Total Price of the Receipt.
      * @return BigDecimal
      */
-    public BigDecimal getTotalPrice() { return totalPrice; }
-
-    /**
-     * Sets the Total Price of a Receipt
-     * @param totalPrice ID of a Receipt
-     */
-    public void setTotalPrice(BigDecimal totalPrice) { this.totalPrice = totalPrice; }
+    public BigDecimal getTotalPrice() { return this.totalPrice; }
 
     /**
      * Returns the List of Items of the Receipt.
@@ -147,28 +107,39 @@ public class Receipt {
     public List<Item> getItems() { return this.items; }
 
     /**
+     * Returns the Date of emission of a Receipt.
+     * @return LocalDate
+     */
+    public LocalDate getEmissionDate() { return this.emissionDate; }
+
+    /**
+     * Sets the buyer of a Receipt
+     * @param buyer User representing the buyer of a Receipt
+     */
+    public void setBuyer(User buyer) { this.buyer = buyer; }
+
+    /**
+     * Sets the ID of a Receipt's Order
+     * @param orderID ID of a Receipt's Order
+     */
+    public void setOrderID(UUID orderID) { this.orderID = orderID; }
+
+    /**
+     * Sets the Total Price of a Receipt
+     * @param totalPrice ID of a Receipt
+     */
+    public void setTotalPrice(BigDecimal totalPrice) { this.totalPrice = totalPrice; }
+
+    /**
      * Sets the Items List of a Receipt
      * @param items Items of a Receipt
      */
     public void setItems(List<Item> items) { this.items = items; }
 
-    /**
-     * Returns the Type of the Receipt.
-     * @return Type
-     */
-    public Type getType() { return type; }
-
-    /**
-     * Sets the Type of Receipt
-     * @param type Type of Receipt
-     */
-    public void setType(Type type) { this.type = type; }
-
-    /**
-     * Returns the Date of emission of a Receipt.
-     * @return LocalDate
-     */
-    public LocalDate getEmissionDate() { return emissionDate; }
+    @Override
+    public void setEmissionDate(LocalDate emissionDate) {
+        this.emissionDate = emissionDate;
+    }
 
     /**
      * Method that turns the Receipt into a String
@@ -179,7 +150,6 @@ public class Receipt {
         return "Receipt{" +
                 "\nid=" + id +
                 "\nemissionDate=" + emissionDate +
-                "\ntype=" + type +
                 "\nbuyer=" + buyer.getName() +
                 "\n---------------------" +
                 "\nitems=" + items +
@@ -192,7 +162,16 @@ public class Receipt {
     /**
      * Clone method
      */
-    public Receipt clone() {
-        return new Receipt(this);
+    public SellerReceipt clone() {
+        return new SellerReceipt(this);
+    }
+
+    /**
+     * Adds an Item to the Receipt
+     * @param item Item to be added
+     */
+    public void addItem(Item item) {
+        this.items.add(item);
+        this.totalPrice.add(item.getPrice());
     }
 }

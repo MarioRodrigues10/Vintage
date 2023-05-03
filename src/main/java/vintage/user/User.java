@@ -1,6 +1,11 @@
 package vintage.user;
 
-import vintage.receipt.Receipt;
+import vintage.item.Item;
+import vintage.order.Order;
+import vintage.order.OrderListings;
+import vintage.order.receipt.BuyerReceipt;
+import vintage.order.receipt.Receipt;
+import vintage.order.receipt.SellerReceipt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -153,8 +158,8 @@ public class User {
     public List<Receipt> getSaleReceipts() {
         List<Receipt> sellReceipts = new ArrayList<Receipt>();
         for (Receipt receipt : receipts) {
-            if (receipt.getType().equals(Receipt.Type.SALE)) {
-                sellReceipts.add(receipt.clone());
+            if (receipt instanceof SellerReceipt) {
+                sellReceipts.add(((SellerReceipt) receipt).clone());
             }
         }
         return sellReceipts;
@@ -168,8 +173,8 @@ public class User {
     public List<Receipt> getPurchaseReceipts() {
         List<Receipt> purchaseReceipts = new ArrayList<Receipt>();
         for (Receipt receipt : receipts) {
-            if (receipt.getType().equals(Receipt.Type.PURCHASE)) {
-                purchaseReceipts.add(receipt.clone());
+            if (receipt instanceof BuyerReceipt) {
+                purchaseReceipts.add(((BuyerReceipt) receipt).clone());
             }
         }
         return purchaseReceipts;
@@ -206,5 +211,101 @@ public class User {
      */
     public boolean equals(User user) {
         return this.email.equals(user.getEmail());
+    }
+
+    /**
+     * Returns the Receipt of a specific order.
+     *
+     * @return a Receipt object containing the receipt of the order
+     */
+    public Receipt getOrderIdReceipt(UUID orderId) {
+        for (Receipt receipt : receipts) {
+            if (receipt.getOrderID().equals(orderId)) {
+                return receipt;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Creates a new order for a user if it doesn't exist a pending one already.
+     * @param orderListings
+     * @return the ID of the order
+     */
+    public UUID createOrder(OrderListings orderListings) {
+        Order currentOrder = orderListings.getUserPendindOrder(this);
+        if (currentOrder == null) {
+            currentOrder = new Order(this);
+            orderListings.addOrder(this.id, currentOrder);
+        }
+
+        return currentOrder.getId();
+    }
+
+    /**
+     * Adds an item to the order of a user.
+     *
+     * @param orderListings
+     * @param item
+     * @return the order with the added item
+     */
+    public Order addItemToOrder(OrderListings orderListings, Item item) {
+        Order currentOrder = orderListings.getUserPendindOrder(this);
+        if (currentOrder == null) {
+            return null;
+        }
+        currentOrder.addItem(item);
+        return currentOrder;
+    }
+
+    /**
+     * Finishes the pending order of a user.
+     * @param orderListings
+     * @return the finished order
+     */
+    public Order finishPendingOrder(OrderListings orderListings) {
+        Order currentOrder = orderListings.getUserPendindOrder(this);
+        if (currentOrder != null) {
+            currentOrder.finishOrder();
+            return currentOrder;
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the pending order of a user.
+     * @param orderListings
+     * @return the pending order
+     */
+    public Order getPendingOrder(OrderListings orderListings) {
+        return orderListings.getUserPendindOrder(this);
+    }
+
+    /**
+     * Returns the finished orders of a user.
+     * @param orderListings
+     * @return a list of orders
+     */
+    public List<Order> getFinishedOrders(OrderListings orderListings) {
+        return orderListings.getUserFinishedOrders(this);
+    }
+
+    /**
+     * Returns a finished order of a user.
+     * @param orderListings
+     * @param orderId
+     * @return the order with the given id
+     */
+    public Order getFinishedOrder(OrderListings orderListings, UUID orderId) {
+        return orderListings.getUserFinishedOrder(this, orderId);
+    }
+
+    public List<Item> getAllItems() {
+        List<Item> items = new ArrayList<Item>();
+        for (Receipt receipt : receipts) {
+            items.addAll(receipt.getItems());
+        }
+        return items;
     }
 }

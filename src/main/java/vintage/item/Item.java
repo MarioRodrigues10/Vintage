@@ -25,14 +25,16 @@ public abstract class Item {
      * Creates a new Item object with the specified properties.
      *
      * @param description a String containing a brief description of the item
+     * @param owner a User object representing item's owner
      * @param brand a String containing the brand or manufacturer of the item
      * @param evaluation an integer value representing the degree of correction needed for the item
      * @param price a BigDecimal object containing the price of the item
      * @param owners an integer value representing the number of previous owners of the item
      * @param carrier a Carrier object containing the carrier of the item
      */
-    public Item(String description, String brand, int evaluation, BigDecimal price, int owners, Carrier carrier) {
+    public Item(String description, User owner, String brand, int evaluation, BigDecimal price, int owners, Carrier carrier) {
         this.id = UUID.randomUUID();
+        this.owner = owner;
         this.description= description;
         this.brand = brand;
         this.evaluation = evaluation;
@@ -49,6 +51,7 @@ public abstract class Item {
     public Item(Item item) {
         this.id = item.getId();
         this.description = item.getDescription();
+        this.owner = item.getOwner();
         this.brand = item.getBrand();
         this.price = item.getPrice();
         this.owners = item.getOwners();
@@ -61,6 +64,7 @@ public abstract class Item {
     public Item() {
         this.id = UUID.randomUUID();
         this.description = "";
+        this.owner = null;
         this.brand = "";
         this.price = new BigDecimal(0);
         this.owners = 0;
@@ -72,7 +76,16 @@ public abstract class Item {
      * @return a String containing a brief description of the item
      */
     public String getDescription() {
-        return description;
+        return this.description;
+    }
+
+/**
+     * Returns a User object representing item's owner.
+     *
+     * @return a User object representing item's owner
+     */
+    public User getOwner() {
+        return this.owner;
     }
 
     /**
@@ -128,6 +141,15 @@ public abstract class Item {
     public User getUser() { return owner; }
 
     /**
+     * Returns a Carrier object containing the carrier of the item.
+     *
+     * @return a Carrier object containing the carrier of the item
+     */
+    public Carrier getCarrier() {
+        return this.carrier;
+    }
+
+    /**
      * Returns a boolean value representing if the item is used or not.
      *
      * @return a boolean value representing if the item is used or not
@@ -136,14 +158,6 @@ public abstract class Item {
         return ( owners > 0 );
     }
 
-    /**
-     * Returns a Carrier object containing the carrier of the item.
-     *
-     * @return a Carrier object containing the carrier of the item
-     */
-    public Carrier getCarrier() {
-        return carrier;
-    }
 
     /**
      * Sets the price of the item.
@@ -206,14 +220,6 @@ public abstract class Item {
         this.carrier = carrier;
     }
 
-    /**
-     * Returns a User object representing item's owner.
-     *
-     * @return User
-     */
-    public User getOwner() {
-        return owner;
-    }
 
     /**
      * Returns a String containing a brief description of the item.

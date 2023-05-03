@@ -1,8 +1,7 @@
 package vintage.others;
 
 import vintage.item.*;
-import vintage.item.carrier.Carrier;
-import vintage.receipt.Receipt;
+import vintage.order.receipt.Receipt;
 import vintage.user.User;
 import vintage.order.*;
 
@@ -14,6 +13,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
+import vintage.user.UserList;
 
 public class Statistics {
 
@@ -30,8 +30,8 @@ public class Statistics {
      * Returns the biggest seller by number of products sold.
      * @return User
      */
-    public static User biggestSellerByProducts(){
-        return biggestSellersByProducts().get(0);
+    public static User biggestSellerByProducts(UserList listings){
+        return biggestSellersByProducts(listings).get(0);
     }
 
 
@@ -39,12 +39,10 @@ public class Statistics {
      * Returns the list of biggests sellers by number of products sold.
      * @return List<User>
      */
-    public static List<User> biggestSellersByProducts() {
-        ItemListings listings = new ItemListings();
-        Set<User> sellers = new HashSet<>(); // Set of users who have sold items
-        for (Item item : listings.getAllItems()) {
-            sellers.add(item.getOwner());
-        }
+    public static List<User> biggestSellersByProducts(UserList listings) {
+
+        Map<String, User> usersMap = listings.getUsers(); // Map of users where the key is the user ID
+        Set<User> sellers = new HashSet<>(usersMap.values()); // Extract the Set of users from the Map
 
         Map<User, Integer> itemsSoldByUser = new HashMap<>(); // Map of users to number of items sold
         for (User seller : sellers) {
@@ -61,8 +59,7 @@ public class Statistics {
             int itemsSold = itemsSoldByUser.get(seller);
             if (itemsSold > maxItemsSold) {
                 maxItemsSold = itemsSold;
-                biggestSellers.clear();
-                biggestSellers.add(seller);
+                biggestSellers.add(0,seller);
             } else if (itemsSold == maxItemsSold) {
                 biggestSellers.add(seller);
             }
@@ -74,12 +71,10 @@ public class Statistics {
      * Returns the list of the biggest buyers by number of products bought.
      * @return List<User>
      */
-    public static List<User> biggestBuyersByProducts() {
-        OrderListings orderListings = new OrderListings();
-        Set<User> buyers = new HashSet<>(); // Set of users who have bought items
-        for (Order order : orderListings.getAllOrders()) {
-            buyers.add(order.getBuyer());
-        }
+    public static List<User> biggestBuyersByProducts(UserList listings) {
+        Map<String, User> usersMap = listings.getUsers(); // Map of users where the key is the user ID
+        Set<User> buyers = new HashSet<>(usersMap.values()); // Extract the Set of users from the Map
+
 
         Map<User, Integer> itemsBoughtByUser = new HashMap<>(); // Map of users to number of items bought
         for (User buyer : buyers) {
@@ -96,8 +91,7 @@ public class Statistics {
             int itemsBought = itemsBoughtByUser.get(buyer);
             if (itemsBought > maxItemsBought) {
                 maxItemsBought = itemsBought;
-                biggestBuyers.clear();
-                biggestBuyers.add(buyer);
+                biggestBuyers.add(0,buyer);
             } else if (itemsBought == maxItemsBought) {
                 biggestBuyers.add(buyer);
             }
@@ -109,18 +103,23 @@ public class Statistics {
      * Returns the biggest sellers by money earned.
      * @return ArrayList<User>
      */
-    public static ArrayList<User> biggestSellersByMoney(){
-        ItemListings listings = new ItemListings();
-        Map<User, BigDecimal> earnings = new HashMap<>(); // Map of each user's earnings
-        for (Item item : listings.getAllItems()) {
-            User user = item.getOwner();
-            if (!earnings.containsKey(user)) {
-                earnings.put(user, BigDecimal.ZERO);
-            }
-            BigDecimal price = item.getPrice();
-            earnings.put(user, earnings.get(user).add(price));
-        }
+    public static ArrayList<User> biggestSellersByMoney(UserList listings){
+        Map<String, User> usersMap = listings.getUsers(); // Map of users where the key is the user ID
+        Set<User> sellers = new HashSet<>(usersMap.values()); // Extract the Set of users from the Map
 
+        Map<User, BigDecimal> earnings = new HashMap<>(); // Map of users to earnings
+
+        for (User seller : sellers){
+            for (Receipt receipt : seller.getSaleReceipts()){
+                for (Item item : receipt.getItems()){
+                    if (!earnings.containsKey(seller)){
+                        earnings.put(seller, BigDecimal.ZERO);
+                    }
+                    BigDecimal price = item.getPrice();
+                    earnings.put(seller, earnings.get(seller).add(price));
+                }
+            }
+        }
         // Find the user(s) with the highest earnings
         ArrayList<User> biggestSellers = new ArrayList<>();
         BigDecimal maxEarnings = Collections.max(earnings.values());
@@ -130,6 +129,7 @@ public class Statistics {
                 biggestSellers.add(user);
             }
         }
+
         return biggestSellers;
     }
 }
