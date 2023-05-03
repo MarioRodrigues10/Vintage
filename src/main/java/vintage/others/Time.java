@@ -3,23 +3,27 @@ package vintage.others;
 import vintage.order.OrderListings;
 
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Time {
-    // TODO: Make this a static class
+public class Time implements Serializable {
+    private static Time instance = null;
     private LocalDate currentDate; /* ! Current Date */
 
     /**
-     * Creates a new Time object with the specified properties.
-     * @param currentDate
+     * Returns the instance of Time
+     * @return Time
      */
-    public Time(LocalDate currentDate) {
-        this.currentDate = currentDate;
+    public static Time getInstance() {
+        if (instance == null) {
+            instance = new Time();
+        }
+        return instance;
     }
 
     /**
      * Creates a new Time object with default properties.
      */
-    public Time() {
+    private Time() {
         this.currentDate = LocalDate.now();
     }
 

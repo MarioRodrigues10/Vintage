@@ -3,13 +3,14 @@ package vintage.item;
 import vintage.item.carrier.Carrier;
 import vintage.user.User;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Year;
-
+import java.io.Serializable;
 /**
  * Defines a Bag
  */
-public class Bag extends Item {
+public class Bag extends Item implements Serializable {
     private int size; /* ! Size of a Bag */
     private String material; /* ! Material of a Bag */
     private int release; /* ! Release Year of a Bag */

@@ -5,8 +5,8 @@ import vintage.user.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
-public class PremiumShoes extends Shoes {
+import java.io.Serializable;
+public class PremiumShoes extends Shoes implements Serializable {
     /**
      * Creates a new PremiumShoes object with the specified properties.
      *

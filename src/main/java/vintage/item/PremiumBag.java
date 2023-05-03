@@ -2,10 +2,12 @@ package vintage.item;
 import vintage.item.carrier.Carrier;
 import vintage.user.User;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public class PremiumBag  extends Bag{
+public class PremiumBag extends Bag implements Serializable {
     /**
      * Creates a new PremiumBag object with the specified properties.
      * @param description a String containing a brief description of the item

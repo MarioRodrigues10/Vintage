@@ -1,28 +1,33 @@
 package vintage.user;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
 
 /**
  *  Type UserList
  */
-public class UserListings {
+public class UserListings implements Serializable {
+    private static UserListings instance = null;
     private Map<String, User> users; /* ! Map of Users by Email*/
+
+    /**
+     * Returns the instance of UserListings
+     *
+     * @return UserListings
+     */
+    public static UserListings getInstance() {
+        if (instance == null) {
+            instance = new UserListings();
+        }
+        return instance;
+    }
 
     /**
      * Creates a new UserList object.
      */
-    public void UserListings() {
+    private void UserListings() {
         this.users = new HashMap<String, User>();
-    }
-
-    /**
-     * Creates a new UserList object with the specified users.
-     *
-     * @param users a Map<String, User> containing the users
-     */
-    public void UserListings(Map<String, User> users) {
-        this.users = Map.copyOf(users);
     }
 
     /**
