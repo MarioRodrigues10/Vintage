@@ -107,7 +107,7 @@ public class StatisticsTest {
 
         List<User> usersBiggestBuyers = new ArrayList<User>();
         usersBiggestBuyers.add(user1);
-usersBiggestBuyers.add(user3);
+        usersBiggestBuyers.add(user3);
         assertEquals(usersBiggestBuyers, biggestBuyersByProducts(users));
     }
 
@@ -194,6 +194,7 @@ usersBiggestBuyers.add(user3);
         List<User> usersBiggestBuyers = new ArrayList<User>();
         usersBiggestBuyers.add(user1);
         usersBiggestBuyers.add(user3);
+
         assertEquals(usersBiggestBuyers, biggestSellersByProducts(users));
     }
 
