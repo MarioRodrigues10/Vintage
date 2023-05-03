@@ -42,7 +42,7 @@ public class Time implements Serializable {
      * @param currentDate a LocalDate object representing the current date
      */
     public void jumpDays(int days, OrderListings orderListings, LocalDate currentDate) {
-        orderListings.updateOrdersState(currentDate);
+        orderListings.updateOrdersState();
         this.currentDate = this.currentDate.plusDays(days);
     }
 
@@ -53,7 +53,7 @@ public class Time implements Serializable {
      * @param currentDate a LocalDate object containing the current date
      */
     public void jumpMonths(int months, OrderListings orderListings, LocalDate currentDate) {
-        orderListings.updateOrdersState(currentDate);
+        orderListings.updateOrdersState();
         this.currentDate = this.currentDate.plusMonths(months);
     }
 
@@ -64,7 +64,7 @@ public class Time implements Serializable {
      * @param currentDate a LocalDate object containing the current date
      */
     public void jumpYears(int years, OrderListings orderListings, LocalDate currentDate) {
-        orderListings.updateOrdersState(currentDate);
+        orderListings.updateOrdersState();
         this.currentDate = this.currentDate.plusYears(years);
     }
 
