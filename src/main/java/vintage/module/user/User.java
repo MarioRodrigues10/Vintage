@@ -260,16 +260,12 @@ public class User implements Serializable {
 
     /**
      * Finishes the pending order of a user.
-     * @return the finished order
      */
-    public Order finishPendingOrder() {
+    public void finishPendingOrder() {
         Order currentOrder = OrderListings.getInstance().getUserPendindOrder(this);
         if (currentOrder != null) {
             currentOrder.finishOrder();
-            return currentOrder;
         }
-
-        return null;
     }
 
     /**

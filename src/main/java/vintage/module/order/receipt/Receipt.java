@@ -1,6 +1,7 @@
 package vintage.module.order.receipt;
 
 import vintage.module.item.Item;
+import vintage.module.order.Order;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

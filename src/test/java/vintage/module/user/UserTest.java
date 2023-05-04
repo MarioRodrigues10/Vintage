@@ -65,7 +65,6 @@ public class UserTest {
         user.addItemToOrder(bag2);
         user.addItemToOrder(bag3);
         user.addItemToOrder(bag4);
-
         assertEquals(Order.Size.MEDIUM, currentOrder.getSize());
 
         user.finishPendingOrder();

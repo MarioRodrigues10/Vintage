@@ -8,6 +8,7 @@ import vintage.module.others.Time;
 import vintage.module.user.User;
 import vintage.module.others.Address;
 
+import java.io.Console;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
@@ -340,8 +341,10 @@ public class Order implements Serializable {
             Receipt sellerReceipt = seller.getOrderIdReceipt(this.id);
             if (sellerReceipt == null) {
                 ArrayList<Item> items = new ArrayList<Item>();
-                sellerReceipt = new SellerReceipt(this.buyer, BigDecimal.valueOf(0.0), items,
-                        this.expeditionDate, this);
+                sellerReceipt = new SellerReceipt();
+                ((SellerReceipt) sellerReceipt).setBuyer(this.buyer);
+                sellerReceipt.setEmissionDate(this.expeditionDate);
+                sellerReceipt.setOrderID(this.id);
             }
             sellerReceipt.addItem(item);
         }

@@ -81,6 +81,7 @@ public class SellerReceipt implements Receipt {
      * Returns the ID of the Receipt.
      * @return ID
      */
+    @Override
     public UUID getId() {
         return this.id;
     }
@@ -95,24 +96,28 @@ public class SellerReceipt implements Receipt {
      * Returns the ID of the Receipt's Order.
      * @return ID
      */
+    @Override
     public UUID getOrderID() { return this.orderID; }
 
     /**
      * Returns the Total Price of the Receipt.
      * @return BigDecimal
      */
+    @Override
     public BigDecimal getTotalPrice() { return this.totalPrice; }
 
     /**
      * Returns the List of Items of the Receipt.
      * @return ArrayList<Item>
      */
+    @Override
     public List<Item> getItems() { return this.items; }
 
     /**
      * Returns the Date of emission of a Receipt.
      * @return LocalDate
      */
+    @Override
     public LocalDate getEmissionDate() { return this.emissionDate; }
 
     /**
@@ -125,18 +130,21 @@ public class SellerReceipt implements Receipt {
      * Sets the ID of a Receipt's Order
      * @param orderID ID of a Receipt's Order
      */
+    @Override
     public void setOrderID(UUID orderID) { this.orderID = orderID; }
 
     /**
      * Sets the Total Price of a Receipt
      * @param totalPrice ID of a Receipt
      */
+    @Override
     public void setTotalPrice(BigDecimal totalPrice) { this.totalPrice = totalPrice; }
 
     /**
      * Sets the Items List of a Receipt
      * @param items Items of a Receipt
      */
+    @Override
     public void setItems(List<Item> items) { this.items = items; }
 
     @Override
