@@ -1,6 +1,8 @@
 package vintage.module.user;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private String country;
     private String city;
     private String street;

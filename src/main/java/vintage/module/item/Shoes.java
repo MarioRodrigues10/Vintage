@@ -3,14 +3,15 @@ package vintage.module.item;
 import vintage.module.item.carrier.Carrier;
 import vintage.module.User;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Year;
-
+import java.io.Serializable;
 /**
  * Defines a Shoes
  */
-public class Shoes extends Item {
+public class Shoes extends Item implements Serializable {
     private double size; /* ! Size of a Shoes */
     private boolean laces; /* ! Laces of a Shoes */
     private String color; /* ! Color of a Shoes */

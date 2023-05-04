@@ -1,12 +1,13 @@
 package vintage.module;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
 
 /**
  *  Type UserList
  */
-public class UserList {
+public class UserList implements Serializable {
 
     private final Map<String, User> users = new HashMap<String, User>(); /* ! Map of Users by Email*/
 

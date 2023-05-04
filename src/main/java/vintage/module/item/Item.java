@@ -264,6 +264,3 @@ public abstract class Item {
      * @return a BigDecimal object containing the price of the item
      */
     public abstract BigDecimal calculatePrice();
-
-    public abstract Item clone();
-}
