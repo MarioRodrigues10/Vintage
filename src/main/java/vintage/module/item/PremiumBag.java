@@ -1,7 +1,6 @@
 package vintage.module.item;
 import vintage.module.item.carrier.Carrier;
 import vintage.module.User;
-import vintage.module.user.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

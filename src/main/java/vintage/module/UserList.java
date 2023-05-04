@@ -1,4 +1,4 @@
-package vintage.module.user;
+package vintage.module;
 
 import java.util.Map;
 import java.util.HashMap;

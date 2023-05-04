@@ -1,6 +1,6 @@
 package vintage.module.others;
 
-import vintage.module.user.UserList;
+import vintage.module.UserList;
 import vintage.module.item.ItemListings;
 import vintage.module.order.OrderListings;
 

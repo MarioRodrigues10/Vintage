@@ -1,7 +1,7 @@
 package vintage.module.item;
 
 import vintage.module.User;
-import vintage.module.user.User;
+import vintage.module.User;
 
 import java.util.*;
 import java.util.stream.Collectors;

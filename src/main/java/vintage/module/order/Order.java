@@ -5,7 +5,7 @@ import vintage.module.order.receipt.BuyerReceipt;
 import vintage.module.order.receipt.Receipt;
 import vintage.module.order.receipt.SellerReceipt;
 import vintage.module.user.Address;
-import vintage.module.user.User;
+import vintage.module.User;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;

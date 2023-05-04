@@ -9,8 +9,8 @@ import vintage.module.order.OrderListings;
 import java.math.BigDecimal;
 
 import vintage.module.user.Address;
-import vintage.module.user.User;
-import vintage.module.user.UserList;
+import vintage.module.User;
+import vintage.module.UserList;
 
 import static org.junit.Assert.assertEquals;
 

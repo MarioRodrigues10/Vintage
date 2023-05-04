@@ -1,8 +1,9 @@
 package vintage.module.order.receipt;
 
+import vintage.module.User;
 import vintage.module.item.Item;
 import vintage.module.order.Order;
-import vintage.module.user.User;
+import vintage.module.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -72,6 +73,9 @@ public class SellerReceipt implements Receipt {
         this.totalPrice = receipt.getTotalPrice();
         this.items = receipt.getItems();
         this.emissionDate = receipt.getEmissionDate();
+    }
+
+    public SellerReceipt(User buyer, BigDecimal totalPrice, ArrayList<Item> items, LocalDate expeditionDate, Order order) {
     }
 
     /**

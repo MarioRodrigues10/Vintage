@@ -1,6 +1,6 @@
 package vintage.module.order;
 
-import vintage.module.user.User;
+import vintage.module.User;
 
 import java.time.LocalDate;
 import java.util.UUID;

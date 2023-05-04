@@ -1,4 +1,4 @@
-package vintage.module.user;
+package vintage.module;
 
 import vintage.module.item.Item;
 import vintage.module.order.Order;
