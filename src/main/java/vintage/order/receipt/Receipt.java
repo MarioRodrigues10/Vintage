@@ -1,11 +1,8 @@
 package vintage.order.receipt;
 
 import vintage.item.Item;
-import vintage.user.User;
-import vintage.order.Order;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.time.LocalDate;
@@ -19,7 +16,6 @@ public interface Receipt {
     public BigDecimal getTotalPrice();
     public List<Item> getItems();
     public LocalDate getEmissionDate();
-    public void setOrderID(UUID orderID);
     public void setTotalPrice(BigDecimal totalPrice);
     public void setItems(List<Item> items);
     public void setEmissionDate(LocalDate emissionDate);
