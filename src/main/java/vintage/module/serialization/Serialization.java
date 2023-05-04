@@ -1,4 +1,4 @@
-package com.journaldev.serialization;
+package vintage.module.serialization;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

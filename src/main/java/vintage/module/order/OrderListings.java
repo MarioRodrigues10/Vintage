@@ -1,6 +1,8 @@
 package vintage.module.order;
 
-import vintage.module.User;
+import vintage.module.others.Time;
+import vintage.module.user.User;
+import vintage.module.order.Order;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -9,7 +11,22 @@ import java.util.stream.Collectors;
 import java.io.Serializable;
 
 public class OrderListings implements Serializable {
-    private final Map<UUID, List<Order>> orders = new HashMap<UUID, List<Order>>(); /* ! Map of orders, where the key is the buyer user ID */
+    private static OrderListings instance = null;
+    private Map<UUID, List<Order>> orders; /* ! Map of orders, where the key is the buyer user ID */
+
+    public static OrderListings getInstance() {
+        if (instance == null) {
+            instance = new OrderListings();
+        }
+        return instance;
+    }
+
+    /**
+     * Creates a new OrderListings object with default properties.
+     */
+    private OrderListings() {
+        this.orders = new HashMap<UUID, List<Order>>();
+    }
 
     /**
      * Returns a List of orders of a specific user.
@@ -120,13 +137,14 @@ public class OrderListings implements Serializable {
 
     /**
      * Updates the state of all orders in the program.
-     * @param currentDate
      */
-    public void updateOrdersState(LocalDate currentDate) {
+    public void updateOrdersState() {
+        LocalDate currentDatePlusOne = Time.getInstance().getCurrentDate();
+
         for (List<Order> userOrders : this.orders.values()) {
             for (Order order : userOrders) {
                 if (order.getState() == Order.State.PENDING) {
-                    order.updateDeliveryState(currentDate);
+                    order.updateDeliveryState();
                 }
             }
         }

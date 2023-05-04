@@ -1,6 +1,8 @@
 package vintage.module.item;
 import vintage.module.item.carrier.Carrier;
-import vintage.module.User;
+import vintage.module.item.Bag;
+import vintage.module.others.Time;
+import vintage.module.user.User;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -32,8 +34,11 @@ public class PremiumBag extends Bag implements Serializable {
      */
     @Override
     public BigDecimal calculatePrice() {
+        Time time = Time.getInstance();
+        LocalDate currentDate = time.getCurrentDate();
+
         double increasingPercentage = 0.10; // increases its value 10% each year
-        double yearsSinceRelease = LocalDate.now().getYear() - getRelease();
+        double yearsSinceRelease = currentDate.getYear() - getRelease();
 
         BigDecimal price = getPrice();
         price = price.add(price.multiply(BigDecimal.valueOf(increasingPercentage * yearsSinceRelease)));

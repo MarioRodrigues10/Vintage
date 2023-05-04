@@ -1,4 +1,4 @@
-package vintage.module;
+package vintage.module.user;
 
 import vintage.module.item.Item;
 import vintage.module.order.Order;
@@ -6,6 +6,7 @@ import vintage.module.order.OrderListings;
 import vintage.module.order.receipt.BuyerReceipt;
 import vintage.module.order.receipt.Receipt;
 import vintage.module.order.receipt.SellerReceipt;
+import vintage.module.others.Address;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class User implements Serializable {
     private final UUID id; /* ! ID of a User */
     private String name; /* ! Name of a User */
     private String email; /* ! Email of a User */
-    private vintage.module.user.Address residence; /* ! Residence of a User */
+    private Address residence; /* ! Residence of a User */
     private String taxNumber; /* ! Tax number of a User */
     private List<Receipt> receipts = new ArrayList<Receipt>();
 
@@ -28,7 +29,7 @@ public class User implements Serializable {
      * @param residence a Residence object containing the residence of the user
      * @param taxNumber a String containing the tax number of the user
      */
-    public User(String name, String email, vintage.module.user.Address residence, String taxNumber, ArrayList<Receipt> receipts) {
+    public User(String name, String email, Address residence, String taxNumber, ArrayList<Receipt> receipts) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
@@ -44,7 +45,7 @@ public class User implements Serializable {
         this.id = UUID.randomUUID();
         this.name = "";
         this.email = "";
-        this.residence = new vintage.module.user.Address();
+        this.residence = new Address();
         this.taxNumber = "";
         this.receipts = new ArrayList<Receipt>();
     }
@@ -113,7 +114,7 @@ public class User implements Serializable {
      *
      * @return the residence of a User
      */
-    public vintage.module.user.Address getResidence() {
+    public Address getResidence() {
         return this.residence;
     }
 
@@ -122,7 +123,7 @@ public class User implements Serializable {
      *
      * @param residence a Residence object containing the residence of the user
      */
-    public void setResidence(vintage.module.user.Address residence) {
+    public void setResidence(Address residence) {
         this.residence = residence;
     }
 
@@ -230,14 +231,13 @@ public class User implements Serializable {
 
     /**
      * Creates a new order for a user if it doesn't exist a pending one already.
-     * @param orderListings
      * @return the ID of the order
      */
-    public UUID createOrder(OrderListings orderListings) {
-        Order currentOrder = orderListings.getUserPendindOrder(this);
+    public UUID createOrder() {
+        Order currentOrder = OrderListings.getInstance().getUserPendindOrder(this);
         if (currentOrder == null) {
             currentOrder = new Order(this);
-            orderListings.addOrder(this.id, currentOrder);
+            OrderListings.getInstance().addOrder(this.id, currentOrder);
         }
 
         return currentOrder.getId();
@@ -246,12 +246,11 @@ public class User implements Serializable {
     /**
      * Adds an item to the order of a user.
      *
-     * @param orderListings
      * @param item
      * @return the order with the added item
      */
-    public Order addItemToOrder(OrderListings orderListings, Item item) {
-        Order currentOrder = orderListings.getUserPendindOrder(this);
+    public Order addItemToOrder(Item item) {
+        Order currentOrder = OrderListings.getInstance().getUserPendindOrder(this);
         if (currentOrder == null) {
             return null;
         }
@@ -261,11 +260,10 @@ public class User implements Serializable {
 
     /**
      * Finishes the pending order of a user.
-     * @param orderListings
      * @return the finished order
      */
-    public Order finishPendingOrder(OrderListings orderListings) {
-        Order currentOrder = orderListings.getUserPendindOrder(this);
+    public Order finishPendingOrder() {
+        Order currentOrder = OrderListings.getInstance().getUserPendindOrder(this);
         if (currentOrder != null) {
             currentOrder.finishOrder();
             return currentOrder;
@@ -276,29 +274,26 @@ public class User implements Serializable {
 
     /**
      * Returns the pending order of a user.
-     * @param orderListings
      * @return the pending order
      */
-    public Order getPendingOrder(OrderListings orderListings) {
-        return orderListings.getUserPendindOrder(this);
+    public Order getPendingOrder() {
+        return OrderListings.getInstance().getUserPendindOrder(this);
     }
 
     /**
      * Returns the finished orders of a user.
-     * @param orderListings
      * @return a list of orders
      */
-    public List<Order> getFinishedOrders(OrderListings orderListings) {
-        return orderListings.getUserFinishedOrders(this);
+    public List<Order> getFinishedOrders() {
+        return OrderListings.getInstance().getUserFinishedOrders(this);
     }
 
     /**
      * Returns a finished order of a user.
-     * @param orderListings
      * @param orderId
      * @return the order with the given id
      */
-    public Order getFinishedOrder(OrderListings orderListings, UUID orderId) {
-        return orderListings.getUserFinishedOrder(this, orderId);
+    public Order getFinishedOrder(UUID orderId) {
+        return OrderListings.getInstance().getUserFinishedOrder(this, orderId);
     }
 }

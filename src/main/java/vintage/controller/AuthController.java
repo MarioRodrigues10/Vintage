@@ -1,10 +1,9 @@
 package vintage.controller;
 
-import vintage.module.User;
-import vintage.module.UserList;
+import vintage.module.user.User;
+import vintage.module.user.UserListings;
 import vintage.module.order.receipt.Receipt;
-import vintage.module.others.ListHolder;
-import vintage.module.user.Address;
+import vintage.module.others.Address;
 import vintage.view.AuthView;
 
 import java.util.ArrayList;
@@ -15,18 +14,18 @@ public class AuthController {
     public static User loginController() {
         Map<String, String> user = AuthView.loginMenu();
 
-        return ListHolder.getUsers().getUser("email");
+        return UserListings.getInstance().getUser("email");
     }
 
     public static User signUpController() {
         Map<String, String> user = AuthView.signUpMenu();
 
-        if (ListHolder.getUsers().checkUser("email")) return null;
+        if (UserListings.getInstance().checkUser("email")) return null;
         Address address = new Address(user.get("country"), user.get("city"), user.get("street"), user.get("postalCode"));
         ArrayList<Receipt> receipts = new ArrayList<Receipt>();
 
         User newUser = new User(user.get("name"), user.get("email"), address, user.get("taxNumber"), receipts);
-        ListHolder.getUsers().addUser(newUser);
+        UserListings.getInstance().addUser(newUser);
 
         return newUser;
     }

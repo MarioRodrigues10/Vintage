@@ -1,9 +1,8 @@
 package vintage.module.order.receipt;
 
-import vintage.module.User;
+import vintage.module.user.User;
 import vintage.module.item.Item;
 import vintage.module.order.Order;
-import vintage.module.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

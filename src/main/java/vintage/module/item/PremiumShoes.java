@@ -1,7 +1,8 @@
 package vintage.module.item;
 
 import vintage.module.item.carrier.Carrier;
-import vintage.module.User;
+import vintage.module.others.Time;
+import vintage.module.user.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -38,8 +39,10 @@ public class PremiumShoes extends Shoes implements Serializable {
      */
     @Override
     public BigDecimal calculatePrice() {
+        LocalDate currentDate = Time.getInstance().getCurrentDate();
+
         double increasingPercentage = 0.10; // increases its value 10% each year
-        double yearsSinceRelease = LocalDate.now().getYear() - getRelease();
+        double yearsSinceRelease = currentDate.getYear() - getRelease();
 
         BigDecimal price = getPrice();
         price = price.add(price.multiply(BigDecimal.valueOf(increasingPercentage * yearsSinceRelease)));

@@ -4,8 +4,10 @@ import vintage.module.item.Item;
 import vintage.module.order.receipt.BuyerReceipt;
 import vintage.module.order.receipt.Receipt;
 import vintage.module.order.receipt.SellerReceipt;
-import vintage.module.user.Address;
-import vintage.module.User;
+import vintage.module.others.Time;
+import vintage.module.user.User;
+import vintage.module.others.Address;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
@@ -297,9 +299,10 @@ public class Order implements Serializable {
     /**
      * Updates the state of an Order
      * If all items are delivered, the order is delivered
-     * @param currentDate current date of the program
      */
-    public void updateDeliveryState(LocalDate currentDate) {
+    public void updateDeliveryState() {
+        LocalDate currentDate = Time.getInstance().getCurrentDate();
+
         int updatedItems = 0;
         for (Map.Entry<Item, State> entry : items.entrySet()) {
             if (entry.getValue() == State.PENDING) {

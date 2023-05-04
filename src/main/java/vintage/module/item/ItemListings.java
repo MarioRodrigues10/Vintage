@@ -1,6 +1,6 @@
 package vintage.module.item;
 
-import vintage.module.User;
+import vintage.module.user.User;
 
 import java.io.Serializable;
 import java.util.*;

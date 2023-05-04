@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import vintage.module.item.carrier.Carrier;
-import vintage.module.User;
+import vintage.module.user.User;
 
 
 /**

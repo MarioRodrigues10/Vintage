@@ -1,4 +1,4 @@
-package vintage.module.user;
+package vintage.module.others;
 
 import java.io.Serializable;
 
@@ -23,7 +23,7 @@ public class Address implements Serializable {
     }
 
     public String getCountry() {
-        return country;
+        return this.country;
     }
 
     public void setCountry(String country) {
@@ -31,7 +31,7 @@ public class Address implements Serializable {
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 
     public void setCity(String city) {
@@ -39,7 +39,7 @@ public class Address implements Serializable {
     }
 
     public String getStreet() {
-        return street;
+        return this.street;
     }
 
     public void setStreet(String street) {
@@ -47,7 +47,7 @@ public class Address implements Serializable {
     }
 
     public String getPostalCode() {
-        return postalCode;
+        return this.postalCode;
     }
 
     public void setPostalCode(String postalCode) {

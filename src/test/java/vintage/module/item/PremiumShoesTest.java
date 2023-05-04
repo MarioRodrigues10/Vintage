@@ -1,4 +1,4 @@
-package vintage.item;
+package vintage.module.item;
 
 import org.junit.Test;
 import vintage.module.item.PremiumShoes;
