@@ -41,7 +41,7 @@ public class UserTest {
         user.setResidence(new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"));
         user.setTaxNumber("123456789");
 
-        OrderListings orderListings = new OrderListings();
+        OrderListings orderListings = OrderListings.getInstance();
 
         Item bag1 = new Bag();
         bag1.setOwner(seller);
