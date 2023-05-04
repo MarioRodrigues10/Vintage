@@ -2,7 +2,7 @@ package vintage.item;
 
 import java.math.BigDecimal;
 import java.util.UUID;
-
+import java.io.Serializable;
 import vintage.item.carrier.Carrier;
 import vintage.user.User;
 
@@ -10,7 +10,7 @@ import vintage.user.User;
 /**
  * Defines a Item
  */
-public abstract class Item {
+public abstract class Item implements Serializable{
     private final UUID id; /* ! ID of an Item */
     private User owner; /* ! Owner of the item */
     private String description; /* ! Description of an Item */

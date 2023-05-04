@@ -3,23 +3,27 @@ package vintage.others;
 import vintage.order.OrderListings;
 
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Time {
-    // TODO: Make this a static class
+public class Time implements Serializable {
+    private static Time instance = null;
     private LocalDate currentDate; /* ! Current Date */
 
     /**
-     * Creates a new Time object with the specified properties.
-     * @param currentDate
+     * Returns the instance of Time
+     * @return Time
      */
-    public Time(LocalDate currentDate) {
-        this.currentDate = currentDate;
+    public static Time getInstance() {
+        if (instance == null) {
+            instance = new Time();
+        }
+        return instance;
     }
 
     /**
      * Creates a new Time object with default properties.
      */
-    public Time() {
+    private Time() {
         this.currentDate = LocalDate.now();
     }
 
@@ -38,7 +42,7 @@ public class Time {
      * @param currentDate a LocalDate object representing the current date
      */
     public void jumpDays(int days, OrderListings orderListings, LocalDate currentDate) {
-        orderListings.updateOrdersState(currentDate);
+        orderListings.updateOrdersState();
         this.currentDate = this.currentDate.plusDays(days);
     }
 
@@ -49,7 +53,7 @@ public class Time {
      * @param currentDate a LocalDate object containing the current date
      */
     public void jumpMonths(int months, OrderListings orderListings, LocalDate currentDate) {
-        orderListings.updateOrdersState(currentDate);
+        orderListings.updateOrdersState();
         this.currentDate = this.currentDate.plusMonths(months);
     }
 
@@ -60,7 +64,7 @@ public class Time {
      * @param currentDate a LocalDate object containing the current date
      */
     public void jumpYears(int years, OrderListings orderListings, LocalDate currentDate) {
-        orderListings.updateOrdersState(currentDate);
+        orderListings.updateOrdersState();
         this.currentDate = this.currentDate.plusYears(years);
     }
 

@@ -2,6 +2,7 @@ package vintage.order.receipt;
 
 import vintage.item.Item;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
