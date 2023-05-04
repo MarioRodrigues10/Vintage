@@ -16,7 +16,7 @@ public class UserTest {
      */
     @Test
     public void userTest() {
-        vintage.module.user.User user = new vintage.module.user.User();
+        vintage.module.User user = new vintage.module.User();
         user.setName("John Doe");
         user.setEmail("johndoe@mail.com");
         user.setResidence(new vintage.module.user.Address("Portugal", "Braga", "Rua dos Bares", "4710-000"));
@@ -33,8 +33,8 @@ public class UserTest {
      */
     @Test
     public void createOrderTest() {
-        vintage.module.user.User user = new vintage.module.user.User();
-        vintage.module.user.User seller = new vintage.module.user.User();
+        vintage.module.User user = new vintage.module.User();
+        vintage.module.User seller = new vintage.module.User();
         user.setName("John Doe");
         user.setEmail("johndoe@mail.com");
         user.setResidence(new vintage.module.user.Address("Portugal", "Braga", "Rua dos Bares", "4710-000"));

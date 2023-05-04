@@ -6,7 +6,7 @@ import vintage.module.item.carrier.Carrier;
 import vintage.module.item.Item;
 import vintage.module.item.Shoes;
 import vintage.module.user.Address;
-import vintage.module.user.User;
+import vintage.module.User;
 
 import java.math.BigDecimal;
 
