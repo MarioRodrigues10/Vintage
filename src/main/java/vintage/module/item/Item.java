@@ -25,17 +25,17 @@ public abstract class Item {
      * Creates a new Item object with the specified properties.
      *
      * @param description a String containing a brief description of the item
-     * @param owner a User object representing item's owner
-     * @param brand a String containing the brand or manufacturer of the item
-     * @param evaluation an integer value representing the degree of correction needed for the item
-     * @param price a BigDecimal object containing the price of the item
-     * @param owners an integer value representing the number of previous owners of the item
-     * @param carrier a Carrier object containing the carrier of the item
+     * @param owner       a User object representing item's owner
+     * @param brand       a String containing the brand or manufacturer of the item
+     * @param evaluation  an integer value representing the degree of correction needed for the item
+     * @param price       a BigDecimal object containing the price of the item
+     * @param owners      an integer value representing the number of previous owners of the item
+     * @param carrier     a Carrier object containing the carrier of the item
      */
     public Item(String description, User owner, String brand, int evaluation, BigDecimal price, int owners, Carrier carrier) {
         this.id = UUID.randomUUID();
         this.owner = owner;
-        this.description= description;
+        this.description = description;
         this.brand = brand;
         this.evaluation = evaluation;
         this.price = price;
@@ -79,7 +79,7 @@ public abstract class Item {
         return this.description;
     }
 
-/**
+    /**
      * Returns a User object representing item's owner.
      *
      * @return a User object representing item's owner
@@ -138,7 +138,9 @@ public abstract class Item {
      *
      * @return User
      */
-    public User getUser() { return owner; }
+    public User getUser() {
+        return owner;
+    }
 
     /**
      * Returns a Carrier object containing the carrier of the item.
@@ -155,7 +157,7 @@ public abstract class Item {
      * @return a boolean value representing if the item is used or not
      */
     public boolean isUsed() {
-        return ( owners > 0 );
+        return (owners > 0);
     }
 
 
@@ -182,7 +184,11 @@ public abstract class Item {
      *
      * @param owner a User representing the item's owner
      */
-    public void setOwner(User owner) { this.owner = owner; };
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    ;
 
     /**
      * Sets the evaluation of the item.
@@ -264,3 +270,6 @@ public abstract class Item {
      * @return a BigDecimal object containing the price of the item
      */
     public abstract BigDecimal calculatePrice();
+
+    public abstract Item clone();
+}

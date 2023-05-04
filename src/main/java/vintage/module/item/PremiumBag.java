@@ -5,7 +5,6 @@ import vintage.module.User;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.io.Serializable;
 
 public class PremiumBag extends Bag implements Serializable {
     /**

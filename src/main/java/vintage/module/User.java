@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.io.Serializable;
 
 public class User implements Serializable {
     private final UUID id; /* ! ID of a User */

@@ -6,7 +6,6 @@ import vintage.module.User;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Year;
-import java.io.Serializable;
 /**
  * Defines a Bag
  */

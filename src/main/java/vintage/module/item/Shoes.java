@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Year;
-import java.io.Serializable;
 /**
  * Defines a Shoes
  */
