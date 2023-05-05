@@ -5,8 +5,11 @@ import vintage.module.item.Bag;
 import vintage.module.item.Item;
 import vintage.module.order.Order;
 import vintage.module.order.OrderListings;
+import vintage.module.order.receipt.Receipt;
 import vintage.module.others.Address;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
@@ -17,11 +20,9 @@ public class UserTest {
      */
     @Test
     public void userTest() {
-        User user = new User();
-        user.setName("John Doe");
-        user.setEmail("johndoe@mail.com");
-        user.setResidence(new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"));
-        user.setTaxNumber("123456789");
+        User user = new User("John Doe", "johndoe@mail.com",
+                new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"),
+                "123456789", null);
 
         assertEquals("John Doe", user.getName());
         assertEquals("johndoe@mail.com", user.getEmail());
@@ -34,23 +35,23 @@ public class UserTest {
      */
     @Test
     public void createOrderTest() {
-        User user = new User();
-        User seller = new User();
-        user.setName("John Doe");
-        user.setEmail("johndoe@mail.com");
-        user.setResidence(new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"));
-        user.setTaxNumber("123456789");
+        User user = new User("John Doe", "johndoe@mail.com",
+                new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"),
+                "123456789", new ArrayList<Receipt>());
+        User seller = new User("Mike Doe", "mikedoe@mail.com",
+                new Address("Portugal", "New York", "Rua dos Bares", "4710-000"),
+                "123456789", new ArrayList<Receipt>());
 
         OrderListings orderListings = OrderListings.getInstance();
 
-        Item bag1 = new Bag();
-        bag1.setOwner(seller);
-        Item bag2 = new Bag();
-        bag2.setOwner(seller);
-        Item bag3 = new Bag();
-        bag3.setOwner(seller);
-        Item bag4 = new Bag();
-        bag4.setOwner(seller);
+        Item bag1 = new Bag("A nice bag", seller, "Louis Vuitton", 10,
+                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, null);
+        Item bag2 = new Bag("A nice bag", seller, "Louis Vuitton", 10,
+                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, null);
+        Item bag3 = new Bag("A nice bag", seller, "Louis Vuitton", 10,
+                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, null);
+        Item bag4 = new Bag("A nice bag", seller, "Louis Vuitton", 10,
+                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, null);
 
         UUID orderId = user.createOrder();
         user.addItemToOrder(bag1);

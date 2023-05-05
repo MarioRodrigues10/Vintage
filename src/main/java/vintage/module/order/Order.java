@@ -67,19 +67,6 @@ public class Order implements Serializable {
     }
 
     /**
-     * Creates a new Order object with default properties.
-     */
-    public Order(User user) {
-        this.id = UUID.randomUUID();
-        this.buyer = user;
-        this.items = new HashMap<Item, State>();
-        this.size = Size.SMALL;
-        this.state = State.PENDING;
-        this.price = BigDecimal.valueOf(0);
-        this.address = new Address();
-    }
-
-    /**
      * Creates a new Order object based on another Order object.
      * @param order
      */
@@ -90,7 +77,7 @@ public class Order implements Serializable {
         this.size = order.getSize();
         this.state = order.getState();
         this.price = order.getPrice();
-        this.address = order.getAddress();
+        this.address = order.getAddress().clone();
     }
 
 
@@ -330,7 +317,7 @@ public class Order implements Serializable {
     public void finishOrder() {
         this.setState(State.FINISHED);
 
-        Receipt buyerReceipt = new BuyerReceipt(this);
+        Receipt buyerReceipt = new BuyerReceipt(this.getOrderSellersList(), this.price, List.copyOf(this.getItemsList()), this.expeditionDate, this);
         this.buyer.addReceipt(buyerReceipt);
 
         // send receipts to all the sellers
@@ -341,7 +328,9 @@ public class Order implements Serializable {
             Receipt sellerReceipt = seller.getOrderIdReceipt(this.id);
             if (sellerReceipt == null) {
                 ArrayList<Item> items = new ArrayList<Item>();
-                sellerReceipt = new SellerReceipt();
+                sellerReceipt = new SellerReceipt(this.buyer, BigDecimal.valueOf(0), new ArrayList<Item>(),
+                        this.expeditionDate, this);
+
                 ((SellerReceipt) sellerReceipt).setBuyer(this.buyer);
                 sellerReceipt.setEmissionDate(this.expeditionDate);
                 sellerReceipt.setOrderID(this.id);

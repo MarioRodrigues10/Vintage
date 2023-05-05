@@ -19,18 +19,6 @@ public class SellerReceipt implements Receipt {
     private LocalDate emissionDate; /* ! Date of emission of a Receipt */
 
     /**
-     * Creates a new Receipt object with the default properties.
-     */
-    public SellerReceipt() {
-        this.id = UUID.randomUUID();
-        this.buyer = null;
-        this.orderID = null;
-        this.totalPrice = BigDecimal.valueOf(0);
-        this.items = new ArrayList<Item>();
-        this.emissionDate = LocalDate.now();
-    }
-
-    /**
      * Creates a new Receipt object with the specified properties.
      *
      * @param buyer
@@ -47,20 +35,6 @@ public class SellerReceipt implements Receipt {
     }
 
     /**
-     * Creates a new Receipt out of an Order.
-     *
-     * @param order
-     */
-    public SellerReceipt(Order order) {
-        this.id = UUID.randomUUID();
-        this.buyer = order.getBuyer();
-        this.orderID = order.getId();
-        this.totalPrice = order.getPrice();
-        this.items = order.getItemsList();
-        this.emissionDate = order.getExpeditionDate();
-    }
-
-    /**
      * Creates a new Receipt object based on another Receipt object.
      *
      * @param receipt
@@ -72,9 +46,6 @@ public class SellerReceipt implements Receipt {
         this.totalPrice = receipt.getTotalPrice();
         this.items = receipt.getItems();
         this.emissionDate = receipt.getEmissionDate();
-    }
-
-    public SellerReceipt(User buyer, BigDecimal totalPrice, ArrayList<Item> items, LocalDate expeditionDate, Order order) {
     }
 
     /**

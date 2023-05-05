@@ -10,15 +10,8 @@ import static org.junit.Assert.assertEquals;
 public class PremiumBagTest {
 
     public void bagTest() {
-        Bag bag = new PremiumBag();
-        bag.setDescription("A nice bag");
-        bag.setBrand("Louis Vuitton");
-        bag.setPrice(BigDecimal.valueOf(100));
-        bag.setOwners(0);
-        bag.setMaterial("Leather");
-        bag.setSize(10);
-        bag.setRelease(2018);
-        bag.setMaterial("Leather");
+        Bag bag = new PremiumBag("A nice bag", null, "Louis Vuitton", 10,
+                BigDecimal.valueOf(100), 1, 10, "Leather", 2018, null);
 
         assertEquals("A nice bag", bag.getDescription());
         assertEquals("Louis Vuitton", bag.getBrand());
@@ -34,15 +27,10 @@ public class PremiumBagTest {
      */
     @Test
     public void calculatePriceTest() {
-        Bag bag = new PremiumBag();
-        bag.setDescription("A nice bag");
-        bag.setBrand("Louis Vuitton");
-        bag.setPrice(BigDecimal.valueOf(100));
-        bag.setOwners(0);
-        bag.setMaterial("Leather");
-        bag.setRelease(2023);
+        Bag bag = new PremiumBag("A nice bag", null, "Louis Vuitton", 10,
+                BigDecimal.valueOf(100), 1, 10, "Leather", 2018, null);
 
-        assertEquals(BigDecimal.valueOf(100.0), bag.calculatePrice());
+        assertEquals(BigDecimal.valueOf(150.0), bag.calculatePrice());
     }
 
     /**
@@ -50,13 +38,8 @@ public class PremiumBagTest {
      */
     @Test
     public void calculatePriceUsedTest() {
-        Bag bag = new PremiumBag();
-        bag.setDescription("A nice bag");
-        bag.setBrand("Louis Vuitton");
-        bag.setPrice(BigDecimal.valueOf(100));
-        bag.setOwners(1);
-        bag.setMaterial("Leather");
-        bag.setRelease(2018);
+        Bag bag = new PremiumBag("A nice bag", null, "Louis Vuitton", 10,
+                BigDecimal.valueOf(100), 1, 10, "Leather", 2018, null);
 
         assertEquals(BigDecimal.valueOf(150.0), bag.calculatePrice());
     }

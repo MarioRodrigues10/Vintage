@@ -25,10 +25,6 @@ public class PremiumBag extends Bag implements Serializable {
         super(description, owner, brand, evaluation, price, owners, size, material, release, carrier);
     }
 
-    public PremiumBag() {
-        super();
-    }
-
     /**
      * The calculatePrice() method calculates the price of the premium bag by calling the getPrice() method
      */

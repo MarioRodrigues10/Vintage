@@ -47,15 +47,6 @@ public class TShirt extends Item implements Serializable{
     }
 
     /**
-     * Creates a new TShirt object with default values.
-     */
-    public TShirt() {
-        super();
-        this.size = Size.S;
-        this.pattern = Pattern.SOLID;
-    }
-
-    /**
      * Creates a new TShirt object based on another TShirt object.
      *
      * @param tshirt a TShirt object

@@ -15,13 +15,6 @@ public class Address implements Serializable {
         this.postalCode = postalCode;
     }
 
-    public Address() {
-        this.country = "";
-        this.city = "";
-        this.street = "";
-        this.postalCode = "";
-    }
-
     public String getCountry() {
         return this.country;
     }
@@ -70,5 +63,9 @@ public class Address implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Address residence = (Address) o;
         return getCountry().equals(residence.getCountry()) && getCity().equals(residence.getCity()) && getStreet().equals(residence.getStreet()) && getPostalCode().equals(residence.getPostalCode());
+    }
+
+    public Address clone() {
+        return new Address(this.country, this.city, this.street, this.postalCode);
     }
 }

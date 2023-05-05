@@ -9,7 +9,9 @@ import vintage.module.order.receipt.SellerReceipt;
 import vintage.module.others.Address;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,17 +40,6 @@ public class User implements Serializable {
         this.receipts = receipts;
     }
 
-    /**
-     * Creates a new empty User object.
-     */
-    public User() {
-        this.id = UUID.randomUUID();
-        this.name = "";
-        this.email = "";
-        this.residence = new Address();
-        this.taxNumber = "";
-        this.receipts = new ArrayList<Receipt>();
-    }
 
     /**
      * Creates a new User object with the specified user.
@@ -236,7 +227,9 @@ public class User implements Serializable {
     public UUID createOrder() {
         Order currentOrder = OrderListings.getInstance().getUserPendindOrder(this);
         if (currentOrder == null) {
-            currentOrder = new Order(this);
+            currentOrder = new Order(this, new HashMap<Item, Order.State>(), Order.Size.SMALL,
+                    Order.State.PENDING, BigDecimal.valueOf(0), this.residence);
+
             OrderListings.getInstance().addOrder(this.id, currentOrder);
         }
 

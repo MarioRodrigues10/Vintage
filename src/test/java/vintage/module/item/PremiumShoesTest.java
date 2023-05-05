@@ -10,15 +10,8 @@ import static org.junit.Assert.assertEquals;
 
 public class PremiumShoesTest {
     public void shoesTest() {
-        Shoes shoes = new PremiumShoes();
-        shoes.setDescription("A nice pair of shoes");
-        shoes.setBrand("Nike");
-        shoes.setPrice(BigDecimal.valueOf(100));
-        shoes.setOwners(0);
-        shoes.setSize(10);
-        shoes.setLaces(true);
-        shoes.setColor("Black");
-        shoes.setRelease(2018);
+        Shoes shoes = new PremiumShoes("A nice pair of shoes", null, "Nike", 10,
+                BigDecimal.valueOf(100), 1, 10, true, "Black", 2018, null);
 
         assertEquals("A nice pair of shoes", shoes.getDescription());
         assertEquals("Nike", shoes.getBrand());
@@ -33,15 +26,8 @@ public class PremiumShoesTest {
      */
     @Test
     public void calculatePriceTest() {
-        Shoes shoes = new PremiumShoes();
-        shoes.setDescription("A nice pair of shoes");
-        shoes.setBrand("Nike");
-        shoes.setPrice(BigDecimal.valueOf(100));
-        shoes.setOwners(0);
-        shoes.setSize(10);
-        shoes.setLaces(true);
-        shoes.setColor("Black");
-        shoes.setRelease(2018);
+        Shoes shoes = new PremiumShoes("A nice pair of shoes", null, "Nike", 10,
+                BigDecimal.valueOf(100), 1, 10, true, "Black", 2018, null);
 
         assertEquals(BigDecimal.valueOf(150.0), shoes.calculatePrice());
     }
