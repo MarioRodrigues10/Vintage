@@ -14,20 +14,13 @@ public class ShoesTest {
      */
     @Test
     public void shoesTest() {
-        Shoes shoes = new Shoes();
-        shoes.setDescription("A nice pair of shoes");
-        shoes.setBrand("Nike");
-        shoes.setPrice(BigDecimal.valueOf(100));
-        shoes.setOwners(0);
-        shoes.setSize(10);
-        shoes.setLaces(true);
-        shoes.setColor("Black");
-        shoes.setRelease(2018);
+        Shoes shoes = new Shoes("A nice pair of shoes", null, "Nike", 10,
+                BigDecimal.valueOf(100), 1, 10, true, "Black", 2018, null);
 
         assertEquals("A nice pair of shoes", shoes.getDescription());
         assertEquals("Nike", shoes.getBrand());
         assertEquals(BigDecimal.valueOf(100), shoes.getPrice());
-        assertEquals(0, shoes.getOwners());
+        assertEquals(1, shoes.getOwners());
         assertEquals("Black", shoes.getColor());
         assertEquals(2018, shoes.getRelease());
     }
@@ -37,17 +30,10 @@ public class ShoesTest {
      */
     @Test
     public void calculatePriceTest() {
-        Shoes shoes = new Shoes();
-        shoes.setDescription("A nice pair of shoes");
-        shoes.setBrand("Nike");
-        shoes.setPrice(BigDecimal.valueOf(100));
-        shoes.setOwners(0);
-        shoes.setSize(10);
-        shoes.setLaces(true);
-        shoes.setColor("Black");
-        shoes.setRelease(2018);
+        Shoes shoes = new Shoes("A nice pair of shoes", null, "Nike", 10,
+                BigDecimal.valueOf(100), 1, 10, true, "Black", 2018, null);
 
-        assertEquals(BigDecimal.valueOf(100), shoes.calculatePrice());
+        assertEquals(BigDecimal.valueOf(90).setScale(2, RoundingMode.HALF_UP), shoes.calculatePrice());
     }
 
     /**
@@ -55,16 +41,8 @@ public class ShoesTest {
      */
     @Test
     public void calculatePriceUsedTest() {
-        Shoes shoes = new Shoes();
-        shoes.setDescription("A nice pair of shoes");
-        shoes.setBrand("Nike");
-        shoes.setPrice(BigDecimal.valueOf(100));
-        shoes.setOwners(1);
-        shoes.setEvaluation(10);
-        shoes.setSize(10);
-        shoes.setLaces(true);
-        shoes.setColor("Black");
-        shoes.setRelease(2018);
+        Shoes shoes = new Shoes("A nice pair of shoes", null, "Nike", 10,
+                BigDecimal.valueOf(100), 1, 10, true, "Black", 2018, null);
 
         assertEquals(BigDecimal.valueOf(90.00).setScale(2, RoundingMode.HALF_UP), shoes.calculatePrice());
     }

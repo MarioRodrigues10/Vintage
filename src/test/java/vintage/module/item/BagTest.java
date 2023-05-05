@@ -14,19 +14,13 @@ public class BagTest {
      */
     @Test
     public void bagTest() {
-        Bag bag = new Bag();
-        bag.setDescription("A nice bag");
-        bag.setBrand("Louis Vuitton");
-        bag.setPrice(BigDecimal.valueOf(1000));
-        bag.setOwners(0);
-        bag.setSize(10);
-        bag.setMaterial("Cotton");
-        bag.setRelease(2018);
+        Bag bag = new Bag("A nice bag", null, "Louis Vuitton", 10,
+                BigDecimal.valueOf(1000), 1, 10, "Cotton", 2018, null);
 
         assertEquals("A nice bag", bag.getDescription());
         assertEquals("Louis Vuitton", bag.getBrand());
         assertEquals(BigDecimal.valueOf(1000), bag.getPrice());
-        assertEquals(0, bag.getOwners());
+        assertEquals(1, bag.getOwners());
         assertEquals(10, bag.getSize());
         assertEquals("Cotton", bag.getMaterial());
         assertEquals(2018, bag.getRelease());
@@ -37,16 +31,10 @@ public class BagTest {
      */
     @Test
     public void calculatePriceTest() {
-        Bag bag = new Bag();
-        bag.setDescription("A nice bag");
-        bag.setBrand("Louis Vuitton");
-        bag.setPrice(BigDecimal.valueOf(1000));
-        bag.setOwners(0);
-        bag.setSize(10);
-        bag.setMaterial("Cotton");
-        bag.setRelease(2018);
+        Bag bag = new Bag("A nice bag", null, "Louis Vuitton", 10,
+                BigDecimal.valueOf(1000), 1, 10, "Cotton", 2018, null);
 
-        assertEquals(BigDecimal.valueOf(1000), bag.calculatePrice());
+        assertEquals(BigDecimal.valueOf(900).setScale(2, RoundingMode.HALF_UP), bag.calculatePrice());
     }
 
     /**
@@ -54,15 +42,8 @@ public class BagTest {
      */
     @Test
     public void calculatePriceUsedTest() {
-        Bag bag = new Bag();
-        bag.setDescription("A nice bag");
-        bag.setBrand("Louis Vuitton");
-        bag.setPrice(BigDecimal.valueOf(1000));
-        bag.setOwners(1);
-        bag.setEvaluation(10);
-        bag.setSize(10);
-        bag.setMaterial("Cotton");
-        bag.setRelease(2018);
+        Bag bag = new Bag("A nice bag", null, "Louis Vuitton", 10,
+                BigDecimal.valueOf(1000), 1, 10, "Cotton", 2018, null);
 
         BigDecimal result = BigDecimal.valueOf(1000).multiply(BigDecimal.valueOf(0.9)).setScale(2, RoundingMode.HALF_UP);
 

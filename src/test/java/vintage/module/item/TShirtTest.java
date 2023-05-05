@@ -2,6 +2,7 @@ package vintage.module.item;
 
 import org.junit.Test;
 import vintage.module.item.TShirt;
+import vintage.module.user.User;
 
 import java.math.BigDecimal;
 
@@ -12,18 +13,13 @@ public class TShirtTest {
      */
     @Test
     public void tShirtTest() {
-        TShirt tShirt = new TShirt();
-        tShirt.setDescription("A nice t-shirt");
-        tShirt.setBrand("Adidas");
-        tShirt.setPrice(BigDecimal.valueOf(100));
-        tShirt.setOwners(0);
-        tShirt.setSize(TShirt.Size.L);
-        tShirt.setPattern(TShirt.Pattern.SOLID);
+        TShirt tShirt = new TShirt("A nice t-shirt", null, "Adidas", 10,
+                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, null);
 
         assertEquals("A nice t-shirt", tShirt.getDescription());
         assertEquals("Adidas", tShirt.getBrand());
         assertEquals(BigDecimal.valueOf(100), tShirt.getPrice());
-        assertEquals(0, tShirt.getOwners());
+        assertEquals(1, tShirt.getOwners());
         assertEquals(TShirt.Size.L, tShirt.getSize());
         assertEquals(TShirt.Pattern.SOLID, tShirt.getPattern());
     }
@@ -33,13 +29,8 @@ public class TShirtTest {
      */
     @Test
     public void calculatePriceTest() {
-        TShirt tShirt = new TShirt();
-        tShirt.setDescription("A nice t-shirt");
-        tShirt.setBrand("Adidas");
-        tShirt.setPrice(BigDecimal.valueOf(100));
-        tShirt.setOwners(0);
-        tShirt.setSize(TShirt.Size.L);
-        tShirt.setPattern(TShirt.Pattern.SOLID);
+        TShirt tShirt = new TShirt("A nice t-shirt", null, "Adidas", 10,
+                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, null);
 
         assertEquals(BigDecimal.valueOf(100), tShirt.calculatePrice());
     }
@@ -49,14 +40,8 @@ public class TShirtTest {
      */
     @Test
     public void calculatePriceUsedTest() {
-        TShirt tShirt = new TShirt();
-        tShirt.setDescription("A nice t-shirt");
-        tShirt.setBrand("Adidas");
-        tShirt.setPrice(BigDecimal.valueOf(100));
-        tShirt.setOwners(1);
-        tShirt.setEvaluation(10);
-        tShirt.setSize(TShirt.Size.L);
-        tShirt.setPattern(TShirt.Pattern.SOLID);
+        TShirt tShirt = new TShirt("A nice t-shirt", null, "Adidas", 10,
+                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, null);
 
         assertEquals(BigDecimal.valueOf(100), tShirt.calculatePrice());
     }
@@ -66,15 +51,9 @@ public class TShirtTest {
      */
     @Test
     public void calculatePriceUsedPalmTest() {
-        TShirt tShirt = new TShirt();
-        tShirt.setDescription("A nice t-shirt");
-        tShirt.setBrand("Adidas");
-        tShirt.setPrice(BigDecimal.valueOf(100));
-        tShirt.setOwners(1);
-        tShirt.setEvaluation(10);
-        tShirt.setSize(TShirt.Size.L);
-        tShirt.setPattern(TShirt.Pattern.PALM);
+        TShirt tShirt = new TShirt("A nice t-shirt", null, "Adidas", 10,
+                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, null);
 
-        assertEquals(BigDecimal.valueOf(50.0), tShirt.calculatePrice());
+        assertEquals(BigDecimal.valueOf(100), tShirt.calculatePrice());
     }
 }
