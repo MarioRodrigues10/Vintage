@@ -53,17 +53,6 @@ public class Shoes extends Item implements Serializable {
     }
 
     /**
-     * Creates a new Shoes object with default values.
-     */
-    public Shoes() {
-        super();
-        this.size = 0;
-        this.laces = false;
-        this.color = "";
-        this.release = Year.now().getValue();
-    }
-
-    /**
      * Returns an integer value representing the size of the shoes.
      *
      * @return an integer value representing the size of the shoes

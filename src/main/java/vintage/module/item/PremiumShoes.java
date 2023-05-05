@@ -26,10 +26,6 @@ public class PremiumShoes extends Shoes implements Serializable {
         super(description, owner, brand, evaluation, price, owners, size, laces, color, release, carrier);
     }
 
-    public PremiumShoes() {
-        super();
-    }
-
     /**
      * The calculatePrice() method calculates the price of the premium shoe by calling the getPrice() method
      * (which is inherited from the Shoe class) to get the base price, and then adds a premium based on the

@@ -33,21 +33,12 @@ public class Bag extends Item implements Serializable {
         this.material = material;
         this.release = release;
     }
+
     public Bag(Bag bag) {
         super(bag.getDescription(), bag.getOwner(), bag.getBrand(), bag.getEvaluation(), bag.getPrice(), bag.getOwners(), bag.getCarrier());
         this.size = bag.getSize();
         this.material = bag.getMaterial();
         this.release = bag.getRelease();
-    }
-
-    /**
-     * Creates a new Bag object with default values.
-     */
-    public Bag() {
-        super();
-        this.size = 0;
-        this.material = "";
-        this.release = Year.now().getValue();
     }
 
     /**

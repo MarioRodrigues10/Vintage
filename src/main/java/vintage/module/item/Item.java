@@ -44,33 +44,6 @@ public abstract class Item {
     }
 
     /**
-     * Creates a new Item object based on another Item object.
-     *
-     * @param item an Item object
-     */
-    public Item(Item item) {
-        this.id = item.getId();
-        this.description = item.getDescription();
-        this.owner = item.getOwner();
-        this.brand = item.getBrand();
-        this.price = item.getPrice();
-        this.owners = item.getOwners();
-        this.carrier = item.getCarrier();
-    }
-
-    /**
-     * Creates a new Item object with default values.
-     */
-    public Item() {
-        this.id = UUID.randomUUID();
-        this.description = "";
-        this.owner = null;
-        this.brand = "";
-        this.price = new BigDecimal(0);
-        this.owners = 0;
-    }
-
-    /**
      * Returns a String containing a brief description of the item.
      *
      * @return a String containing a brief description of the item

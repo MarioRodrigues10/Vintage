@@ -39,16 +39,6 @@ public class Carrier {
     }
 
     /**
-     * Creates a new Carrier object with default properties.
-     */
-    public Carrier() {
-        this.name = "";
-        this.profit = new BigDecimal("0.0");
-        this.deliveryTime = 3;
-        this.premium = false;
-    }
-
-    /**
      * Sets the price of a small order.
      *
      * @param SMALL a BigDecimal object containing the price of a small order
