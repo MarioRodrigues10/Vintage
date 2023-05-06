@@ -1,13 +1,14 @@
-package vintage.item;
+package seeds;
 
-import vintage.user.User;
-import vintage.user.UserSeeder;
+import vintage.item.Bag;
+import vintage.item.Item;
+import vintage.item.Shoes;
+import vintage.item.TShirt;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 public class ItemSeeder {
 

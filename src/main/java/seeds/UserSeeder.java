@@ -1,8 +1,13 @@
-package vintage.user;
+package seeds;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import seeds.ReceiptSeeder;
 import vintage.order.receipt.*;
+import vintage.user.Address;
+import vintage.user.User;
+
 public class UserSeeder{
 
     public static List<User> seedUsers(int numUsers) {

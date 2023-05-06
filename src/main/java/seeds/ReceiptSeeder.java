@@ -1,8 +1,9 @@
-package vintage.order.receipt;
+package seeds;
 
 import vintage.item.*;
 import vintage.order.Order;
-import vintage.order.OrderSeeder;
+import vintage.order.receipt.BuyerReceipt;
+import vintage.order.receipt.SellerReceipt;
 import vintage.user.*;
 
 import java.math.BigDecimal;

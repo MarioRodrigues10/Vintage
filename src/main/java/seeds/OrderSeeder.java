@@ -1,10 +1,11 @@
-package vintage.order;
+package seeds;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
 import vintage.item.*;
+import vintage.order.Order;
 import vintage.user.*;
 import java.util.Random;
 
