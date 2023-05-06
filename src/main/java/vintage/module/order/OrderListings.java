@@ -1,18 +1,20 @@
 package vintage.module.order;
 
-import vintage.module.others.Time;
+import vintage.module.item.Item;
+import vintage.time.Time;
 import vintage.module.user.User;
-import vintage.module.order.Order;
+import vintage.time.TimeObserver;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.io.Serializable;
 
-public class OrderListings implements Serializable {
+public class OrderListings implements Serializable, TimeObserver {
     private static OrderListings instance = null;
-    private Map<UUID, List<Order>> orders; /* ! Map of orders, where the key is the buyer user ID */
+    private final Map<UUID, List<Order>> orders; /* ! Map of orders, where the key is the buyer user ID */
 
     public static OrderListings getInstance() {
         if (instance == null) {
@@ -44,17 +46,20 @@ public class OrderListings implements Serializable {
      * @param user a User object containing the user
      * @return the pending order of a user
      */
-    public Order getUserPendindOrder(User user) {
-        List<Order> userOrders = this.orders.get(user.getId());
-        if (userOrders == null) {
-            return null;
-        }
+    public Order getUserPendingOrder(User user) {
+        List<Order> userOrders = this.orders.getOrDefault(user.getId(), new ArrayList<Order>());
+
         for (Order order : userOrders) {
             if (order.getState() == Order.State.PENDING) {
                 return order;
             }
         }
-        return null;
+        Order newPendingOrder = new Order(user, new HashMap<Item, Order.State>(), Order.Size.SMALL, Order.State.PENDING,
+                new BigDecimal(0), user.getResidence());
+
+        this.addOrder(user.getId(), newPendingOrder);
+
+        return newPendingOrder;
     }
 
     /**
@@ -138,12 +143,13 @@ public class OrderListings implements Serializable {
     /**
      * Updates the state of all orders in the program.
      */
-    public void updateOrdersState() {
+    @Override
+    public void update() {
         LocalDate currentDatePlusOne = Time.getInstance().getCurrentDate();
 
         for (List<Order> userOrders : this.orders.values()) {
             for (Order order : userOrders) {
-                if (order.getState() == Order.State.PENDING) {
+                if (order.getState() == Order.State.FINISHED) {
                     order.updateDeliveryState();
                 }
             }

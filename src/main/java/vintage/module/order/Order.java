@@ -4,11 +4,10 @@ import vintage.module.item.Item;
 import vintage.module.order.receipt.BuyerReceipt;
 import vintage.module.order.receipt.Receipt;
 import vintage.module.order.receipt.SellerReceipt;
-import vintage.module.others.Time;
+import vintage.time.Time;
 import vintage.module.user.User;
 import vintage.module.others.Address;
 
-import java.io.Console;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
@@ -233,11 +232,15 @@ public class Order implements Serializable {
 
     /**
      * Adds an Item to an Order
-     * @param item
+     *
+     * @param item item to be added
      */
-    public Order addItem(Item item) {
-        this.items.put(item, State.PENDING);
+    public void addItem(Item item) {
+        if (this.state != State.PENDING) {
+            throw new IllegalArgumentException("Cannot add item to order that is not pending");
+        }
 
+        this.items.put(item, State.PENDING);
         if (items.size() == 1) {
             size = Size.SMALL;
         } else if (items.size() <= 5) {
@@ -247,8 +250,6 @@ public class Order implements Serializable {
         }
 
         this.price = this.price.add(item.getPrice());
-
-        return this.clone();
     }
 
     /**
@@ -291,31 +292,41 @@ public class Order implements Serializable {
     public void updateDeliveryState() {
         LocalDate currentDate = Time.getInstance().getCurrentDate();
 
-        int updatedItems = 0;
+        int deliveredItems = 0;
+        int totalItems = 0;
         for (Map.Entry<Item, State> entry : items.entrySet()) {
+            ++totalItems;
+
             if (entry.getValue() == State.PENDING) {
                 Item item = entry.getKey();
                 int deliveryTime = item.getCarrier().getDeliveryTime();
                 LocalDate deliveryDate = this.expeditionDate.plusDays(deliveryTime);
 
-                if (currentDate.isAfter(deliveryDate)) {
+                if (currentDate.isAfter(deliveryDate) || currentDate.isEqual(deliveryDate)) {
                     entry.setValue(State.DELIVERED);
+                    ++deliveredItems;
                 }
-
-                updatedItems++;
+            }
+            else if (entry.getValue() == State.DELIVERED) {
+                ++deliveredItems;
             }
         }
 
-        if (updatedItems == this.getNumItems()) {
+        if (deliveredItems == totalItems && totalItems != 0) {
             this.setState(State.DELIVERED);
         }
     }
 
     /**
-     * Sets the state of an order to finished
+     * Sets the state of an order to finish
      */
     public void finishOrder() {
+        if (this.state != State.PENDING) {
+            throw new IllegalStateException("Order is not pending");
+        }
+
         this.setState(State.FINISHED);
+        this.expeditionDate = Time.getInstance().getCurrentDate();
 
         Receipt buyerReceipt = new BuyerReceipt(this.getOrderSellersList(), this.price, List.copyOf(this.getItemsList()), this.expeditionDate, this);
         this.buyer.addReceipt(buyerReceipt);
