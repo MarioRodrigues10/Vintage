@@ -2,12 +2,12 @@ package seeds;
 
 import java.util.List;
 
-import vintage.item.carrier.Carrier;
-import vintage.order.receipt.BuyerReceipt;
-import vintage.order.receipt.SellerReceipt;
-import vintage.order.Order;
-import vintage.item.Item;
-import vintage.user.User;
+import vintage.module.item.carrier.Carrier;
+import vintage.module.order.receipt.BuyerReceipt;
+import vintage.module.order.receipt.SellerReceipt;
+import vintage.module.order.Order;
+import vintage.module.item.Item;
+import vintage.module.user.User;
 
 public class Seed {
 

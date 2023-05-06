@@ -4,9 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
-import vintage.item.*;
-import vintage.order.Order;
-import vintage.user.*;
+import vintage.module.item.*;
+import vintage.module.order.Order;
+import vintage.module.others.Address;
+import vintage.module.user.*;
 import java.util.Random;
 
 public class OrderSeeder {
@@ -19,11 +20,6 @@ public class OrderSeeder {
         for(int i=0; i< n ; i++) {
 
             User buyer = UserSeeder.seedUsers(1).get(0);
-            Order order = new Order(buyer);
-            order.setSize(Order.Size.MEDIUM);
-            order.setPrice(new BigDecimal("249.97"));
-            order.setAddress(new Address("123 Main St", "Anytown", "Anystate", "12345"));
-            order.setExpeditionDate(LocalDate.now().plusDays(14));
 
             Map<Item, Order.State> items = new HashMap<>();
 
@@ -32,7 +28,7 @@ public class OrderSeeder {
             for(Item item : items_generated) {
                 items.put(item, Order.State.PENDING);
             }
-            order.setItems(items);
+            Order order = new Order(buyer, items, Order.Size.MEDIUM, Order.State.PENDING, new BigDecimal("249.97"), new Address("123 Main St", "Anytown", "Anystate", "12345"));
             orders.add(order);
         }
 

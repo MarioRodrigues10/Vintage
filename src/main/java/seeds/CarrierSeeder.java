@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import vintage.item.carrier.Carrier;
+import vintage.module.item.carrier.Carrier;
 
 public class CarrierSeeder {
 
@@ -21,11 +21,7 @@ public class CarrierSeeder {
         List<Carrier> carriers = new ArrayList<>();
         Random rand = new Random();
         for (int i = 0; i < numCarriers; i++) {
-            Carrier carrier = new Carrier();
-            carrier.setName(CARRIER_NAMES[rand.nextInt(CARRIER_NAMES.length)]);
-            carrier.setProfit(new BigDecimal(rand.nextInt(50) + 1));
-            carrier.setDeliveryTime(DELIVERY_TIMES[rand.nextInt(DELIVERY_TIMES.length)]);
-            carrier.setPremium(PREMIUM_STATUS[rand.nextInt(PREMIUM_STATUS.length)]);
+            Carrier carrier = new Carrier( CARRIER_NAMES[rand.nextInt(CARRIER_NAMES.length)], new BigDecimal(rand.nextInt(50) + 1), PREMIUM_STATUS[rand.nextInt(PREMIUM_STATUS.length)], DELIVERY_TIMES[rand.nextInt(DELIVERY_TIMES.length)]);
             carriers.add(carrier);
         }
         return carriers;

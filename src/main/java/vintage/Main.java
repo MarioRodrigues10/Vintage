@@ -1,8 +1,11 @@
 package vintage;
 
+import vintage.controller.*;
+import vintage.module.user.User;
 import java.io.Serializable;
+
 public class Main implements Serializable{
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        User user = AuthController.authMenuController();
     }
 }

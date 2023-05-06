@@ -1,9 +1,11 @@
 package seeds;
 
-import vintage.item.Bag;
-import vintage.item.Item;
-import vintage.item.Shoes;
-import vintage.item.TShirt;
+import vintage.module.item.Bag;
+import vintage.module.item.Item;
+import vintage.module.item.Shoes;
+import vintage.module.item.TShirt;
+import vintage.module.item.carrier.Carrier;
+import vintage.module.user.User;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -35,47 +37,35 @@ public class ItemSeeder {
     }
 
     private Bag generateBag() {
-        Bag bag = new Bag();
         UserSeeder userSeeder = new UserSeeder();
-        bag.setDescription("A nice bag");
-        bag.setBrand("Louis Vuitton");
-        bag.setEvaluation(random.nextInt(10));
-        bag.setPrice(BigDecimal.valueOf(random.nextInt(500) + 500));
-        bag.setOwners(random.nextInt(MAX_OWNERS + 1));
-        bag.setSize(random.nextInt(10) + 1);
-        bag.setMaterial("Cotton");
-        bag.setOwner(userSeeder.seedUsers(1).get(0));
-        bag.setRelease(random.nextInt(5) + 2016);
-        return bag;
+        CarrierSeeder carrierSeeder = new CarrierSeeder();
+        Carrier carrier = carrierSeeder.seedCarriers(1).get(0);
+        User owner = userSeeder.seedUsers(1).get(0);
+        return new Bag("A nice bag", owner, "Louis Vuitton", random.nextInt(10),
+                BigDecimal.valueOf(random.nextInt(500) + 500), random.nextInt(MAX_OWNERS + 1),
+                random.nextInt(10) + 1, "Cotton", random.nextInt(5) + 2016, carrier);
     }
 
     private Shoes generateShoes() {
-        Shoes shoes = new Shoes();
         UserSeeder userSeeder = new UserSeeder();
-        shoes.setDescription("A nice pair of shoes");
-        shoes.setBrand("Nike");
-        shoes.setEvaluation(random.nextInt(10) + 1);
-        shoes.setPrice(BigDecimal.valueOf(random.nextInt(300) + 100));
-        shoes.setOwners(random.nextInt(MAX_OWNERS + 1));
-        shoes.setSize(random.nextDouble() * (12 - 5) + 5);
-        shoes.setLaces(random.nextBoolean());
-        shoes.setColor("Black");
-        shoes.setOwner(userSeeder.seedUsers(1).get(0));
-        shoes.setRelease(random.nextInt(5) + 2016);
-        return shoes;
+        User owner = userSeeder.seedUsers(1).get(0);
+        CarrierSeeder carrierSeeder = new CarrierSeeder();
+        Carrier carrier = carrierSeeder.seedCarriers(1).get(0);
+        return new Shoes("A nice pair of shoes", owner, "Nike", random.nextInt(10) + 1,
+                BigDecimal.valueOf(random.nextInt(300) + 100), random.nextInt(MAX_OWNERS + 1),
+                random.nextDouble() * (12 - 5) + 5, random.nextBoolean(), "Black",
+                random.nextInt(5) + 2016, carrier);
     }
 
     private TShirt generateTShirt() {
-        TShirt tShirt = new TShirt();
         UserSeeder userSeeder = new UserSeeder();
-        tShirt.setDescription("A nice t-shirt");
-        tShirt.setBrand("Adidas");
-        tShirt.setEvaluation(random.nextInt(10) + 1);
-        tShirt.setPrice(BigDecimal.valueOf(random.nextInt(100) + 50));
-        tShirt.setOwners(random.nextInt(MAX_OWNERS + 1));
-        tShirt.setSize(TShirt.Size.values()[random.nextInt(TShirt.Size.values().length)]);
-        tShirt.setOwner(userSeeder.seedUsers(1).get(0));
-        tShirt.setPattern(TShirt.Pattern.values()[random.nextInt(TShirt.Pattern.values().length)]);
-        return tShirt;
+        User owner = userSeeder.seedUsers(1).get(0);
+        CarrierSeeder carrierSeeder = new CarrierSeeder();
+        Carrier carrier = carrierSeeder.seedCarriers(1).get(0);
+        return new TShirt("A nice t-shirt", owner, "Adidas", random.nextInt(10) + 1,
+                BigDecimal.valueOf(random.nextInt(100) + 50), random.nextInt(MAX_OWNERS + 1),
+                TShirt.Size.values()[random.nextInt(TShirt.Size.values().length)],
+                TShirt.Pattern.values()[random.nextInt(TShirt.Pattern.values().length)], carrier);
     }
+
 }

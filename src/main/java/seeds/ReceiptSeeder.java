@@ -1,10 +1,10 @@
 package seeds;
 
-import vintage.item.*;
-import vintage.order.Order;
-import vintage.order.receipt.BuyerReceipt;
-import vintage.order.receipt.SellerReceipt;
-import vintage.user.*;
+import vintage.module.item.*;
+import vintage.module.order.Order;
+import vintage.module.order.receipt.BuyerReceipt;
+import vintage.module.order.receipt.SellerReceipt;
+import vintage.module.user.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

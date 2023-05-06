@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seeds.ReceiptSeeder;
-import vintage.order.receipt.*;
-import vintage.user.Address;
-import vintage.user.User;
-
+import vintage.module.order.receipt.*;
+import vintage.module.others.Address;
+import vintage.module.user.User;
 public class UserSeeder{
 
     public static List<User> seedUsers(int numUsers) {
         List<User> users = new ArrayList<>();
+        ArrayList<Receipt> receipts = new ArrayList<>();
         for (int i = 0; i < numUsers; i++) {
-            User user = new User();
-            user.setName("User " + i);
-            user.setEmail("user" + i + "@example.com");
-            user.setResidence(new Address("123 Main St", "Anytown", "Anystate", "12345"));
-            user.setTaxNumber("123-45-6789");
+            User user = new User("User " + i, "user" + i + "@example.com", new Address("123 Main St", "Anytown", "Anystate", "12345"), "123-45-6789", receipts);
             ReceiptSeeder receiptSeeder = new ReceiptSeeder();
             List<BuyerReceipt> buyerReceipts = receiptSeeder.generateBuyerReceipts(3);
             List<SellerReceipt> sellerReceipts = receiptSeeder.generateSellerReceipts(3);
