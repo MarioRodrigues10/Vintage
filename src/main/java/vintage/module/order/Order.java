@@ -333,6 +333,7 @@ public class Order implements Serializable {
 
                 ((SellerReceipt) sellerReceipt).setBuyer(this.buyer);
                 sellerReceipt.setEmissionDate(this.expeditionDate);
+                sellerReceipt.setOrderID(this.id);
             }
             sellerReceipt.addItem(item);
         }

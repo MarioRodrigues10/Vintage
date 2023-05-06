@@ -101,6 +101,7 @@ public class SellerReceipt implements Receipt {
      * Sets the ID of a Receipt's Order
      * @param orderID ID of a Receipt's Order
      */
+    @Override
     public void setOrderID(UUID orderID) { this.orderID = orderID; }
 
     /**

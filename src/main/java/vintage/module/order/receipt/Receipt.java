@@ -20,6 +20,7 @@ public interface Receipt {
     public List<Item> getItems();
     public LocalDate getEmissionDate();
     public void setTotalPrice(BigDecimal totalPrice);
+    public void setOrderID(UUID orderID);
     public void setItems(List<Item> items);
     public void setEmissionDate(LocalDate emissionDate);
     public void addItem(Item item);
