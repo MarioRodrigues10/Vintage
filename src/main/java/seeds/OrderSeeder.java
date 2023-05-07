@@ -19,6 +19,7 @@ public class OrderSeeder {
         ItemSeeder itemSeeder = new ItemSeeder();
         UserListings listings = UserListings.getInstance();
         OrderListings orderListings = OrderListings.getInstance();
+
         for(int i=0; i< n ; i++) {
 
             User buyer = UserSeeder.seedUsers(1).get(0);
@@ -34,7 +35,6 @@ public class OrderSeeder {
             Order order = new Order(buyer, items, Order.Size.MEDIUM, Order.State.PENDING, new BigDecimal("249.97"), new Address("123 Main St", "Anytown", "Anystate", "12345"));
             orders.add(order);
             orderListings.addOrder(buyer.getId(), order);
-
         }
 
         return orders;

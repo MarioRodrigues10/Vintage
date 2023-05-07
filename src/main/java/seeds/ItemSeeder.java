@@ -16,21 +16,20 @@ public class ItemSeeder {
 
     public List<Item> generateItems(int n) {
         List<Item> items = new ArrayList<>();
-        ItemListings listings = new ItemListings();
         for (int i = 0; i < n; i++) {
             int itemType = random.nextInt(3);
             switch (itemType) {
                 case 0:
                     items.add(generateBag());
-                    listings.addItem(items.get(i).getUser().getId(), items.get(i));
+                    items.get(i).getUser().addItem(items.get(i));
                     break;
                 case 1:
                     items.add(generateShoes());
-                    listings.addItem(items.get(i).getUser().getId(), items.get(i));
+                    items.get(i).getUser().addItem(items.get(i));
                     break;
                 case 2:
                     items.add(generateTShirt());
-                    listings.addItem(items.get(i).getUser().getId(), items.get(i));
+                    items.get(i).getUser().addItem(items.get(i));
                     break;
             }
         }
