@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+
 public class UserController {
 
       public static User registerUser(Map<String, String> user) {
@@ -41,6 +42,21 @@ public class UserController {
           vintage.view.UserView.showReceipts(receiptStrings);
       }
 
+      public static List<String> getItemStringsByCategory(Map<String, User> usersMap,Integer option) {
+          List<Item> items = UserListings.getInstance().getAllItems();
+          List<String> categorizedItemStrings = new ArrayList<String>();
+
+          switch (option) {
+              case 1:
+                  for (Item item : items) if (item instanceof TShirt) categorizedItemStrings.add(item.toString());
+                  break;
+              case 2:
+                  for (Item item : items) if (item instanceof Shoes) categorizedItemStrings.add(item.toString());
+              case 3:
+                  for (Item item : items) if (item instanceof Bag) categorizedItemStrings.add(item.toString());
+          }
+          return categorizedItemStrings;
+      }
       public static void showUserItems(User user) {
           List<Item> items = user.getItems();
           List<String> itemStrings = new ArrayList<String>();
@@ -51,13 +67,16 @@ public class UserController {
 
           int option = vintage.view.UserView.showItems(itemStrings);
 
-          if (option == 1) {
-              createUserItem(user);
-              return;
-          }
-          else {
-              deleteUserItem(user);
-              return;
+          switch (option) {
+              case 1:
+                  createUserItem(user);
+                  return;
+              case 2:
+                  deleteUserItem(user);
+                  return;
+              case 3:
+                  // goes back a page
+                  return;
           }
       }
 

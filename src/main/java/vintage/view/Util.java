@@ -3,7 +3,8 @@ package vintage.view;
 import java.time.LocalDate;
 import java.time.format.*;
 import java.util.Scanner;
-import java.io.IOException;
+import java.util.List;
+import java.lang.Double;
 
 /**
  * Type Util.
@@ -166,7 +167,7 @@ public class Util {
 
     public static String inputEmail() {
         String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-        String email = Util.input("\nEmail: ");
+        String email = Util.input("Email: ");
 
         while (email.matches(emailRegex) == false) {
             email = Util.input("You need to type a correct email: ");
@@ -176,7 +177,7 @@ public class Util {
 
     public static String inputEvaluation() {
         String evaluationRegex = "^[1-9]|10$";
-        String evaluation = Util.input("\nEvaluation: ");
+        String evaluation = Util.input("Evaluation: ");
 
         while (evaluation.matches(evaluationRegex) == false) {
             evaluation = Util.input("You need to type a correct evaluation: ");
@@ -185,7 +186,7 @@ public class Util {
     }
 
     public static String inputLaces() {
-        String laces = Util.input("\nLaces: ");
+        String laces = Util.input("Laces: ");
 
         while (laces.equals("y") || laces.equals("n") || laces.equals("Y") || laces.equals("N")) {
             laces = Util.input("You need to type either 'y' or 'n': ");
@@ -195,7 +196,7 @@ public class Util {
 
     public static String inputPrice() {
         String priceRegex = "^[0-9]+(\\.[0-9]{1,2})?$";
-        String price = Util.input("\nPrice: ");
+        String price = Util.input("Price: ");
 
         while (price.matches(priceRegex) == false) {
             price = Util.input("You need to type a correct price: ");
@@ -204,7 +205,7 @@ public class Util {
     }
 
     public static String inputSize() {
-        String size = Util.input("\nSize [S/M/L/XL]: ");
+        String size = Util.input("Size [S/M/L/XL]: ");
 
         while (size.equals("S") || size.equals("M") || size.equals("L") || size.equals("XL")) {
             size = Util.input("You need to type a correct size: ");
@@ -214,7 +215,7 @@ public class Util {
 
     public static String inputTaxNumber() {
         String numberRegex = "^\\d{9}$";
-        String taxNumber = Util.input("\nTax Number: ");
+        String taxNumber = Util.input("Tax Number: ");
 
         while (taxNumber.matches(numberRegex) == false) {
             taxNumber = Util.input("You need to type a correct Tax Number (9 digits): ");
@@ -225,5 +226,12 @@ public class Util {
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public static List<String> getPage(List<String> items, int pageNumber) {
+        int startIndex = (pageNumber - 1) * 5;
+        if (startIndex < 0) startIndex = 0;
+        int endIndex = Math.min(startIndex + 5, items.size());
+        return items.subList(startIndex, endIndex);
     }
 }

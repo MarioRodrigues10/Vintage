@@ -57,6 +57,7 @@ public class User implements Serializable {
         this.residence = user.getResidence();
         this.taxNumber = user.getTaxNumber();
         this.receipts = user.getReceipts();
+        this.items = user.getItems();
     }
 
     /**
@@ -240,6 +241,8 @@ public class User implements Serializable {
     public void removeReceipt(Receipt receipt) {
         receipts.remove(receipt);
     }
+
+    public void setItems(List<Item> items) { this.items = items; }
 
     /**
      * Returns a boolean indicating whether the user is equal to another user.

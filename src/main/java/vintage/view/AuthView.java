@@ -32,6 +32,7 @@ public class AuthView {
 
     public static Map<String, String> signUpMenu (){
         Util.clearScreen();
+        Util.printHeader();
         Util.println("SignUp");
         Map<String, String> user = inputUser();
         return user;
