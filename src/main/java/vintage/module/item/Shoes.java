@@ -132,7 +132,8 @@ public class Shoes extends Item implements Serializable {
     @Override
     public String toString() {
         return "Shoes{" +
-                "size=" + size +
+                "id=" + getId() +
+                ", size=" + size +
                 ", laces=" + laces +
                 ", color='" + color + '\'' +
                 ", release=" + release +

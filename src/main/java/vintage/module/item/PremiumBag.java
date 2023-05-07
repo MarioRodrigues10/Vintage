@@ -40,4 +40,21 @@ public class PremiumBag extends Bag implements Serializable {
 
         return price;
     }
+
+    @Override
+    public String toString() {
+        return "PremiumBag{" +
+                "id=" + getId() +
+                ", owner=" + getOwner() +
+                ", description='" + getDescription() + '\'' +
+                ", brand='" + getBrand() + '\'' +
+                ", evaluation=" + getEvaluation() +
+                ", price=" + getPrice() +
+                ", owners=" + getOwners() +
+                ", size=" + getSize() +
+                ", material='" + getMaterial() + '\'' +
+                ", release=" + getRelease() +
+                ", carrier=" + getCarrier() +
+                '}';
+    }
 }
