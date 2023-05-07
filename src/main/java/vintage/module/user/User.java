@@ -22,6 +22,7 @@ public class User implements Serializable {
     private Address residence; /* ! Residence of a User */
     private String taxNumber; /* ! Tax number of a User */
     private List<Receipt> receipts = new ArrayList<Receipt>();
+    private List<Item> items;
 
     /**
      * Creates a new User object with the specified properties.
@@ -31,13 +32,14 @@ public class User implements Serializable {
      * @param residence a Residence object containing the residence of the user
      * @param taxNumber a String containing the tax number of the user
      */
-    public User(String name, String email, Address residence, String taxNumber, ArrayList<Receipt> receipts) {
+    public User(String name, String email, Address residence, String taxNumber, ArrayList<Receipt> receipts, ArrayList<Item> items) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
         this.residence = residence;
         this.taxNumber = taxNumber;
         this.receipts = receipts;
+        this.items = items;
     }
 
 
@@ -53,6 +55,7 @@ public class User implements Serializable {
         this.residence = user.getResidence();
         this.taxNumber = user.getTaxNumber();
         this.receipts = user.getReceipts();
+        this.items = user.getItems();
     }
 
     /**
@@ -194,6 +197,10 @@ public class User implements Serializable {
     public void removeReceipt(Receipt receipt) {
         receipts.remove(receipt);
     }
+
+    public List<Item> getItems() { return items; }
+
+    public void setItems(List<Item> items) { this.items = items; }
 
     /**
      * Returns a boolean indicating whether the user is equal to another user.

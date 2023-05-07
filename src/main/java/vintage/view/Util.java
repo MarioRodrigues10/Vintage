@@ -3,7 +3,8 @@ package vintage.view;
 import java.time.LocalDate;
 import java.time.format.*;
 import java.util.Scanner;
-import java.io.IOException;
+import java.util.List;
+import java.lang.Double;
 
 /**
  * Type Util.
@@ -176,7 +177,7 @@ public class Util {
 
     public static String inputTaxNumber() {
         String numberRegex = "^\\d{9}$";
-        String taxNumber = Util.input("\nTax Number: ");
+        String taxNumber = Util.input("Tax Number: ");
 
         while (taxNumber.matches(numberRegex) == false) {
             taxNumber = Util.input("You need to type a correct Tax Number (9 digits): ");
@@ -187,5 +188,12 @@ public class Util {
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public static List<String> getPage(List<String> items, int pageNumber) {
+        int startIndex = (pageNumber - 1) * 5;
+        if (startIndex < 0) startIndex = 0;
+        int endIndex = Math.min(startIndex + 5, items.size());
+        return items.subList(startIndex, endIndex);
     }
 }

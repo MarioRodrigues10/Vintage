@@ -1,6 +1,10 @@
 package vintage.module.user;
 
+import vintage.module.item.Item;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -81,5 +85,15 @@ public class UserListings implements Serializable {
      * @return boolean
      */
     public boolean isEmailAvailable(String email) { return users.containsKey(email); }
+
+    public List<Item> getAllItems() {
+        List<User> users = new ArrayList<User>(this.users.values());
+        List<Item> items = new ArrayList<Item>();
+
+        for(User user : users) {
+            items.addAll(user.getItems());
+        }
+        return items;
+    }
 
 }
