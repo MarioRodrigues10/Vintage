@@ -21,11 +21,7 @@ public class OrderTest {
 
         User user = new User("John Doe", "johndoe@mail.com",
                 new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"),
-<<<<<<< HEAD
-                "123456789", null, null);
-=======
                 "123456789", null, new ArrayList<Item>());
->>>>>>> master
 
         Item item1 = new Shoes("Nike", user, "Air Max", 10, BigDecimal.valueOf(100),
                 9, 0, false, "", 2000, carrier);

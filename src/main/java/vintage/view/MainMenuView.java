@@ -41,7 +41,7 @@ public class MainMenuView {
         Integer i = 1;
         for(String item : items){
             Util.print("[" + i + "] " + items.get(i-1));
-            System.out.println("====================================");
+            System.out.println("\n====================================");
             i++;
         }
         Util.println("[6] Back");

@@ -33,6 +33,7 @@ public class UserView {
 
     private static void printItemsList(List<String> itemStrings) {
         Util.clearScreen();
+        Util.printHeader();
         System.out.println("Your items are: ");
         System.out.println("====================================");
         for (String itemString : itemStrings) {
@@ -43,6 +44,7 @@ public class UserView {
 
     public static Map<String, String> createUserItem() {
         Util.clearScreen();
+        Util.printHeader();
 
         System.out.println("What type of item do you want to create?");
         System.out.println("[1] T-Shirt");

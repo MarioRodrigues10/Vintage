@@ -67,13 +67,16 @@ public class UserController {
 
           int option = vintage.view.UserView.showItems(itemStrings);
 
-          if (option == 1) {
-              createUserItem(user);
-              return;
-          }
-          else {
-              deleteUserItem(user);
-              return;
+          switch (option) {
+              case 1:
+                  createUserItem(user);
+                  return;
+              case 2:
+                  deleteUserItem(user);
+                  return;
+              case 3:
+                  // goes back a page
+                  return;
           }
       }
 

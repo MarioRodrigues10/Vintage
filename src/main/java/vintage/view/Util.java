@@ -167,7 +167,7 @@ public class Util {
 
     public static String inputEmail() {
         String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-        String email = Util.input("\nEmail: ");
+        String email = Util.input("Email: ");
 
         while (email.matches(emailRegex) == false) {
             email = Util.input("You need to type a correct email: ");
@@ -177,7 +177,7 @@ public class Util {
 
     public static String inputEvaluation() {
         String evaluationRegex = "^[1-9]|10$";
-        String evaluation = Util.input("\nEvaluation: ");
+        String evaluation = Util.input("Evaluation: ");
 
         while (evaluation.matches(evaluationRegex) == false) {
             evaluation = Util.input("You need to type a correct evaluation: ");
@@ -186,7 +186,7 @@ public class Util {
     }
 
     public static String inputLaces() {
-        String laces = Util.input("\nLaces: ");
+        String laces = Util.input("Laces: ");
 
         while (laces.equals("y") || laces.equals("n") || laces.equals("Y") || laces.equals("N")) {
             laces = Util.input("You need to type either 'y' or 'n': ");
@@ -196,7 +196,7 @@ public class Util {
 
     public static String inputPrice() {
         String priceRegex = "^[0-9]+(\\.[0-9]{1,2})?$";
-        String price = Util.input("\nPrice: ");
+        String price = Util.input("Price: ");
 
         while (price.matches(priceRegex) == false) {
             price = Util.input("You need to type a correct price: ");
@@ -205,7 +205,7 @@ public class Util {
     }
 
     public static String inputSize() {
-        String size = Util.input("\nSize [S/M/L/XL]: ");
+        String size = Util.input("Size [S/M/L/XL]: ");
 
         while (size.equals("S") || size.equals("M") || size.equals("L") || size.equals("XL")) {
             size = Util.input("You need to type a correct size: ");
