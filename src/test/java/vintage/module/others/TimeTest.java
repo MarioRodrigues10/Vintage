@@ -24,10 +24,10 @@ public class TimeTest {
 
         User user = new User("John Doe", "johndoe@mail.com",
                 new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"),
-                "123456789", new ArrayList<Receipt>());
+                "123456789", new ArrayList<Receipt>(), new ArrayList<Item>());
         User seller = new User("Magic Mike", "magicmike@mail.com",
                 new Address("USA", "Los Angeles", "Hollywood", "4710-000"),
-                "123456789", new ArrayList<Receipt>());
+                "123456789", new ArrayList<Receipt>(), new ArrayList<Item>());
 
         Carrier ups = new Carrier("UPS", BigDecimal.valueOf(1), false, 3);
 

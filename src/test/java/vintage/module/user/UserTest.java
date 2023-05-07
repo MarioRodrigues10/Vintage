@@ -22,7 +22,7 @@ public class UserTest {
     public void userTest() {
         User user = new User("John Doe", "johndoe@mail.com",
                 new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"),
-                "123456789", null);
+                "123456789", null, new ArrayList<Item>());
 
         assertEquals("John Doe", user.getName());
         assertEquals("johndoe@mail.com", user.getEmail());
@@ -37,10 +37,10 @@ public class UserTest {
     public void createOrderTest() throws Exception {
         User user = new User("John Doe", "johndoe@mail.com",
                 new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"),
-                "123456789", new ArrayList<Receipt>());
+                "123456789", new ArrayList<Receipt>(), new ArrayList<Item>());
         User seller = new User("Mike Doe", "mikedoe@mail.com",
                 new Address("Portugal", "New York", "Rua dos Bares", "4710-000"),
-                "123456789", new ArrayList<Receipt>());
+                "123456789", new ArrayList<Receipt>(), new ArrayList<Item>());
 
         OrderListings orderListings = OrderListings.getInstance();
 
