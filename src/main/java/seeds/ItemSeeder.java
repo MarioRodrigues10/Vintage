@@ -1,9 +1,6 @@
 package seeds;
 
-import vintage.module.item.Bag;
-import vintage.module.item.Item;
-import vintage.module.item.Shoes;
-import vintage.module.item.TShirt;
+import vintage.module.item.*;
 import vintage.module.item.carrier.Carrier;
 import vintage.module.user.User;
 
@@ -19,17 +16,21 @@ public class ItemSeeder {
 
     public List<Item> generateItems(int n) {
         List<Item> items = new ArrayList<>();
+        ItemListings listings = new ItemListings();
         for (int i = 0; i < n; i++) {
             int itemType = random.nextInt(3);
             switch (itemType) {
                 case 0:
                     items.add(generateBag());
+                    listings.addItem(items.get(i).getUser().getId(), items.get(i));
                     break;
                 case 1:
                     items.add(generateShoes());
+                    listings.addItem(items.get(i).getUser().getId(), items.get(i));
                     break;
                 case 2:
                     items.add(generateTShirt());
+                    listings.addItem(items.get(i).getUser().getId(), items.get(i));
                     break;
             }
         }
