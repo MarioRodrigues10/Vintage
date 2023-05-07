@@ -6,6 +6,7 @@ import java.util.*;
 
 import vintage.module.item.*;
 import vintage.module.order.Order;
+import vintage.module.order.OrderListings;
 import vintage.module.others.Address;
 import vintage.module.user.*;
 import java.util.Random;
@@ -16,10 +17,13 @@ public class OrderSeeder {
         List<Order> orders = new ArrayList<Order>();
         Random random = new Random();
         ItemSeeder itemSeeder = new ItemSeeder();
+        UserListings listings = UserListings.getInstance();
+        OrderListings orderListings = OrderListings.getInstance();
 
         for(int i=0; i< n ; i++) {
 
             User buyer = UserSeeder.seedUsers(1).get(0);
+            listings.addUser(buyer);
 
             Map<Item, Order.State> items = new HashMap<>();
 
@@ -30,6 +34,7 @@ public class OrderSeeder {
             }
             Order order = new Order(buyer, items, Order.Size.MEDIUM, Order.State.PENDING, new BigDecimal("249.97"), new Address("123 Main St", "Anytown", "Anystate", "12345"));
             orders.add(order);
+            orderListings.addOrder(buyer.getId(), order);
         }
 
         return orders;

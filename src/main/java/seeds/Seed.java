@@ -13,7 +13,6 @@ public class Seed {
 
     public static void main(String[] args) {
         ItemSeeder itemSeeder = new ItemSeeder();
-        List<User> users = UserSeeder.seedUsers(5);
         List<Carrier> carriers = CarrierSeeder.seedCarriers(5);
         List<Item> items = itemSeeder.generateItems(5);
         List<Order> orders = OrderSeeder.seedOrder(5);

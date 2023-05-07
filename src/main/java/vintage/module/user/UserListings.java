@@ -26,7 +26,7 @@ public class UserListings implements Serializable {
     /**
      * Creates a new UserList object.
      */
-    private void UserListings() {
+    private UserListings() {
         this.users = new HashMap<String, User>();
     }
 

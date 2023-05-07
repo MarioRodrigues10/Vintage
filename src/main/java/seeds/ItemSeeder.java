@@ -1,9 +1,6 @@
 package seeds;
 
-import vintage.module.item.Bag;
-import vintage.module.item.Item;
-import vintage.module.item.Shoes;
-import vintage.module.item.TShirt;
+import vintage.module.item.*;
 import vintage.module.item.carrier.Carrier;
 import vintage.module.user.User;
 
@@ -24,12 +21,15 @@ public class ItemSeeder {
             switch (itemType) {
                 case 0:
                     items.add(generateBag());
+                    items.get(i).getUser().addItem(items.get(i));
                     break;
                 case 1:
                     items.add(generateShoes());
+                    items.get(i).getUser().addItem(items.get(i));
                     break;
                 case 2:
                     items.add(generateTShirt());
+                    items.get(i).getUser().addItem(items.get(i));
                     break;
             }
         }

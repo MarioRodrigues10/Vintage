@@ -1,7 +1,6 @@
 package vintage.module.item;
 import vintage.module.item.carrier.Carrier;
-import vintage.module.item.Bag;
-import vintage.module.others.Time;
+import vintage.module.time.Time;
 import vintage.module.user.User;
 
 import java.io.Serializable;
@@ -40,5 +39,22 @@ public class PremiumBag extends Bag implements Serializable {
         price = price.add(price.multiply(BigDecimal.valueOf(increasingPercentage * yearsSinceRelease)));
 
         return price;
+    }
+
+    @Override
+    public String toString() {
+        return "PremiumBag{" +
+                "id=" + getId() +
+                ", owner=" + getOwner() +
+                ", description='" + getDescription() + '\'' +
+                ", brand='" + getBrand() + '\'' +
+                ", evaluation=" + getEvaluation() +
+                ", price=" + getPrice() +
+                ", owners=" + getOwners() +
+                ", size=" + getSize() +
+                ", material='" + getMaterial() + '\'' +
+                ", release=" + getRelease() +
+                ", carrier=" + getCarrier() +
+                '}';
     }
 }

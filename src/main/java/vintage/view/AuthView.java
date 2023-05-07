@@ -6,6 +6,7 @@ import java.util.Map;
 public class AuthView {
 
     public static Map<String, String> loginMenu (){
+        Util.clearScreen();
         Map<String, String> user = new HashMap<String, String>();
 
         Util.println("Login");
@@ -30,15 +31,14 @@ public class AuthView {
     }
 
     public static Map<String, String> signUpMenu (){
-
+        Util.clearScreen();
         Util.println("SignUp");
         Map<String, String> user = inputUser();
-
         return user;
     }
 
-    public static Integer authMenu () {
-
+    public static Integer menu () {
+        Util.clearScreen();
         Util.printHeader();
         Util.println("\n[1] LOGIN");
         Util.println("[2] SIGNUP");

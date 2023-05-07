@@ -101,7 +101,8 @@ public class TShirt extends Item implements Serializable{
     @Override
     public String toString() {
         return "TShirt{" +
-                "size=" + size +
+                "id=" + getId() +
+                ", size=" + size +
                 ", pattern=" + pattern +
                 ", description='" + getDescription() + '\'' +
                 ", brand='" + getBrand() + '\'' +
