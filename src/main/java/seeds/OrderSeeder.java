@@ -17,8 +17,8 @@ public class OrderSeeder {
         List<Order> orders = new ArrayList<Order>();
         Random random = new Random();
         ItemSeeder itemSeeder = new ItemSeeder();
-        UserListings listings = new UserListings();
-        OrderListings orderListings = new OrderListings();
+        UserListings listings = UserListings.getInstance();
+        OrderListings orderListings = OrderListings.getInstance();
         for(int i=0; i< n ; i++) {
 
             User buyer = UserSeeder.seedUsers(1).get(0);

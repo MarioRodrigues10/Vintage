@@ -14,7 +14,7 @@ public class UserSeeder{
     public static List<User> seedUsers(int numUsers) {
         List<User> users = new ArrayList<>();
         ArrayList<Receipt> receipts = new ArrayList<>();
-        UserListings userListings = new UserListings();
+        UserListings userListings = UserListings.getInstance();
         for (int i = 0; i < numUsers; i++) {
             List<BuyerReceipt> buyerReceipts = ReceiptSeeder.generateBuyerReceipts(3);
             List<SellerReceipt> sellerReceipts = ReceiptSeeder.generateSellerReceipts(3);

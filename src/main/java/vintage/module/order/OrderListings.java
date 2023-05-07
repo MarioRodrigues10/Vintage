@@ -24,7 +24,7 @@ public class OrderListings implements Serializable {
     /**
      * Creates a new OrderListings object with default properties.
      */
-    public OrderListings() {
+    private OrderListings() {
         this.orders = new HashMap<UUID, List<Order>>();
     }
 
