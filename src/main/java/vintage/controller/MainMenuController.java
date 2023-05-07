@@ -1,11 +1,13 @@
 package vintage.controller;
 
 import vintage.Main;
+import vintage.module.user.User;
 import vintage.view.MainMenuView;
+import vintage.view.UserView;
 
 public class MainMenuController {
 
-    public static void init() {
+    public static void init(User user) {
         Integer option = MainMenuView.menu();
 
         switch (option) {
@@ -16,6 +18,8 @@ public class MainMenuController {
             case 3:
                 break;
             case 4:
+                System.out.println("My Receipts");
+                UserController.showUserReceipts(user);
                 break;
             case 5:
                 break;
