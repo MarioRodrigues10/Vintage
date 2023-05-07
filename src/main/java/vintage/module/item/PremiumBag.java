@@ -1,7 +1,6 @@
 package vintage.module.item;
 import vintage.module.item.carrier.Carrier;
-import vintage.module.item.Bag;
-import vintage.module.others.Time;
+import vintage.module.time.Time;
 import vintage.module.user.User;
 
 import java.io.Serializable;

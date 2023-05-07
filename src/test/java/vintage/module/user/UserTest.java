@@ -34,7 +34,7 @@ public class UserTest {
      * Tests the order interface methods in the User class.
      */
     @Test
-    public void createOrderTest() {
+    public void createOrderTest() throws Exception {
         User user = new User("John Doe", "johndoe@mail.com",
                 new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"),
                 "123456789", new ArrayList<Receipt>());
@@ -53,22 +53,22 @@ public class UserTest {
         Item bag4 = new Bag("A nice bag", seller, "Louis Vuitton", 10,
                 BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, null);
 
-        UUID orderId = user.createOrder();
-        user.addItemToOrder(bag1);
+        Order order = user.getPendingOrder();
+        order.addItem(bag1);
 
         // Check if the user tries to create another order it returns the already existing pending one
-        assertEquals(orderId, user.createOrder());
 
-        Order currentOrder = orderListings.getUserPendindOrder(user);
+        Order currentOrder = orderListings.getUserPendingOrder(user);
         assertEquals(Order.State.PENDING, currentOrder.getState());
         assertEquals(Order.Size.SMALL, currentOrder.getSize());
 
-        user.addItemToOrder(bag2);
-        user.addItemToOrder(bag3);
-        user.addItemToOrder(bag4);
+        order.addItem(bag2);
+        order.addItem(bag3);
+        order.addItem(bag4);
         assertEquals(Order.Size.MEDIUM, currentOrder.getSize());
 
-        user.finishPendingOrder();
+
+        currentOrder.finishOrder();
         assertEquals(Order.State.FINISHED, currentOrder.getState());
     }
 }

@@ -212,7 +212,7 @@ public class User implements Serializable {
      * @return a Receipt object containing the receipt of the order
      */
     public Receipt getOrderIdReceipt(UUID orderId) {
-        for (Receipt receipt : receipts) {
+        for (Receipt receipt : this.receipts) {
             if (receipt.getOrderID().equals(orderId)) {
                 return receipt;
             }
@@ -225,7 +225,7 @@ public class User implements Serializable {
      * @return the ID of the order
      */
     public UUID createOrder() {
-        Order currentOrder = OrderListings.getInstance().getUserPendindOrder(this);
+        Order currentOrder = OrderListings.getInstance().getUserPendingOrder(this);
         if (currentOrder == null) {
             currentOrder = new Order(this, new HashMap<Item, Order.State>(), Order.Size.SMALL,
                     Order.State.PENDING, BigDecimal.valueOf(0), this.residence);
@@ -237,36 +237,11 @@ public class User implements Serializable {
     }
 
     /**
-     * Adds an item to the order of a user.
-     *
-     * @param item
-     * @return the order with the added item
-     */
-    public Order addItemToOrder(Item item) {
-        Order currentOrder = OrderListings.getInstance().getUserPendindOrder(this);
-        if (currentOrder == null) {
-            return null;
-        }
-        currentOrder.addItem(item);
-        return currentOrder;
-    }
-
-    /**
-     * Finishes the pending order of a user.
-     */
-    public void finishPendingOrder() {
-        Order currentOrder = OrderListings.getInstance().getUserPendindOrder(this);
-        if (currentOrder != null) {
-            currentOrder.finishOrder();
-        }
-    }
-
-    /**
      * Returns the pending order of a user.
      * @return the pending order
      */
     public Order getPendingOrder() {
-        return OrderListings.getInstance().getUserPendindOrder(this);
+        return OrderListings.getInstance().getUserPendingOrder(this);
     }
 
     /**

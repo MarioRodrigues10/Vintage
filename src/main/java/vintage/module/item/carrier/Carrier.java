@@ -137,6 +137,16 @@ public class Carrier {
         this.premium = premium;
     }
 
+
+    /**
+     * Sets the delivery time of the carrier.
+     *
+     * @param deliveryTime an integer value representing the delivery time of the carrier
+     */
+    public void setDeliveryTime(int deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
     /**
      * Returns a String representation of the Carrier object.
      *
