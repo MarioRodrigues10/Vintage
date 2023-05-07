@@ -21,7 +21,7 @@ public class User implements Serializable {
     private String email; /* ! Email of a User */
     private Address residence; /* ! Residence of a User */
     private String taxNumber; /* ! Tax number of a User */
-    private List<Receipt> receipts = new ArrayList<Receipt>();
+    private List<Receipt> receipts;
     private List<Item> items;
 
     /**
@@ -31,8 +31,10 @@ public class User implements Serializable {
      * @param email a String containing the email of the user
      * @param residence a Residence object containing the residence of the user
      * @param taxNumber a String containing the tax number of the user
+     * @param receipts a List of Receipt objects containing the receipts of the user
+     * @param items a List of Item objects containing the items of the user
      */
-    public User(String name, String email, Address residence, String taxNumber, ArrayList<Receipt> receipts, ArrayList<Item> items) {
+    public User(String name, String email, Address residence, String taxNumber, List<Receipt> receipts, List<Item> items) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.email = email;
@@ -131,6 +133,29 @@ public class User implements Serializable {
     }
 
     /**
+     * Returns the items of a User.
+     *
+     * @return the items of a User
+     */
+    public List<Item> getItems() {
+        return List.copyOf(this.items);
+    }
+
+    /**
+     * Returns the items of a User with its given id.
+     * @param id
+     * @return the item of a User with its given id
+     */
+    public Item getItem(UUID id) {
+        for (Item item : items) {
+            if (item.getId().equals(id)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Sets the tax number of a User.
      *
      * @param taxNumber a String containing the tax number of the user
@@ -185,10 +210,29 @@ public class User implements Serializable {
     public void setReceipts(ArrayList<Receipt> receipts) { this.receipts = receipts; }
 
     /**
+     * Sets the items of a User.
+     *
+     * @param items an Item's ArrayList containing the items of the user
+     */
+    public void setItems(ArrayList<Item> items) { this.items = List.copyOf(items); }
+
+    /**
      * Adds a Receipt to a Receipt List
      * @param receipt
      */
     public void addReceipt(Receipt receipt) { this.receipts.add(receipt); }
+
+    /**
+     * Adds an Item to a Item List
+     * @param item
+     */
+    public void addItem(Item item) {
+        this.items.add(item);
+    }
+
+    public void removeItem(Item item) {
+        this.items.remove(item);
+    }
 
     /**
      * Removes a Receipt to a Receipt List
@@ -197,8 +241,6 @@ public class User implements Serializable {
     public void removeReceipt(Receipt receipt) {
         receipts.remove(receipt);
     }
-
-    public List<Item> getItems() { return items; }
 
     public void setItems(List<Item> items) { this.items = items; }
 

@@ -22,7 +22,11 @@ public class UserTest {
     public void userTest() {
         User user = new User("John Doe", "johndoe@mail.com",
                 new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"),
+<<<<<<< HEAD
                 "123456789", null, null);
+=======
+                "123456789", null, new ArrayList<Item>());
+>>>>>>> master
 
         assertEquals("John Doe", user.getName());
         assertEquals("johndoe@mail.com", user.getEmail());

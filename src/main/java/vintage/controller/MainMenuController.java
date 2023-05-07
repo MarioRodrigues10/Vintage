@@ -21,9 +21,9 @@ public class MainMenuController {
             case 2:
                 break;
             case 3:
+                UserController.showUserItems(user);
                 break;
             case 4:
-                System.out.println("My Receipts");
                 UserController.showUserReceipts(user);
                 break;
             case 5:

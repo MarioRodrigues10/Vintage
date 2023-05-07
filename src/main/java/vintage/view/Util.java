@@ -175,6 +175,44 @@ public class Util {
         return email;
     }
 
+    public static String inputEvaluation() {
+        String evaluationRegex = "^[1-9]|10$";
+        String evaluation = Util.input("\nEvaluation: ");
+
+        while (evaluation.matches(evaluationRegex) == false) {
+            evaluation = Util.input("You need to type a correct evaluation: ");
+        }
+        return evaluation;
+    }
+
+    public static String inputLaces() {
+        String laces = Util.input("\nLaces: ");
+
+        while (laces.equals("y") || laces.equals("n") || laces.equals("Y") || laces.equals("N")) {
+            laces = Util.input("You need to type either 'y' or 'n': ");
+        }
+        return laces;
+    }
+
+    public static String inputPrice() {
+        String priceRegex = "^[0-9]+(\\.[0-9]{1,2})?$";
+        String price = Util.input("\nPrice: ");
+
+        while (price.matches(priceRegex) == false) {
+            price = Util.input("You need to type a correct price: ");
+        }
+        return price;
+    }
+
+    public static String inputSize() {
+        String size = Util.input("\nSize [S/M/L/XL]: ");
+
+        while (size.equals("S") || size.equals("M") || size.equals("L") || size.equals("XL")) {
+            size = Util.input("You need to type a correct size: ");
+        }
+        return size;
+    }
+
     public static String inputTaxNumber() {
         String numberRegex = "^\\d{9}$";
         String taxNumber = Util.input("Tax Number: ");

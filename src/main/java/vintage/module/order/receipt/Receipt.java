@@ -1,5 +1,6 @@
 package vintage.module.order.receipt;
 
+
 import vintage.module.item.Item;
 import vintage.module.order.Order;
 
@@ -18,8 +19,8 @@ public interface Receipt {
     public BigDecimal getTotalPrice();
     public List<Item> getItems();
     public LocalDate getEmissionDate();
-    public void setOrderID(UUID orderID);
     public void setTotalPrice(BigDecimal totalPrice);
+    public void setOrderID(UUID orderID);
     public void setItems(List<Item> items);
     public void setEmissionDate(LocalDate emissionDate);
     public void addItem(Item item);

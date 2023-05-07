@@ -2,7 +2,7 @@ package vintage.module.order;
 
 import vintage.module.item.Item;
 import vintage.module.order.receipt.BuyerReceipt;
-import vintage.module.order.receipt.Receipt;
+import vintage.module.order.receipt.*;
 import vintage.module.order.receipt.SellerReceipt;
 import vintage.module.time.Time;
 import vintage.module.user.User;
