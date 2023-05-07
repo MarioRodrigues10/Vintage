@@ -9,7 +9,7 @@ import vintage.module.order.Order;
 import vintage.module.order.OrderListings;
 import vintage.module.order.receipt.Receipt;
 import vintage.module.user.User;
-import vintage.time.Time;
+import vintage.module.time.Time;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

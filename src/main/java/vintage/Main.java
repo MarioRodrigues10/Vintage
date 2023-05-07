@@ -11,7 +11,7 @@ public class Main implements Serializable{
 
         while (true) {
             vintage.view.Util.clearScreen();
-            vintage.controller.MainMenuController.init();
+            vintage.controller.MainMenuController.init(user);
             // save changes
         }
     }

@@ -1,4 +1,4 @@
-package vintage.time;
+package vintage.module.time;
 
 import java.time.LocalDate;
 

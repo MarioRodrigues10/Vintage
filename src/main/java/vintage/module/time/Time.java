@@ -1,6 +1,4 @@
-package vintage.time;
-
-import vintage.module.order.OrderListings;
+package vintage.module.time;
 
 import java.time.LocalDate;
 import java.io.Serializable;

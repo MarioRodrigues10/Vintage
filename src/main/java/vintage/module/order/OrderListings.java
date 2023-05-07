@@ -1,9 +1,9 @@
 package vintage.module.order;
 
 import vintage.module.item.Item;
-import vintage.time.Time;
+import vintage.module.time.Time;
 import vintage.module.user.User;
-import vintage.time.TimeObserver;
+import vintage.module.time.TimeObserver;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
