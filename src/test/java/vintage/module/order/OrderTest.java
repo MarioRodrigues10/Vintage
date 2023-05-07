@@ -20,7 +20,7 @@ public class OrderTest {
 
         User user = new User("John Doe", "johndoe@mail.com",
                 new Address("Portugal", "Braga", "Rua dos Bares", "4710-000"),
-                "123456789", null);
+                "123456789", null, null);
 
         Item item1 = new Shoes("Nike", user, "Air Max", 10, BigDecimal.valueOf(100),
                 9, 0, false, "", 2000, carrier);
