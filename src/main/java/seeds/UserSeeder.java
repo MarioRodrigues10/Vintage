@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seeds.ReceiptSeeder;
+import vintage.module.item.Item;
 import vintage.module.order.receipt.*;
 import vintage.module.others.Address;
 import vintage.module.user.User;
 import vintage.module.user.UserListings;
-
 public class UserSeeder{
 
     public static List<User> seedUsers(int numUsers) {
@@ -20,7 +20,9 @@ public class UserSeeder{
             List<SellerReceipt> sellerReceipts = ReceiptSeeder.generateSellerReceipts(3);
             receipts.addAll(buyerReceipts);
             receipts.addAll(sellerReceipts);
-            User user = new User("User " + i, "user" + i + "@example.com", new Address("123 Main St", "Anytown", "Anystate", "12345"), "123-45-6789", receipts);
+            User user = new User("User " + i, "user" + i + "@example.com", new Address("123 Main St",
+                    "Anytown", "Anystate", "12345"), "123-45-6789",
+                    receipts, new ArrayList<Item>());
             users.add(user);
             userListings.addUser(user);
         }

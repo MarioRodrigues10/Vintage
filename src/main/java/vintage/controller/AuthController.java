@@ -12,19 +12,13 @@ public class AuthController {
     public static User loginController() {
         Map<String, String> user = AuthView.loginMenu();
 
-        User newUser = UserListings.getInstance().getUser("email");
-        UserHolder.setUser(newUser);
-
-        return newUser;
+        return UserListings.getInstance().getUser("email");
     }
 
     public static User signUpController() {
         Map<String, String> user = AuthView.signUpMenu();
 
-        User newUser = UserController.registerUser(user);
-        UserHolder.setUser(newUser);
-
-        return newUser;
+        return UserController.registerUser(user);
     }
 
     public static User init() {
