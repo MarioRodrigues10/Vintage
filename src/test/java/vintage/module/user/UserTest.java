@@ -3,6 +3,7 @@ package vintage.module.user;
 import org.junit.Test;
 import vintage.module.item.Bag;
 import vintage.module.item.Item;
+import vintage.module.item.carrier.Carrier;
 import vintage.module.order.Order;
 import vintage.module.order.OrderListings;
 import vintage.module.order.receipt.Receipt;
@@ -43,15 +44,16 @@ public class UserTest {
                 "123456789", new ArrayList<Receipt>(), new ArrayList<Item>());
 
         OrderListings orderListings = OrderListings.getInstance();
+        Carrier carrier = new Carrier("DHL", BigDecimal.valueOf(0.1), false, 1);
 
         Item bag1 = new Bag("A nice bag", seller, "Louis Vuitton", 10,
-                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, null);
+                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, carrier);
         Item bag2 = new Bag("A nice bag", seller, "Louis Vuitton", 10,
-                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, null);
+                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, carrier);
         Item bag3 = new Bag("A nice bag", seller, "Louis Vuitton", 10,
-                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, null);
+                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, carrier);
         Item bag4 = new Bag("A nice bag", seller, "Louis Vuitton", 10,
-                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, null);
+                BigDecimal.valueOf(100), 1, 10, "Cotton", 2018, carrier);
 
         Order order = user.getPendingOrder();
         order.addItem(bag1);
