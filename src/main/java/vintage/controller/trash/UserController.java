@@ -1,4 +1,4 @@
-package vintage.controller;
+package vintage.controller.trash;
 
 import vintage.module.item.Bag;
 import vintage.module.item.Item;
@@ -8,6 +8,7 @@ import vintage.module.order.receipt.Receipt;
 import vintage.module.others.Address;
 import vintage.module.user.User;
 import vintage.module.user.UserListings;
+import vintage.view.trash.UserView;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class UserController {
               receiptStrings.add(receipt.toString());
           }
 
-          vintage.view.UserView.showReceipts(receiptStrings);
+          UserView.showReceipts(receiptStrings);
       }
 
       public static List<String> getItemStringsByCategory(Map<String, User> usersMap,Integer option) {
@@ -65,7 +66,7 @@ public class UserController {
               itemStrings.add(item.toString());
           }
 
-          int option = vintage.view.UserView.showItems(itemStrings);
+          int option = UserView.showItems(itemStrings);
 
           switch (option) {
               case 1:
@@ -81,14 +82,14 @@ public class UserController {
       }
 
       public static void deleteUserItem(User user) {
-          UUID itemId = UUID.fromString(vintage.view.UserView.deleteItem());
+          UUID itemId = UUID.fromString(UserView.deleteItem());
 
           Item item = user.getItem(itemId);
           user.removeItem(item);
       }
 
       public static void createUserItem(User user) {
-          Map<String, String> item = vintage.view.UserView.createUserItem();
+          Map<String, String> item = UserView.createUserItem();
 
             if (item.get("type").equals("tshirt")) {
                 createTShirt(user, item);

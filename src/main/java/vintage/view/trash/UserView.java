@@ -1,4 +1,6 @@
-package vintage.view;
+package vintage.view.trash;
+
+import vintage.view.Util;
 
 import java.util.HashMap;
 import java.util.List;

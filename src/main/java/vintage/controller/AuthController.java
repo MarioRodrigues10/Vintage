@@ -1,9 +1,9 @@
 package vintage.controller;
 
+import vintage.controller.trash.UserController;
 import vintage.module.user.User;
-import vintage.module.user.UserHolder;
 import vintage.module.user.UserListings;
-import vintage.view.AuthView;
+import vintage.view.trash.AuthView;
 
 import java.util.Map;
 

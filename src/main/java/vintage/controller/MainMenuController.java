@@ -2,11 +2,12 @@ package vintage.controller;
 
 import java.util.List;
 
+import vintage.controller.trash.UserController;
 import vintage.module.order.Order;
 import vintage.module.order.OrderListings;
 import vintage.module.user.User;
 import vintage.module.user.UserListings;
-import vintage.view.MainMenuView;
+import vintage.view.trash.MainMenuView;
 import vintage.view.Util;
 
 public class MainMenuController {

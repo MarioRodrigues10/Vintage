@@ -188,7 +188,7 @@ public class Util {
     public static String inputLaces() {
         String laces = Util.input("Laces: ");
 
-        while (laces.equals("y") || laces.equals("n") || laces.equals("Y") || laces.equals("N")) {
+        while (!laces.equals("y") || !laces.equals("n") || !laces.equals("Y") || !laces.equals("N")) {
             laces = Util.input("You need to type either 'y' or 'n': ");
         }
         return laces;
