@@ -12,7 +12,7 @@ public class UserController {
                 ItemController.marketplace(user);
                 break;
             case 2:
-                // TODO: my cart
+                OrderController.userPendingOrder(user);
                 break;
             case 3:
                 ItemController.userItems(user);
