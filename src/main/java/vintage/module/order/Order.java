@@ -276,10 +276,23 @@ public class Order implements Serializable {
      *
      * @return Order
      */
-    public Order removeItemFromOrder(Item item) {
+    public Order removeItem(Item item) {
         items.remove(item);
         return this.clone();
     }
+
+    /**
+     * Removes an Item from an Order
+     * @param itemId
+     */
+     public void removeItemById(UUID itemId) {
+         for (Map.Entry<Item, State> entry : items.entrySet()) {
+             if (entry.getKey().getId().equals(itemId)) {
+                 items.remove(entry.getKey());
+                 break;
+             }
+         }
+     }
 
     public Order clone() {
         return new Order(this);

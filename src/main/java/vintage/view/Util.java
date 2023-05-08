@@ -186,9 +186,9 @@ public class Util {
     }
 
     public static String inputLaces() {
-        String laces = Util.input("Laces: ");
+        String laces = Util.input("Laces [y/n]: ");
 
-        while (laces.equals("y") || laces.equals("n") || laces.equals("Y") || laces.equals("N")) {
+        while (laces.equals("Y") || laces.equals("N")) {
             laces = Util.input("You need to type either 'y' or 'n': ");
         }
         return laces;
@@ -198,7 +198,7 @@ public class Util {
         String priceRegex = "^[0-9]+(\\.[0-9]{1,2})?$";
         String price = Util.input("Price: ");
 
-        while (price.matches(priceRegex) == false) {
+        while (!price.matches(priceRegex)) {
             price = Util.input("You need to type a correct price: ");
         }
         return price;
@@ -207,7 +207,8 @@ public class Util {
     public static String inputSize() {
         String size = Util.input("Size [S/M/L/XL]: ");
 
-        while (size.equals("S") || size.equals("M") || size.equals("L") || size.equals("XL")) {
+        while (size.equals("S") || size.equals("M") || size.equals("L") || size.equals("XL") ||
+                size.equals("s") || size.equals("m") || size.equals("l") || size.equals("xl")) {
             size = Util.input("You need to type a correct size: ");
         }
         return size;
