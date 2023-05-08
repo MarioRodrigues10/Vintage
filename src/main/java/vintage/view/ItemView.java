@@ -8,7 +8,7 @@ public class ItemView {
     public static int marketplace(List<String> itemStrings) {
         Util.clearScreen();
         Util.printHeader();
-        Util.println("Marketplace");
+        Util.println("\nMarketplace");
 
         int pageNumber = 1;
         int option = buyItems(itemStrings, pageNumber);
@@ -47,9 +47,6 @@ public class ItemView {
 
 
     public static Integer buyItems(List<String> items, Integer pageNumber) {
-        Util.clearScreen();
-        Util.printHeader();
-        Util.println("\nBuy Item");
         Integer i = 1;
         for(String item : items){
             Util.print("[" + i + "] " + items.get(i-1));
