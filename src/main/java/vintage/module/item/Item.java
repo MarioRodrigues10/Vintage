@@ -40,7 +40,7 @@ public abstract class Item {
         this.evaluation = evaluation;
         this.price = price;
         this.owners = owners;
-        this.carrier = carrier;
+        this.carrier = new Carrier(carrier);
     }
 
     /**

@@ -2,6 +2,7 @@ package vintage.module.item;
 
 import org.junit.Test;
 import vintage.module.item.TShirt;
+import vintage.module.item.carrier.Carrier;
 import vintage.module.user.User;
 
 import java.math.BigDecimal;
@@ -13,8 +14,10 @@ public class TShirtTest {
      */
     @Test
     public void tShirtTest() {
+        Carrier carrier = new Carrier("DHL", BigDecimal.valueOf(0.1), false, 1);
+
         TShirt tShirt = new TShirt("A nice t-shirt", null, "Adidas", 10,
-                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, null);
+                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, carrier);
 
         assertEquals("A nice t-shirt", tShirt.getDescription());
         assertEquals("Adidas", tShirt.getBrand());
@@ -29,8 +32,10 @@ public class TShirtTest {
      */
     @Test
     public void calculatePriceTest() {
+        Carrier carrier = new Carrier("DHL", BigDecimal.valueOf(0.1), false, 1);
+
         TShirt tShirt = new TShirt("A nice t-shirt", null, "Adidas", 10,
-                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, null);
+                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, carrier);
 
         assertEquals(BigDecimal.valueOf(100), tShirt.calculatePrice());
     }
@@ -40,8 +45,10 @@ public class TShirtTest {
      */
     @Test
     public void calculatePriceUsedTest() {
+        Carrier carrier = new Carrier("DHL", BigDecimal.valueOf(0.1), false, 1);
+
         TShirt tShirt = new TShirt("A nice t-shirt", null, "Adidas", 10,
-                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, null);
+                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, carrier);
 
         assertEquals(BigDecimal.valueOf(100), tShirt.calculatePrice());
     }
@@ -51,8 +58,10 @@ public class TShirtTest {
      */
     @Test
     public void calculatePriceUsedPalmTest() {
+        Carrier carrier = new Carrier("DHL", BigDecimal.valueOf(0.1), false, 1);
+
         TShirt tShirt = new TShirt("A nice t-shirt", null, "Adidas", 10,
-                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, null);
+                BigDecimal.valueOf(100), 1, TShirt.Size.L, TShirt.Pattern.SOLID, carrier);
 
         assertEquals(BigDecimal.valueOf(100), tShirt.calculatePrice());
     }

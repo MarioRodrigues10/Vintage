@@ -3,6 +3,7 @@ package vintage.module.item;
 import org.junit.Test;
 import vintage.module.item.Bag;
 import vintage.module.item.PremiumBag;
+import vintage.module.item.carrier.Carrier;
 
 import java.math.BigDecimal;
 
@@ -10,8 +11,10 @@ import static org.junit.Assert.assertEquals;
 public class PremiumBagTest {
 
     public void bagTest() {
+        Carrier carrier = new Carrier("DHL", BigDecimal.valueOf(0.1), false, 1);
+
         Bag bag = new PremiumBag("A nice bag", null, "Louis Vuitton", 10,
-                BigDecimal.valueOf(100), 1, 10, "Leather", 2018, null);
+                BigDecimal.valueOf(100), 1, 10, "Leather", 2018, carrier);
 
         assertEquals("A nice bag", bag.getDescription());
         assertEquals("Louis Vuitton", bag.getBrand());
@@ -27,8 +30,10 @@ public class PremiumBagTest {
      */
     @Test
     public void calculatePriceTest() {
+        Carrier carrier = new Carrier("DHL", BigDecimal.valueOf(0.1), false, 1);
+
         Bag bag = new PremiumBag("A nice bag", null, "Louis Vuitton", 10,
-                BigDecimal.valueOf(100), 1, 10, "Leather", 2018, null);
+                BigDecimal.valueOf(100), 1, 10, "Leather", 2018, carrier);
 
         assertEquals(BigDecimal.valueOf(150.0), bag.calculatePrice());
     }
@@ -38,8 +43,10 @@ public class PremiumBagTest {
      */
     @Test
     public void calculatePriceUsedTest() {
+        Carrier carrier = new Carrier("DHL", BigDecimal.valueOf(0.1), false, 1);
+
         Bag bag = new PremiumBag("A nice bag", null, "Louis Vuitton", 10,
-                BigDecimal.valueOf(100), 1, 10, "Leather", 2018, null);
+                BigDecimal.valueOf(100), 1, 10, "Leather", 2018, carrier);
 
         assertEquals(BigDecimal.valueOf(150.0), bag.calculatePrice());
     }
