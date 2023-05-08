@@ -18,6 +18,6 @@ public class ReceiptsController {
 
         ReceiptsView.displayUserReceipts(receiptStrings);
 
-        UserController2.menu(user);
+        UserController.menu(user);
     }
 }

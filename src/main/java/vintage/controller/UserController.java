@@ -1,11 +1,11 @@
 package vintage.controller;
 
 import vintage.module.user.User;
-import vintage.view.UserView2;
+import vintage.view.UserView;
 
-public class UserController2 {
+public class UserController {
     public static void menu(User user) {
-        int option = UserView2.menu();
+        int option = UserView.menu();
 
         switch (option) {
             case 1:

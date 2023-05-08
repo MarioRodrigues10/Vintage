@@ -28,7 +28,7 @@ public class ItemController {
         int itemIndex = ItemView.marketplace(itemStrings);
 
         if (itemIndex == -1) {
-            UserController2.menu(user);
+            UserController.menu(user);
         } else {
             Item item = items.get(itemIndex - 1);
             Order pendingOrder = user.getPendingOrder();
@@ -58,7 +58,7 @@ public class ItemController {
             ItemController.userItems(user);
         }
         else {
-            UserController2.menu(user);
+            UserController.menu(user);
         }
     }
 

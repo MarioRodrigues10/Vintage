@@ -1,6 +1,6 @@
 package vintage.view;
 
-public class UserView2 {
+public class UserView {
 
     public static Integer menu() {
         Util.clearScreen();

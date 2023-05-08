@@ -8,10 +8,10 @@ public class MenuController {
 
         switch (option) {
             case 1:
-                AuthController2.login();
+                AuthController.login();
                 break;
             case 2:
-                AuthController2.signUp();
+                AuthController.signUp();
                 break;
             case 3:
                 break;

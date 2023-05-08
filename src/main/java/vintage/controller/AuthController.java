@@ -1,36 +1,42 @@
 package vintage.controller;
 
-import vintage.controller.trash.UserController;
+import vintage.module.item.Item;
+import vintage.module.order.receipt.Receipt;
+import vintage.module.others.Address;
 import vintage.module.user.User;
 import vintage.module.user.UserListings;
-import vintage.view.trash.AuthView;
+import vintage.view.AuthView;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class AuthController {
+    public static void login() {
+        Map<String, String> userMap = AuthView.login();
 
-    public static User loginController() {
-        Map<String, String> user = AuthView.loginMenu();
+        User user = UserListings.getInstance().getUser(userMap.get("email"));
 
-        return UserListings.getInstance().getUser("email");
+        UserController.menu(user);
     }
 
-    public static User signUpController() {
-        Map<String, String> user = AuthView.signUpMenu();
+    public static void signUp() {
+        Map <String, String> userMap = AuthView.signUp();
 
-        return UserController.registerUser(user);
+        User user = registerUser(userMap);
+
+        UserController.menu(user);
     }
 
-    public static User init() {
-        User user;
-        Integer option = AuthView.menu();
+    private static User registerUser(Map<String, String> user) {
+        if (UserListings.getInstance().checkUser(user.get("email"))) return null;
 
-        if (option == 1) {
-            user = loginController();
-        }
-        else {
-            user = signUpController();
-        }
-        return user;
+        Address address = new Address(user.get("country"), user.get("city"), user.get("street"), user.get("postalCode"));
+        ArrayList<Receipt> receipts = new ArrayList<Receipt>();
+        ArrayList<Item> items = new ArrayList<Item>();
+
+        User newUser = new User(user.get("name"), user.get("email"), address, user.get("taxNumber"), receipts, items);
+        UserListings.getInstance().addUser(newUser);
+
+        return newUser;
     }
 }
