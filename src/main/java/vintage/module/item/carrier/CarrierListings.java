@@ -44,7 +44,7 @@ public class CarrierListings implements Serializable {
      *
      * @param name
      */
-    public void removeCarrier (String name) { this.carriers.remove(getCarrier(name)); }
+    public void removeCarrier (String name) { this.carriers.remove(name); }
 
     /**
      * Returns a list with every carrier
@@ -54,5 +54,10 @@ public class CarrierListings implements Serializable {
     public List<Carrier> getAllCarriers() {
         List<Carrier> carrierList = new ArrayList<Carrier>(this.carriers.values());
         return carrierList;
+    }
+
+    public boolean checkCarrier (String name) {
+        if (this.carriers.get(name) != null) return true;
+        else return false;
     }
 }
