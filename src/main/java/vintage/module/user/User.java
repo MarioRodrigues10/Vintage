@@ -309,4 +309,12 @@ public class User implements Serializable {
     public Order getFinishedOrder(UUID orderId) {
         return OrderListings.getInstance().getUserFinishedOrder(this, orderId);
     }
+
+    public List<Item> getAllItems() {
+        List<Item> items = new ArrayList<Item>();
+        for (Receipt receipt : receipts) {
+            items.addAll(receipt.getItems());
+        }
+        return items;
+    }
 }
