@@ -71,7 +71,7 @@ public class UserListings implements Serializable {
     public boolean checkUser(String email){ return users.containsKey(email); }
 
     /**
-     * Gets a User by it's email
+     * Gets a User by its email
      *
      * @param email
      * @return User

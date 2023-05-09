@@ -199,6 +199,7 @@ public abstract class Item {
         this.carrier = carrier;
     }
 
+
     /**
      * Returns a String containing a brief description of the item.
      *
