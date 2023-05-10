@@ -207,8 +207,8 @@ public class Util {
     public static String inputSize() {
         String size = Util.input("Size [S/M/L/XL]: ");
 
-        while (size.equals("S") || size.equals("M") || size.equals("L") || size.equals("XL") ||
-                size.equals("s") || size.equals("m") || size.equals("l") || size.equals("xl")) {
+        while (!size.equals("S") && !size.equals("M") && !size.equals("L") && !size.equals("XL") &&
+                !size.equals("s") && !size.equals("m") && !size.equals("l") && !size.equals("xl")) {
             size = Util.input("You need to type a correct size: ");
         }
         return size;

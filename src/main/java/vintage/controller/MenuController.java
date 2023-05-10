@@ -23,7 +23,10 @@ public class MenuController {
                 AuthController.getInstance().signUp();
                 break;
             case 3:
+                AdminController.getInstance().menu();
                 break;
+            case 4:
+                System.exit(0);
         }
     }
 }

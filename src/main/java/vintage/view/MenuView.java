@@ -15,7 +15,8 @@ public class MenuView {
         Util.println("\n[1] LOGIN");
         Util.println("[2] SIGNUP");
         Util.println("[3] ADMIN");
+        Util.println("[4] Exit");
 
-        return Util.inputOption(3);
+        return Util.inputOption(4);
     }
 }
