@@ -1,7 +1,8 @@
 package vintage.module.item.carrier;
 
+import vintage.module.user.UserListings;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,5 +61,30 @@ public class CarrierListings implements Serializable {
     public boolean checkCarrier (String name) {
         if (this.carriers.get(name) != null) return true;
         else return false;
+    }
+
+    public void saveCarriers(String folderName) {
+        try {
+            File file = new File("saves/" + folderName + "/carriers.ser");
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (FileOutputStream fileOut = new FileOutputStream("saves/" + folderName + "/carriers.ser");
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadCarriers(String folderName) {
+        try (FileInputStream fileIn = new FileInputStream("saves/" + folderName + "/carriers.ser");
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            CarrierListings carrierListings = (CarrierListings) in.readObject();
+            instance = carrierListings;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

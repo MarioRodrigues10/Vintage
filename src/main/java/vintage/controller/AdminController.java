@@ -15,8 +15,10 @@ public class AdminController {
                 CarrierController.menu();
                 break;
             case 3:
+                SerializationController.save();
                 break;
             case 4:
+                SerializationController.load();
                 break;
             case 5:
                 MenuController.menu();
