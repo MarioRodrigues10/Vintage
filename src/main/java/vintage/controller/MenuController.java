@@ -14,7 +14,10 @@ public class MenuController {
                 AuthController.signUp();
                 break;
             case 3:
+                AdminController.menu();
                 break;
+            case 4:
+                System.exit(0);
         }
     }
 }
