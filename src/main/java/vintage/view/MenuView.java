@@ -1,7 +1,15 @@
 package vintage.view;
 
 public class MenuView {
-    public static int menu () {
+    private static MenuView instance = null;
+    public static MenuView getInstance() {
+        if (instance == null) {
+            instance = new MenuView();
+        }
+        return instance;
+    }
+
+    public int menu () {
         Util.clearScreen();
         Util.printHeader();
         Util.println("\n[1] LOGIN");

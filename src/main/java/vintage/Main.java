@@ -16,6 +16,6 @@ public class Main implements Serializable{
             //vintage.controller.MainMenuController.init(user);
             // save changes
         //}
-        MenuController.menu();
+        MenuController.getInstance().menu();
     }
 }

@@ -5,7 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 public class ItemView {
-    public static int marketplace(List<String> itemStrings) {
+    private static ItemView instance = null;
+
+    public static ItemView getInstance() {
+        if (instance == null) {
+            instance = new ItemView();
+        }
+        return instance;
+    }
+
+    public int marketplace(List<String> itemStrings) {
         Util.clearScreen();
         Util.printHeader();
         Util.println("\nMarketplace");
@@ -29,7 +38,7 @@ public class ItemView {
         return pageNumber * 5 - 5 + option;
     }
 
-    public static int displayUserItems(List<String> itemStrings) {
+    public int displayUserItems(List<String> itemStrings) {
         Util.clearScreen();
         Util.printHeader();
         System.out.println("\nYour items: ");
@@ -46,7 +55,7 @@ public class ItemView {
     }
 
 
-    public static Integer buyItems(List<String> items, Integer pageNumber) {
+    public Integer buyItems(List<String> items, Integer pageNumber) {
         Integer i = 1;
         for(String item : items){
             Util.print("[" + i + "] " + items.get(i-1));
@@ -60,11 +69,11 @@ public class ItemView {
         return option;
     }
 
-    public static String deleteUserItem() {
+    public String deleteUserItem() {
         return Util.input("Enter item id to delete: ");
     }
 
-    public static Map<String, String> createUserItem() {
+    public Map<String, String> createUserItem() {
         Util.clearScreen();
         Util.printHeader();
 
@@ -85,7 +94,7 @@ public class ItemView {
         }
     }
 
-    private static Map<String, String> createTShirt() {
+    private Map<String, String> createTShirt() {
         Map<String, String> newItem = new HashMap<String, String>();
 
         newItem.put("type", "tshirt");
@@ -101,7 +110,7 @@ public class ItemView {
         return newItem;
     }
 
-    private static Map<String, String> createBag() {
+    private Map<String, String> createBag() {
         Map<String, String> newItem = new HashMap<String, String>();
 
         newItem.put("type", "bag");
@@ -117,7 +126,7 @@ public class ItemView {
         return newItem;
     }
 
-    private static Map<String, String> createShoes() {
+    private Map<String, String> createShoes() {
         Map<String, String> newItem = new HashMap<String, String>();
 
         newItem.put("type", "shoes");

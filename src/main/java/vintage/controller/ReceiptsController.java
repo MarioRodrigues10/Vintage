@@ -8,7 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReceiptsController {
-    public static void userReceipts(User user) {
+    private static ReceiptsController instance = null;
+
+    public static ReceiptsController getInstance() {
+        if (instance == null) {
+            instance = new ReceiptsController();
+        }
+        return instance;
+    }
+
+    public void userReceipts(User user) {
         List<Receipt> receipts = user.getReceipts();
         List<String> receiptStrings = new ArrayList<String>();
 
@@ -16,8 +25,8 @@ public class ReceiptsController {
             receiptStrings.add(receipt.toString());
         }
 
-        ReceiptsView.displayUserReceipts(receiptStrings);
+        ReceiptsView.getInstance().displayUserReceipts(receiptStrings);
 
-        UserController.menu(user);
+        UserController.getInstance().menu(user);
     }
 }

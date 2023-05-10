@@ -10,7 +10,16 @@ import java.util.List;
 import java.util.UUID;
 
 public class OrderController {
-    public static void userPendingOrder(User user) {
+    private static OrderController instance = null;
+
+    public static OrderController getInstance() {
+        if (instance == null) {
+            instance = new OrderController();
+        }
+        return instance;
+    }
+
+    public void userPendingOrder(User user) {
         Order pendingOrder = user.getPendingOrder();
         List<Item> items = pendingOrder.getItemsList();
         List<String> itemStrings = new ArrayList<String>();
@@ -19,29 +28,29 @@ public class OrderController {
             itemStrings.add(item.toString());
         }
 
-        int option = OrderView.displayUserPendingOrder(itemStrings);
+        int option = OrderView.getInstance().displayUserPendingOrder(itemStrings);
 
         if (option == 1) {
             if (items.size() == 0) {
-                OrderView.noItemsErros();
+                OrderView.getInstance().noItemsErros();
                 userPendingOrder(user);
             }
 
             pendingOrder.finishOrder();
-            ReceiptsController.userReceipts(user);
+            ReceiptsController.getInstance().userReceipts(user);
         }
         else if (option == 2) {
             if (items.size() == 0) {
-                OrderView.noItemsErros();
+                OrderView.getInstance().noItemsErros();
                 userPendingOrder(user);
             }
 
-            UUID itemId = UUID.fromString(OrderView.deletePendingOrderItem());
+            UUID itemId = UUID.fromString(OrderView.getInstance().deletePendingOrderItem());
             pendingOrder.removeItemById(itemId);
             userPendingOrder(user);
         }
         else {
-            UserController.menu(user);
+            UserController.getInstance().menu(user);
         }
     }
 }

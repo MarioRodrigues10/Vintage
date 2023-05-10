@@ -11,23 +11,32 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class AuthController {
-    public static void login() {
-        Map<String, String> userMap = AuthView.login();
+    private static AuthController instance = null;
+
+    public static AuthController getInstance() {
+        if (instance == null) {
+            instance = new AuthController();
+        }
+        return instance;
+    }
+
+    public void login() {
+        Map<String, String> userMap = AuthView.getInstance().login();
 
         User user = UserListings.getInstance().getUser(userMap.get("email"));
 
-        UserController.menu(user);
+        UserController.getInstance().menu(user);
     }
 
-    public static void signUp() {
-        Map <String, String> userMap = AuthView.signUp();
+    public void signUp() {
+        Map <String, String> userMap = AuthView.getInstance().signUp();
 
         User user = registerUser(userMap);
 
-        UserController.menu(user);
+        UserController.getInstance().menu(user);
     }
 
-    private static User registerUser(Map<String, String> user) {
+    private User registerUser(Map<String, String> user) {
         if (UserListings.getInstance().checkUser(user.get("email"))) return null;
 
         Address address = new Address(user.get("country"), user.get("city"), user.get("street"), user.get("postalCode"));
