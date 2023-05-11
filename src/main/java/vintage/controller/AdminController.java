@@ -23,8 +23,10 @@ public class AdminController {
                 CarrierController.getInstance().menu();
                 break;
             case 3:
+                SerializationController.save();
                 break;
             case 4:
+                SerializationController.load();
                 break;
             case 5:
                 MenuController.getInstance().menu();

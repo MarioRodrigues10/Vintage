@@ -4,13 +4,14 @@ import vintage.module.item.Item;
 import vintage.module.time.Time;
 import vintage.module.user.User;
 import vintage.module.time.TimeObserver;
+import vintage.module.user.UserListings;
 
+import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.io.Serializable;
 
 public class OrderListings implements Serializable, TimeObserver {
     private static OrderListings instance = null;
@@ -153,6 +154,31 @@ public class OrderListings implements Serializable, TimeObserver {
                     order.updateDeliveryState();
                 }
             }
+        }
+    }
+
+    public void saveOrders(String folderName) {
+        try {
+            File file = new File("saves/" + folderName + "/orders.ser");
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (FileOutputStream fileOut = new FileOutputStream("saves/" + folderName + "/orders.ser");
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadOrders(String folderName) {
+        try (FileInputStream fileIn = new FileInputStream("saves/" + folderName + "/orders.ser");
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            OrderListings orderListings = (OrderListings) in.readObject();
+            instance = orderListings;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -2,7 +2,7 @@ package vintage.module.user;
 
 import vintage.module.item.Item;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -96,4 +96,28 @@ public class UserListings implements Serializable {
         return items;
     }
 
+    public void saveUsers(String folderName) {
+        try {
+            File file = new File("saves/" + folderName + "/users.ser");
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (FileOutputStream fileOut = new FileOutputStream("saves/" + folderName + "/users.ser");
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadUsers(String folderName) {
+        try (FileInputStream fileIn = new FileInputStream("saves/" + folderName + "/users.ser");
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            UserListings userListings = (UserListings) in.readObject();
+            instance = userListings;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
