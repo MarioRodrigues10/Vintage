@@ -17,7 +17,7 @@ public class SerializationController {
 
         SerializationView.saved();
 
-        AdminController.menu();
+        AdminController.getInstance().menu();
     }
 
     public static void load() {
@@ -29,6 +29,6 @@ public class SerializationController {
 
         SerializationView.loaded();
 
-        AdminController.menu();
+        AdminController.getInstance().menu();
     }
 }

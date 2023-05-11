@@ -16,7 +16,16 @@ import java.util.Map;
 import java.util.UUID;
 
 public class ItemController {
-    public static void marketplace(User user) {
+    private static ItemController instance = null;
+
+    public static ItemController getInstance() {
+        if (instance == null) {
+            instance = new ItemController();
+        }
+        return instance;
+    }
+
+    public void marketplace(User user) {
         List<Item> items = UserListings.getInstance().getAllItems();
 
         // turn the items list into a list of strings
@@ -25,10 +34,10 @@ public class ItemController {
             itemStrings.add(item.toString());
         }
 
-        int itemIndex = ItemView.marketplace(itemStrings);
+        int itemIndex = ItemView.getInstance().marketplace(itemStrings);
 
         if (itemIndex == -1) {
-            UserController.menu(user);
+            UserController.getInstance().menu(user);
         } else {
             Item item = items.get(itemIndex - 1);
             Order pendingOrder = user.getPendingOrder();
@@ -36,41 +45,41 @@ public class ItemController {
         }
     }
 
-    public static void userItems(User user) {
+    public void userItems(User user) {
         List<Item> items = UserListings.getInstance().getUser(user.getEmail()).getItems();
 
         List<String> itemStrings = new ArrayList<String>();
         for (Item item : items) {
             itemStrings.add(item.toString());
         }
-        int option = ItemView.displayUserItems(itemStrings);
+        int option = ItemView.getInstance().displayUserItems(itemStrings);
 
         if (option == 1) {
             createUserItem(user);
 
             // go back to user items
-            ItemController.userItems(user);
+            userItems(user);
         }
         else if (option == 2) {
             deleteUserItem(user);
 
             // go back to user items
-            ItemController.userItems(user);
+            userItems(user);
         }
         else {
-            UserController.menu(user);
+            UserController.getInstance().menu(user);
         }
     }
 
-    private static void deleteUserItem(User user) {
-        UUID itemId = UUID.fromString(ItemView.deleteUserItem());
+    private void deleteUserItem(User user) {
+        UUID itemId = UUID.fromString(ItemView.getInstance().deleteUserItem());
 
         Item item = user.getItem(itemId);
         user.removeItem(item);
     }
 
-    private static void createUserItem(User user) {
-        Map<String, String> item = ItemView.createUserItem();
+    private void createUserItem(User user) {
+        Map<String, String> item = ItemView.getInstance().createUserItem();
 
         if (item.get("type").equals("tshirt")) {
             createTShirt(user, item);
@@ -85,7 +94,7 @@ public class ItemController {
         return;
     }
 
-    private static void createTShirt(User user, Map<String, String> item) {
+    private void createTShirt(User user, Map<String, String> item) {
         TShirt.Size size;
         TShirt.Pattern pattern;
 
@@ -127,7 +136,7 @@ public class ItemController {
         user.addItem(tshirt);
     }
 
-    private static void createBag(User user, Map<String, String> item) {
+    private void createBag(User user, Map<String, String> item) {
         Item bag = new Bag(
                 item.get("description"),
                 user,
@@ -144,7 +153,7 @@ public class ItemController {
         user.addItem(bag);
     }
 
-    private static void createShoes(User user, Map<String, String> item) {
+    private void createShoes(User user, Map<String, String> item) {
         boolean laces;
         laces = item.get("laces").equals("y");
 

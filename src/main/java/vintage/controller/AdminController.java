@@ -3,16 +3,24 @@ package vintage.controller;
 import vintage.view.AdminView;
 
 public class AdminController {
+    private static AdminController instance = null;
 
-    public static void menu() {
-        int option = AdminView.menu();
+    public static AdminController getInstance() {
+        if (instance == null) {
+            instance = new AdminController();
+        }
+        return instance;
+    }
+
+    public void menu() {
+        int option = AdminView.getInstance().menu();
 
         switch (option) {
             case 1:
-                TimeController.jumpTime();
+                TimeController.getInstance().jumpTime();
                 break;
             case 2:
-                CarrierController.menu();
+                CarrierController.getInstance().menu();
                 break;
             case 3:
                 SerializationController.save();
@@ -21,7 +29,7 @@ public class AdminController {
                 SerializationController.load();
                 break;
             case 5:
-                MenuController.menu();
+                MenuController.getInstance().menu();
                 break;
         }
     }

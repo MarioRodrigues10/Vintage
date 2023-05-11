@@ -5,8 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 public class CarrierView {
+    private static CarrierView instance = null;
 
-    public static Integer menu() {
+    public static CarrierView getInstance() {
+        if (instance == null) {
+            instance = new CarrierView();
+        }
+        return instance;
+    }
+
+    public Integer menu() {
         Util.clearScreen();
         Util.printHeader();
         Util.println("\nCarrier MENU\n");
@@ -21,7 +29,7 @@ public class CarrierView {
         return option;
     }
 
-    public static int viewCarriers(List<String> carrierStrings) {
+    public int viewCarriers(List<String> carrierStrings) {
         Util.clearScreen();
         Util.printHeader();
         Util.println("\nCarriers");
@@ -44,7 +52,7 @@ public class CarrierView {
         return pageNumber * 5 - 5 + option;
     }
 
-    public static Integer displayCarriers(List<String> carriers, Integer pageNumber) {
+    public Integer displayCarriers(List<String> carriers, Integer pageNumber) {
         Integer i = 1;
         for(String carrier : carriers){
             Util.print(carriers.get(i-1));
@@ -58,7 +66,7 @@ public class CarrierView {
         return option;
     }
 
-    public static Map<String, String> createCarrier() {
+    public Map<String, String> createCarrier() {
         Util.clearScreen();
         Util.printHeader();
         Util.println("\nCreate Carrier");
@@ -72,7 +80,7 @@ public class CarrierView {
         return carrierInput;
     }
 
-    public static String deleteCarrier() {
+    public String deleteCarrier() {
         Util.clearScreen();
         Util.printHeader();
         Util.println("\nDelete Carrier");
@@ -82,7 +90,7 @@ public class CarrierView {
         return carrierName;
     }
 
-    public static void carrierDeleted() {
+    public void carrierDeleted() {
         Util.println("If a Carrier with that name existed, it was deleted!");
         Util.input("Press enter to go back");
     }

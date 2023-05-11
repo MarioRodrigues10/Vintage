@@ -1,8 +1,16 @@
 package vintage.view;
 
 public class UserView {
+    private static UserView instance = null;
 
-    public static Integer menu() {
+    public static UserView getInstance() {
+        if (instance == null) {
+            instance = new UserView();
+        }
+        return instance;
+    }
+
+    public Integer menu() {
         Util.clearScreen();
         Util.printHeader();
         Util.println("\nMENU\n");

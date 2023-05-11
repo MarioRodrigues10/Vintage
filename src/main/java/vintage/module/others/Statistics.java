@@ -16,13 +16,21 @@ import java.util.Collections;
 import vintage.module.user.UserListings;
 
 public class Statistics {
+    private static Statistics instance = null;
+
+    public static Statistics getInstance() {
+        if (instance == null) {
+            instance = new Statistics();
+        }
+        return instance;
+    }
 
     /**
      * Returns all the orders of a specific seller.
      * @param user
      * @return List<Order>
      */
-    public static List<Receipt> getSellerOrders(User user) {
+    public List<Receipt> getSellerOrders(User user) {
         return user.getSaleReceipts();
     }
 
@@ -30,7 +38,7 @@ public class Statistics {
      * Returns the biggest seller by number of products sold.
      * @return User
      */
-    public static User biggestSellerByProducts(UserListings listings){
+    public User biggestSellerByProducts(UserListings listings){
         return biggestSellersByProducts(listings).get(0);
     }
 
@@ -39,7 +47,7 @@ public class Statistics {
      * Returns the list of biggests sellers by number of products sold.
      * @return List<User>
      */
-    public static List<User> biggestSellersByProducts(UserListings listings) {
+    public List<User> biggestSellersByProducts(UserListings listings) {
 
         Map<String, User> usersMap = listings.getUsers(); // Map of users where the key is the user ID
         Set<User> sellers = new HashSet<>(usersMap.values()); // Extract the Set of users from the Map
@@ -71,7 +79,7 @@ public class Statistics {
      * Returns the list of the biggest buyers by number of products bought.
      * @return List<User>
      */
-    public static List<User> biggestBuyersByProducts(UserListings listings) {
+    public List<User> biggestBuyersByProducts(UserListings listings) {
         Map<String, User> usersMap = listings.getUsers(); // Map of users where the key is the user ID
         Set<User> buyers = new HashSet<>(usersMap.values()); // Extract the Set of users from the Map
 
@@ -103,7 +111,7 @@ public class Statistics {
      * Returns the biggest sellers by money earned.
      * @return ArrayList<User>
      */
-    public static ArrayList<User> biggestSellersByMoney(UserListings listings){
+    public ArrayList<User> biggestSellersByMoney(UserListings listings){
         Map<String, User> usersMap = listings.getUsers(); // Map of users where the key is the user ID
         Set<User> sellers = new HashSet<>(usersMap.values()); // Extract the Set of users from the Map
 

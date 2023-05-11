@@ -4,7 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AuthView {
-    public static Map<String, String> login() {
+    private static AuthView instance = null;
+
+    public static AuthView getInstance() {
+        if (instance == null) {
+            instance = new AuthView();
+        }
+        return instance;
+    }
+
+    public Map<String, String> login() {
         Util.clearScreen();
         Map<String, String> user = new HashMap<String, String>();
 
@@ -15,7 +24,7 @@ public class AuthView {
         return user;
     }
 
-    public static Map<String, String> signUp() {
+    public Map<String, String> signUp() {
         Util.clearScreen();
         Util.printHeader();
         Util.println("SignUp");

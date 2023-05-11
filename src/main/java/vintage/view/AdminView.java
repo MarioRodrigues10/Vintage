@@ -1,8 +1,16 @@
 package vintage.view;
 
 public class AdminView {
+    private static AdminView instance = null;
 
-    public static Integer menu() {
+    public static AdminView getInstance() {
+        if (instance == null) {
+            instance = new AdminView();
+        }
+        return instance;
+    }
+
+    public Integer menu() {
         Util.clearScreen();
         Util.printHeader();
         Util.println("\nADMIN MENU\n");

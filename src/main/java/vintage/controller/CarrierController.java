@@ -15,9 +15,17 @@ import java.util.List;
 import java.util.Map;
 
 public class CarrierController {
+    private static CarrierController instance = null;
 
-    public static void menu() {
-        int option = CarrierView.menu();
+    public static CarrierController getInstance() {
+        if (instance == null) {
+            instance = new CarrierController();
+        }
+        return instance;
+    }
+
+    public void menu() {
+        int option = CarrierView.getInstance().menu();
 
         switch (option) {
             case 1:
@@ -32,12 +40,12 @@ public class CarrierController {
             case 4:
                 break;
             case 5:
-                AdminController.menu();
+                AdminController.getInstance().menu();
                 break;
         }
     }
 
-    public static void viewCarriers() {
+    public void viewCarriers() {
         List<Carrier> carriers = CarrierListings.getInstance().getAllCarriers();
 
         // turn the carriers list into a list of strings
@@ -45,15 +53,15 @@ public class CarrierController {
         for (Carrier carrier : carriers) {
             carrierStrings.add(carrier.toString());
         }
-        int carrierIndex = CarrierView.viewCarriers(carrierStrings);
+        int carrierIndex = CarrierView.getInstance().viewCarriers(carrierStrings);
 
         if (carrierIndex == -1) {
-            CarrierController.menu();
+            CarrierController.getInstance().menu();
         }
     }
 
-    public static void createCarrier() {
-        Map<String, String> newCarrier = CarrierView.createCarrier();
+    public void createCarrier() {
+        Map<String, String> newCarrier = CarrierView.getInstance().createCarrier();
 
         boolean premium;
         if (newCarrier.get("premium") == "y") premium = true; else premium = false;
@@ -61,15 +69,15 @@ public class CarrierController {
         Carrier carrier = new Carrier(newCarrier.get("name"), BigDecimal.valueOf(Double.parseDouble(newCarrier.get("profit"))), premium, Integer.parseInt(newCarrier.get("deliveryTime")));
         CarrierListings.getInstance().addCarrier(carrier);
 
-        CarrierController.menu();
+        CarrierController.getInstance().menu();
     }
 
-    public static void deleteCarrier() {
-        String carrierName = CarrierView.deleteCarrier();
+    public void deleteCarrier() {
+        String carrierName = CarrierView.getInstance().deleteCarrier();
 
         CarrierListings.getInstance().removeCarrier(carrierName);
-        CarrierView.carrierDeleted();
+        CarrierView.getInstance().carrierDeleted();
 
-        CarrierController.menu();
+        CarrierController.getInstance().menu();
     }
 }

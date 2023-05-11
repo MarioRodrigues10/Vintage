@@ -3,7 +3,16 @@ package vintage.view;
 import java.util.List;
 
 public class OrderView {
-    public static int displayUserPendingOrder(List<String> itemStrings) {
+    private static OrderView instance = null;
+
+    public static OrderView getInstance() {
+        if (instance == null) {
+            instance = new OrderView();
+        }
+        return instance;
+    }
+
+    public int displayUserPendingOrder(List<String> itemStrings) {
         Util.clearScreen();
         Util.printHeader();
 
@@ -21,11 +30,11 @@ public class OrderView {
         return Util.inputOption(3);
     }
 
-    public static String deletePendingOrderItem() {
+    public String deletePendingOrderItem() {
         return Util.input("Enter item id to delete: ");
     }
 
-    public static void noItemsErros() {
+    public void noItemsErros() {
         System.out.println("You have no items in your pending order.");
         Util.input("Press enter.");
     }

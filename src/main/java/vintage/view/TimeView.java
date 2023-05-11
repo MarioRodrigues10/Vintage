@@ -4,8 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TimeView {
+    private static TimeView instance = null;
 
-    public static Map<String, Integer> jumpTime() {
+    public static TimeView getInstance() {
+        if (instance == null) {
+            instance = new TimeView();
+        }
+        return instance;
+    }
+
+    public Map<String, Integer> jumpTime() {
         Util.clearScreen();
         Util.printHeader();
         Util.println("\nJump in Time");
@@ -18,7 +26,7 @@ public class TimeView {
         return times;
     }
 
-    public static void timeJumped() {
+    public void timeJumped() {
         Util.println("\nTime jumped successfully!");
         Util.input("Press enter to go back");
     }

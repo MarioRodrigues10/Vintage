@@ -4,24 +4,33 @@ import vintage.module.user.User;
 import vintage.view.UserView;
 
 public class UserController {
-    public static void menu(User user) {
-        int option = UserView.menu();
+    private static UserController instance = null;
+
+    public static UserController getInstance() {
+        if (instance == null) {
+            instance = new UserController();
+        }
+        return instance;
+    }
+
+    public void menu(User user) {
+        int option = UserView.getInstance().menu();
 
         switch (option) {
             case 1:
-                ItemController.marketplace(user);
+                ItemController.getInstance().marketplace(user);
                 break;
             case 2:
-                OrderController.userPendingOrder(user);
+                OrderController.getInstance().userPendingOrder(user);
                 break;
             case 3:
-                ItemController.userItems(user);
+                ItemController.getInstance().userItems(user);
                 break;
             case 4:
-                ReceiptsController.userReceipts(user);
+                ReceiptsController.getInstance().userReceipts(user);
                 break;
             case 5:
-                MenuController.menu();
+                MenuController.getInstance().menu();
                 break;
             case 6:
                 System.exit(0);
