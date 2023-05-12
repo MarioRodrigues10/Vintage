@@ -16,12 +16,21 @@ public class AuthController {
 
         User user = UserListings.getInstance().getUser(userMap.get("email"));
 
+        if (user == null) {
+            AuthView.noUser();
+            MenuController.menu();
+        }
+
         UserController.menu(user);
     }
 
     public static void signUp() {
         Map <String, String> userMap = AuthView.signUp();
 
+        if (UserListings.getInstance().checkUser(userMap.get("email"))) {
+            AuthView.userExists();
+            MenuController.menu();
+        }
         User user = registerUser(userMap);
 
         UserController.menu(user);
