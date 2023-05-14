@@ -23,6 +23,9 @@ public class Statistics {
      * @return List<Order>
      */
     public static List<Receipt> getSellerOrders(User user) {
+        if(user.getSaleReceipts().isEmpty()) {
+            return null;
+        }
         return user.getSaleReceipts();
     }
 
@@ -31,6 +34,9 @@ public class Statistics {
      * @return User
      */
     public static User biggestSellerByProducts(UserListings listings){
+        if (biggestSellersByProducts(listings).isEmpty()) {
+            return null;
+        }
         return biggestSellersByProducts(listings).get(0);
     }
 

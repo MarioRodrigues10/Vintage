@@ -26,6 +26,9 @@ public class AdminController {
                 SerializationController.load();
                 break;
             case 7:
+                StatisticsController.menu();
+                break;
+            case 8:
                 MenuController.menu();
                 break;
         }

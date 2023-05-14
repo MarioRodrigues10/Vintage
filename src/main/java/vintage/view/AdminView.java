@@ -12,7 +12,8 @@ public class AdminView {
         Util.println  ("[4] Carriers");
         Util.println  ("[5] Save Program");
         Util.println  ("[6] Load Program");
-        Util.println  ("[7] Back\n");
+        Util.println  ("[7] Statistics");
+        Util.println  ("[8] Back\n");
 
         Integer option = Util.inputOption(7);
 

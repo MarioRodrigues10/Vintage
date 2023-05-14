@@ -78,6 +78,19 @@ public class UserListings implements Serializable {
      */
     public User getUser(String email) { return users.get(email); }
 
+
+    /**
+     *  Gets a User by its name
+     *  @param name
+     *  @return User
+     */
+    public User getUserByName(String name) {
+        for (User user : users.values()) {
+            if (user.getName().equals(name)) return user;
+        }
+        return null;
+    }
+
     /**
      * Checks if a certain email is available
      *
