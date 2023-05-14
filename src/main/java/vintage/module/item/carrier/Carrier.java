@@ -1,8 +1,9 @@
 package vintage.module.item.carrier;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Carrier {
+public class Carrier implements Serializable {
     public static BigDecimal SMALL = new BigDecimal("5.0"); // !< Small orders price
     public static BigDecimal MEDIUM = new BigDecimal("10.0"); // !< Medium orders price
     public static BigDecimal LARGE = new BigDecimal("15.0"); // !< Large orders price
