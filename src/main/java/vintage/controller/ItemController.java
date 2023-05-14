@@ -115,7 +115,9 @@ public class ItemController {
         }
 
         Carrier carrier = CarrierListings.getInstance().getCarrier(item.get("carrier"));
-
+        if (carrier == null) {
+            carrier = CarrierListings.getInstance().getAllCarriers().get(0);
+        }
         Item tshirt = new TShirt(
                 item.get("description"),
                 user,
@@ -133,7 +135,9 @@ public class ItemController {
 
     private static void createBag(User user, Map<String, String> item) {
         Carrier carrier = CarrierListings.getInstance().getCarrier(item.get("carrier"));
-
+        if (carrier == null) {
+            carrier = CarrierListings.getInstance().getAllCarriers().get(0);
+        }
         Item bag = new Bag(
                 item.get("description"),
                 user,
@@ -154,7 +158,9 @@ public class ItemController {
         boolean laces;
         laces = item.get("laces").equals("y");
         Carrier carrier = CarrierListings.getInstance().getCarrier(item.get("carrier"));
-
+        if (carrier == null) {
+            carrier = CarrierListings.getInstance().getAllCarriers().get(0);
+        }
         Item shoes = new Shoes(
                 item.get("description"),
                 user,
