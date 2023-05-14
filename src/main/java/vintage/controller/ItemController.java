@@ -27,9 +27,9 @@ public class ItemController {
             if(item.getOwner().equals(user) == false) itemStrings.add(item.toString());
         }
 
-        int itemIndex = ItemView.marketplace(itemStrings);
+        int itemIndex = ItemView.listItems(itemStrings);
 
-        if (itemIndex == -1) {
+        if (itemIndex == 0) {
             UserController.menu(user);
         } else {
             Item item = items.get(itemIndex - 1);

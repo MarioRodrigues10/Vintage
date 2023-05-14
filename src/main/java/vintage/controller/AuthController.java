@@ -14,6 +14,8 @@ public class AuthController {
     public static void login() {
         Map<String, String> userMap = AuthView.login();
 
+        if (userMap.get("email").equals("0")) MenuController.menu();
+
         User user = UserListings.getInstance().getUser(userMap.get("email"));
 
         if (user == null) {
