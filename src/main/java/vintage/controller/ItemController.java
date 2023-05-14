@@ -4,6 +4,8 @@ import vintage.module.item.Bag;
 import vintage.module.item.Item;
 import vintage.module.item.Shoes;
 import vintage.module.item.TShirt;
+import vintage.module.item.carrier.Carrier;
+import vintage.module.item.carrier.CarrierListings;
 import vintage.module.order.Order;
 import vintage.module.user.User;
 import vintage.module.user.UserListings;
@@ -112,6 +114,10 @@ public class ItemController {
             pattern = TShirt.Pattern.PALM;
         }
 
+        Carrier carrier = CarrierListings.getInstance().getCarrier(item.get("carrier"));
+        if (carrier == null) {
+            carrier = CarrierListings.getInstance().getAllCarriers().get(0);
+        }
         Item tshirt = new TShirt(
                 item.get("description"),
                 user,
@@ -121,13 +127,17 @@ public class ItemController {
                 Integer.parseInt(item.get("owners")),
                 size,
                 pattern,
-                null
+                carrier
         );
 
         user.addItem(tshirt);
     }
 
     private static void createBag(User user, Map<String, String> item) {
+        Carrier carrier = CarrierListings.getInstance().getCarrier(item.get("carrier"));
+        if (carrier == null) {
+            carrier = CarrierListings.getInstance().getAllCarriers().get(0);
+        }
         Item bag = new Bag(
                 item.get("description"),
                 user,
@@ -138,7 +148,7 @@ public class ItemController {
                 Integer.parseInt(item.get("size")),
                 item.get("material"),
                 Integer.parseInt(item.get("release")),
-                null
+                carrier
         );
 
         user.addItem(bag);
@@ -147,7 +157,10 @@ public class ItemController {
     private static void createShoes(User user, Map<String, String> item) {
         boolean laces;
         laces = item.get("laces").equals("y");
-
+        Carrier carrier = CarrierListings.getInstance().getCarrier(item.get("carrier"));
+        if (carrier == null) {
+            carrier = CarrierListings.getInstance().getAllCarriers().get(0);
+        }
         Item shoes = new Shoes(
                 item.get("description"),
                 user,
@@ -159,7 +172,7 @@ public class ItemController {
                 laces,
                 item.get("color"),
                 Integer.parseInt(item.get("release")),
-                null
+                carrier
         );
 
         user.addItem(shoes);

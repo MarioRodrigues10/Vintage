@@ -1,5 +1,7 @@
 package vintage.view;
 
+import vintage.module.item.carrier.Carrier;
+
 import java.time.LocalDate;
 import java.time.format.*;
 import java.util.Scanner;
@@ -234,5 +236,18 @@ public class Util {
         if (startIndex < 0) startIndex = 0;
         int endIndex = Math.min(startIndex + 5, items.size());
         return items.subList(startIndex, endIndex);
+    }
+
+    public static String inputCarriers(List<String> carriers){
+        printCarriers(carriers);
+        String carrierId = Util.input("Carrier Name: ");
+
+        return carrierId;
+    }
+
+    public static void printCarriers(List<String> carriers){
+        for (String carrier : carriers) {
+            System.out.println(carrier);
+        }
     }
 }
