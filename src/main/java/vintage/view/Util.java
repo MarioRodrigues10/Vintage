@@ -171,7 +171,7 @@ public class Util {
         String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
         String email = Util.input("Email: ");
 
-        while (email.matches(emailRegex) == false) {
+        while (email.matches(emailRegex) == false && !email.equals("0")) {
             email = Util.input("You need to type a correct email: ");
         }
         return email;
