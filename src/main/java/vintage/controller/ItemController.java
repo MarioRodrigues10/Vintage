@@ -36,6 +36,8 @@ public class ItemController {
             Order pendingOrder = user.getPendingOrder();
             pendingOrder.addItem(item);
         }
+
+        UserController.menu(user);
     }
 
     public static void userItems(User user) {

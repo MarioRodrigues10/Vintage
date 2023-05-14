@@ -127,7 +127,7 @@ public class ItemView {
         newItem.put("brand", Util.input("Brand: "));
         newItem.put("description", Util.input("Description: "));
         newItem.put("owners", Util.input("Number of previous owners: "));
-        newItem.put("size", Util.input("Size: "));
+        newItem.put("size", Util.input("Size (number): "));
         newItem.put("price", Util.inputPrice());
         newItem.put("evaluation", Util.inputEvaluation());
         newItem.put("material", Util.input("Material: "));
@@ -151,7 +151,7 @@ public class ItemView {
         newItem.put("brand", Util.input("Brand: "));
         newItem.put("description", Util.input("Description: "));
         newItem.put("owners", Util.input("Number of previous owners: "));
-        newItem.put("size", Util.input("Size: "));
+        newItem.put("size", Util.input("Size (number): "));
         newItem.put("color", Util.input("Color: "));
         newItem.put("price", Util.inputPrice());
         newItem.put("evaluation", Util.inputEvaluation());

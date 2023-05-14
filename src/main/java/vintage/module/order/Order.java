@@ -7,6 +7,7 @@ import vintage.module.order.receipt.SellerReceipt;
 import vintage.module.time.Time;
 import vintage.module.user.User;
 import vintage.module.others.Address;
+import vintage.module.user.UserListings;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -360,6 +361,7 @@ public class Order implements Serializable {
                 sellerReceipt.setOrderID(this.id);
             }
             sellerReceipt.addItem(item);
+            UserListings.getInstance().getUser(item.getOwner().getEmail()).removeItem(item);
         }
     }
 }

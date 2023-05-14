@@ -4,13 +4,14 @@ import vintage.module.user.User;
 import vintage.module.item.Item;
 import vintage.module.order.Order;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class SellerReceipt implements Receipt {
+public class SellerReceipt implements Receipt, Serializable {
     private UUID id; /* ! ID of a Receipt */
     private User buyer; /* ! Buyer of a Receipt's Order */
     private UUID orderID; /* ! ID of a Receipt's Order */
