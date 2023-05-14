@@ -3,11 +3,10 @@ import vintage.module.item.carrier.Carrier;
 import vintage.module.time.Time;
 import vintage.module.user.User;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class PremiumBag extends Bag implements Serializable {
+public class PremiumBag extends Bag {
     /**
      * Creates a new PremiumBag object with the specified properties.
      * @param description a String containing a brief description of the item

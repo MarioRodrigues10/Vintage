@@ -2,11 +2,15 @@ package vintage.controller;
 
 import vintage.module.item.Item;
 import vintage.module.order.Order;
+import vintage.module.order.OrderListings;
 import vintage.module.user.User;
+import vintage.module.user.UserListings;
 import vintage.view.OrderView;
+import vintage.view.UserView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class OrderController {
@@ -43,5 +47,16 @@ public class OrderController {
         else {
             UserController.menu(user);
         }
+    }
+
+    public static void listOrders() {
+        List<Order> ordersList = OrderListings.getInstance().getAllOrders();
+        List<String> orderString = new ArrayList<String>();
+
+        for (Order order : ordersList) orderString.add(order.toString());
+
+        OrderView.listOrders(orderString);
+
+        AdminController.menu();
     }
 }

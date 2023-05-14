@@ -9,28 +9,42 @@ import java.util.List;
 import java.util.Map;
 
 public class ItemView {
-    public static int marketplace(List<String> itemStrings) {
-        Util.clearScreen();
-        Util.printHeader();
-        Util.println("\nMarketplace");
 
-        int pageNumber = 1;
-        int option = buyItems(itemStrings, pageNumber);
+    public static int listItems(List<String> itemStrings) {
+        int pageNumber = 1, option = 1;
+        int i;
+        while (option > 0) {
+            Util.clearScreen();
+            Util.printHeader();
+            Util.println("\nBuy Items:\n");
 
-        while (option > 5) {
+            List<String> currentItems = Util.getPage(itemStrings, pageNumber);
+
+            i = 1;
+            Util.println("====================================");
+            for (String user : currentItems) {
+                Util.println("[" + i + "] " + user);
+                Util.println("====================================");
+                i++;
+            }
+
+            Util.println("\n[6] <-");
+            Util.println("[7] ->");
+            Util.println("[8] Back");
+
+            option = Util.inputOption(8);
+
             if (option == 6 && pageNumber > 1) {
                 pageNumber--;
             } else if (option == 7 && itemStrings.size() > pageNumber * 5) {
                 pageNumber++;
+            } else if (option == 8) {
+                return 0;
+            } else if (option > 0 && option < 6){
+                return option;
             }
-            else if (option == 8){
-                return -1;
-            }
-
-            option = buyItems(itemStrings, pageNumber);
         }
-
-        return pageNumber * 5 - 5 + option;
+        return 0;
     }
 
     public static int displayUserItems(List<String> itemStrings) {
@@ -48,22 +62,7 @@ public class ItemView {
 
         return Util.inputOption(3);
     }
-
-
-    public static Integer buyItems(List<String> items, Integer pageNumber) {
-        Integer i = 1;
-        for(String item : items){
-            Util.print("[" + i + "] " + items.get(i-1));
-            System.out.println("\n====================================");
-            i++;
-        }
-        Util.println("[6] <-");
-        Util.println("[7] ->");
-        Util.println("[8] Back");
-        Integer option = Util.inputOption(8);
-        return option;
-    }
-
+    
     public static String deleteUserItem() {
         return Util.input("Enter item id to delete: ");
     }
@@ -127,7 +126,7 @@ public class ItemView {
         newItem.put("brand", Util.input("Brand: "));
         newItem.put("description", Util.input("Description: "));
         newItem.put("owners", Util.input("Number of previous owners: "));
-        newItem.put("size", Util.input("Size: "));
+        newItem.put("size", Util.input("Size (number): "));
         newItem.put("price", Util.inputPrice());
         newItem.put("evaluation", Util.inputEvaluation());
         newItem.put("material", Util.input("Material: "));
@@ -151,7 +150,7 @@ public class ItemView {
         newItem.put("brand", Util.input("Brand: "));
         newItem.put("description", Util.input("Description: "));
         newItem.put("owners", Util.input("Number of previous owners: "));
-        newItem.put("size", Util.input("Size: "));
+        newItem.put("size", Util.input("Size (number): "));
         newItem.put("color", Util.input("Color: "));
         newItem.put("price", Util.inputPrice());
         newItem.put("evaluation", Util.inputEvaluation());

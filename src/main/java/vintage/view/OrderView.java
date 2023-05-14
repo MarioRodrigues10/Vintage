@@ -29,4 +29,36 @@ public class OrderView {
         System.out.println("You have no items in your pending order.");
         Util.input("Press enter.");
     }
+
+    public static void listOrders(List<String> orderStrings) {
+        int pageNumber = 1, option = 1;
+        while (option > 0) {
+            Util.clearScreen();
+            Util.printHeader();
+            Util.println("\nList of Orders:\n");
+
+            List<String> currentOrders = Util.getPage(orderStrings, pageNumber);
+
+            Util.println("====================================");
+            for(String order : currentOrders) {
+                Util.println(order);
+                Util.println("====================================");
+            }
+
+            Util.println("\n[1] <-");
+            Util.println  ("[2] ->");
+            Util.println  ("[3] Back");
+
+            option = Util.inputOption(3);
+
+            if (option == 1 && pageNumber > 1) {
+                pageNumber--;
+            } else if (option == 1 && orderStrings.size() > pageNumber * 5) {
+                pageNumber++;
+            }
+            else if (option == 3){
+                break;
+            }
+        }
+    }
 }

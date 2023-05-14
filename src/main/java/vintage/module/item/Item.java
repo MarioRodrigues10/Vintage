@@ -1,5 +1,6 @@
 package vintage.module.item;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -10,7 +11,7 @@ import vintage.module.user.User;
 /**
  * Defines a Item
  */
-public abstract class Item {
+public abstract class Item implements Serializable {
     private final UUID id; /* ! ID of an Item */
     private User owner; /* ! Owner of the item */
     private String description; /* ! Description of an Item */
