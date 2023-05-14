@@ -364,4 +364,20 @@ public class Order implements Serializable {
             UserListings.getInstance().getUser(item.getOwner().getEmail()).removeItem(item);
         }
     }
+
+    @Override
+    public String toString() {
+        List<Item> itemsList = new ArrayList<Item>();
+        for(Map.Entry<Item, State> entry: items.entrySet()) itemsList.add(entry.getKey());
+        return "Order{" +
+                "id=" + id +
+                ", user='" + buyer.getEmail() + '\'' +
+                ", items='" + itemsList + '\'' +
+                ", size=" + size +
+                ", price=" + price +
+                ", state=" + state +
+                ", address=" + address +
+                ", expeditionDate=" + expeditionDate +
+                '}';
+    }
 }

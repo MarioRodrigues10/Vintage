@@ -24,7 +24,7 @@ public class ItemController {
         // turn the items list into a list of strings
         List<String> itemStrings = new ArrayList<String>();
         for (Item item : items) {
-            itemStrings.add(item.toString());
+            if(item.getOwner().equals(user) == false) itemStrings.add(item.toString());
         }
 
         int itemIndex = ItemView.marketplace(itemStrings);

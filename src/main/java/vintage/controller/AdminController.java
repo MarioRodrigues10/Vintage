@@ -12,15 +12,20 @@ public class AdminController {
                 TimeController.jumpTime();
                 break;
             case 2:
-                CarrierController.menu();
-                break;
+                UserController.listUsers();
             case 3:
-                SerializationController.save();
+                OrderController.listOrders();
                 break;
             case 4:
-                SerializationController.load();
+                CarrierController.menu();
                 break;
             case 5:
+                SerializationController.save();
+                break;
+            case 6:
+                SerializationController.load();
+                break;
+            case 7:
                 MenuController.menu();
                 break;
         }
