@@ -43,6 +43,9 @@ public class UserTest {
                 new Address("Portugal", "New York", "Rua dos Bares", "4710-000"),
                 "123456789", new ArrayList<Receipt>(), new ArrayList<Item>());
 
+        UserListings.getInstance().addUser(user);
+        UserListings.getInstance().addUser(seller);
+
         OrderListings orderListings = OrderListings.getInstance();
         Carrier carrier = new Carrier("DHL", BigDecimal.valueOf(0.1), false, 1);
 

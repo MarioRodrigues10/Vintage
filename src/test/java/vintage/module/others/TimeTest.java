@@ -10,6 +10,7 @@ import vintage.module.order.OrderListings;
 import vintage.module.order.receipt.Receipt;
 import vintage.module.user.User;
 import vintage.module.time.Time;
+import vintage.module.user.UserListings;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class TimeTest {
         User seller = new User("Magic Mike", "magicmike@mail.com",
                 new Address("USA", "Los Angeles", "Hollywood", "4710-000"),
                 "123456789", new ArrayList<Receipt>(), new ArrayList<Item>());
+
+        UserListings.getInstance().addUser(user);
+        UserListings.getInstance().addUser(seller);
 
         Carrier ups = new Carrier("UPS", BigDecimal.valueOf(1), false, 3);
 
