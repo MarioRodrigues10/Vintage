@@ -132,6 +132,8 @@ public class ItemController {
     }
 
     private static void createBag(User user, Map<String, String> item) {
+        Carrier carrier = CarrierListings.getInstance().getCarrier(item.get("carrier"));
+
         Item bag = new Bag(
                 item.get("description"),
                 user,
@@ -142,7 +144,7 @@ public class ItemController {
                 Integer.parseInt(item.get("size")),
                 item.get("material"),
                 Integer.parseInt(item.get("release")),
-                null
+                carrier
         );
 
         user.addItem(bag);
@@ -151,6 +153,7 @@ public class ItemController {
     private static void createShoes(User user, Map<String, String> item) {
         boolean laces;
         laces = item.get("laces").equals("y");
+        Carrier carrier = CarrierListings.getInstance().getCarrier(item.get("carrier"));
 
         Item shoes = new Shoes(
                 item.get("description"),
@@ -163,7 +166,7 @@ public class ItemController {
                 laces,
                 item.get("color"),
                 Integer.parseInt(item.get("release")),
-                null
+                carrier
         );
 
         user.addItem(shoes);

@@ -115,6 +115,14 @@ public class ItemView {
     private static Map<String, String> createBag() {
         Map<String, String> newItem = new HashMap<String, String>();
 
+        List<Carrier> carriers = CarrierListings.getInstance().getAllCarriers();
+        // turn the carriers list
+        List<String> carrierStrings = new ArrayList<String>();
+
+        for (Carrier carrier : carriers) {
+            carrierStrings.add(carrier.toString());
+        }
+
         newItem.put("type", "bag");
         newItem.put("brand", Util.input("Brand: "));
         newItem.put("description", Util.input("Description: "));
@@ -124,6 +132,7 @@ public class ItemView {
         newItem.put("evaluation", Util.inputEvaluation());
         newItem.put("material", Util.input("Material: "));
         newItem.put("release", Util.input("Release year: "));
+        newItem.put("carrier", Util.inputCarriers(carrierStrings));
 
         return newItem;
     }
@@ -131,6 +140,13 @@ public class ItemView {
     private static Map<String, String> createShoes() {
         Map<String, String> newItem = new HashMap<String, String>();
 
+        List<Carrier> carriers = CarrierListings.getInstance().getAllCarriers();
+        // turn the carriers list
+        List<String> carrierStrings = new ArrayList<String>();
+
+        for (Carrier carrier : carriers) {
+            carrierStrings.add(carrier.toString());
+        }
         newItem.put("type", "shoes");
         newItem.put("brand", Util.input("Brand: "));
         newItem.put("description", Util.input("Description: "));
@@ -141,6 +157,7 @@ public class ItemView {
         newItem.put("evaluation", Util.inputEvaluation());
         newItem.put("laces", Util.inputLaces());
         newItem.put("release", Util.input("Realease year: "));
+        newItem.put("carrier", Util.inputCarriers(carrierStrings));
 
         return newItem;
     }
