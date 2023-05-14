@@ -1,5 +1,9 @@
 package vintage.view;
 
+import vintage.module.item.carrier.Carrier;
+import vintage.module.item.carrier.CarrierListings;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,6 +91,13 @@ public class ItemView {
 
     private static Map<String, String> createTShirt() {
         Map<String, String> newItem = new HashMap<String, String>();
+        List<Carrier> carriers = CarrierListings.getInstance().getAllCarriers();
+        // turn the carriers list
+        List<String> carrierStrings = new ArrayList<String>();
+
+        for (Carrier carrier : carriers) {
+            carrierStrings.add(carrier.toString());
+        }
 
         newItem.put("type", "tshirt");
         newItem.put("brand", Util.input("Brand: "));
@@ -97,7 +108,7 @@ public class ItemView {
         newItem.put("price", Util.inputPrice());
         newItem.put("evaluation", Util.inputEvaluation());
         newItem.put("pattern", Util.input("Pattern [solid/stripped/palm]: "));
-
+        newItem.put("carrier", Util.inputCarriers(carrierStrings));
         return newItem;
     }
 

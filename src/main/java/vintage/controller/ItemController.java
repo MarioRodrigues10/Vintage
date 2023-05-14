@@ -4,6 +4,8 @@ import vintage.module.item.Bag;
 import vintage.module.item.Item;
 import vintage.module.item.Shoes;
 import vintage.module.item.TShirt;
+import vintage.module.item.carrier.Carrier;
+import vintage.module.item.carrier.CarrierListings;
 import vintage.module.order.Order;
 import vintage.module.user.User;
 import vintage.module.user.UserListings;
@@ -112,6 +114,8 @@ public class ItemController {
             pattern = TShirt.Pattern.PALM;
         }
 
+        Carrier carrier = CarrierListings.getInstance().getCarrier(item.get("carrier"));
+
         Item tshirt = new TShirt(
                 item.get("description"),
                 user,
@@ -121,7 +125,7 @@ public class ItemController {
                 Integer.parseInt(item.get("owners")),
                 size,
                 pattern,
-                null
+                carrier
         );
 
         user.addItem(tshirt);
