@@ -24,4 +24,5 @@ public interface Receipt {
     public void setItems(List<Item> items);
     public void setEmissionDate(LocalDate emissionDate);
     public void addItem(Item item);
+    public String toString();
 }

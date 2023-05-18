@@ -1,12 +1,17 @@
 package vintage.view;
 
 import vintage.controller.AdminController;
+import vintage.controller.MenuController;
 import vintage.module.order.receipt.Receipt;
 import vintage.module.others.Statistics;
 import vintage.module.user.User;
 import vintage.module.user.UserListings;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static java.lang.Thread.sleep;
 
 public class StatisticsView {
 
@@ -18,7 +23,8 @@ public class StatisticsView {
         Util.println("[3] Biggest Sellers By Products");
         Util.println("[4] Biggest Sellers By Money");
         Util.println("[5] Biggest Buyers By Products");
-        Util.println("[6] Exit");
+        Util.println("[6] Back");
+        Util.println("[7] Exit");
         int option = Util.inputOption(6);
         return option;
     }
@@ -27,14 +33,16 @@ public class StatisticsView {
         UserListings userListings = UserListings.getInstance();
         switch (option) {
             case 1:
-                String name = Util.input("Enter the name of the user: ");
-                User user = UserListings.getInstance().getUserByName(name);
+                String email = Util.input("Enter the email of the user: ");
+                User user = userListings.getUser(email);
+
                 if (user == null) {
                     Util.println("User not found.");
                 } else {
                     List<Receipt> receipts = Statistics.getSellerOrders(user);
                     viewStatistics(receipts);
                 }
+                Util.input("Press enter to continue...");
                 AdminController.menu();
                 break;
             case 2:
@@ -47,6 +55,7 @@ public class StatisticsView {
                     Util.println("Biggest Seller By Products: ");
                     Util.println(user2.toString());
                 }
+                Util.input("Press enter to continue...");
                 AdminController.menu();
                 break;
             case 3:
@@ -59,6 +68,7 @@ public class StatisticsView {
                         Util.println(user3.toString());
                     }
                 }
+                Util.input("Press enter to continue...");
                 AdminController.menu();
                 break;
             case 4:
@@ -71,10 +81,13 @@ public class StatisticsView {
                         Util.println(user4.toString());
                     }
                 }
+                Util.input("Press enter to continue...");
                 AdminController.menu();
                 break;
             case 5:
                 List<User> users5 = Statistics.biggestBuyersByProducts(userListings);
+                System.out.println(users5.get(0).toString());
+
                 if(users5.isEmpty()){
                     Util.println("No orders found.");
                 }
@@ -83,10 +96,14 @@ public class StatisticsView {
                         Util.println(user5.toString());
                     }
                 }
+                Util.input("Press enter to continue...");
                 AdminController.menu();
                 break;
             case 6:
                 AdminController.menu();
+                break;
+            case 7:
+                System.exit(0);
                 break;
         }
     }
@@ -97,7 +114,6 @@ public class StatisticsView {
             return;
         }
         {
-            Util.clearScreen();
             Util.printHeader();
             Util.println("\nList of Orders:\n");
 
