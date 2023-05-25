@@ -1,5 +1,5 @@
 ## Object Oriented Programming | Programação Orientada a Objetos
-## Grade: */20 :star:
+## Grade: 15/20 :star:
 
 This project was developed during the second semester of the 2nd year.
 
